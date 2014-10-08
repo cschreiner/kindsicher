@@ -1,0 +1,9 @@
+
+# Ignore tex related files
+*.dvi
+*.aux
+*.ps
+*.log
+*.blg
+*.bbl
+proposal.pdf
