@@ -6,89 +6,128 @@
 \pagestyle{fancy}
 \usepackage[font={small,sf},format=plain,labelfont=bf,up]{caption}
 \fancyhf{}
-\fancyhead[l,lo]{\textit{ Safe-Browsing for Children at Home}} %left top header
+\fancyhead[l,lo]{\textit{Kindsicher: Safe-Browsing for Children at Home}} %left top header
 \fancyhead[r,ro]{\thepage} %right top header
 
 \usepackage{url}
+\usepackage{indentfirst}
 
 \begin{document}
 
-\title{Safe-Browsing for Children at Home}
+\title{Kindsicher: Safe-Browsing for Children at Home}
 \author{Chaitanya Achan, Philip Lundrigan, and Christian Schreiner}
 \date \today
 \maketitle
 \setcounter{page}{1}
 
-\section*{Project}
+% x Problem definition and motivation. What are the goals of your project and
+%   why are these goals important?
+%
+% - Why you chose that topic to work on and/or how the backgrounds of group
+%   members contribute to the goal.
+%
+% - Any plans for how to divide the work that you have in place.
+%
+% x Your approach for addressing the problem that you defined in (1).
+%
+% x How you plan to evaluate your approach.
+%
+% - Main obstacles that you foresee along the way, and any contingency plans
+%   that you have in place.
+%
+% x An initial discussion of the related work of which you are aware. If
+%   appropriate, also explain how your approach is different from existing
+%   approaches.
+%
+% - A list of milestones and (optionally) dates for those milestones.
+
+\section*{Introduction}
+As the Internet becomes more danger for children to use, it is important for
+parents to protect their children from purposeful or accidental access to
+harmful websites. Parent's can't ways be watching what a child is doing and as
+a result, parental filtering is necessary.
 
 The goal of this project is to create a controlled online environment for
 children at home, even when the parents can not be closely supervising them.
-The system will allow the children to only access known safe internet sites,
-without restricting parental access.  The system will also log all
-internet traffic in and out of the home, and provide a means for parents to
-view the logs, so they can make a rational response to any anomalies that
-occur.
+The system will allow the children to only access known safe Internet sites,
+without restricting parental access. The system will also log all Internet
+traffic in and out of the home, and provide a means for parents to view the
+logs, so they can make a rational response to any anomalies that occur.
 
-Top level requirements:
+The blocking of unapproved websites is the first line of defense in our system,
+with logging acting as a second line of defense. It allows parents to review
+Internet activity and change their approach if necessary.
 
-The system will allow the children to only log into ``children's'' computers,
-not the parents'.  This will be implemented by adding a feature to the SNISR~\cite{snisr}
-network login system.
 
-The system will allow the parents' computers unrestricted access to the
-internet (though even traffic from the parents' computers will be logged).
+\section*{Approach}
 
-The system will allow the childrens' computers to only communicate with
-internet sites on a ``whitelist'', when communicating via TCP.  This will be
+First, the system will control what computers children are allowed to use. This
+is done by using the network login system, SNISR~\cite{snisr}, to allow
+children to only log into ``children's'' computers and not the parent's.
+Parent's computers will have unrestricted access to the Internet (though
+traffic from the parents' computers will be logged).
+
+The system will allow the children's computers to only communicate with
+Internet sites on a ``whitelist'', when communicating via TCP.  This will be
 implemented by adding TCP connection shutdown rules to the SNORT network
-monitoring tools.
-
-The system will include a whitelist of known safe internet sites.  We (the
-authors of this proposal) expect that a significant amount of the work on
-the project will be developing an workable whitelist that allows children to
-do online homework and other tasks.  It is understood that the list will
-need development and modification beyond the scope of this project.
+monitoring tools~\cite{snort}. The system will include a whitelist of known
+safe Internet sites. We expect that a
+significant amount of the work on the project will be developing an workable
+whitelist that allows children to do online homework and other tasks. It is
+understood that the list will need development and modification beyond the
+scope of this project.
 
 The system will implement logging via the SNORT network monitoring tool, and
 will make the logs available to the parents via SNORT's companion tool,
-BASE.  (Note: BASE's predecessor was ACID LAB.)
+BASE~\cite{base}, previously called ACID LAB. The system will
+not restrict any computer's access of sites via UDP, IMCP, or other non-TCP
+protocols, though the system will still log all non-TCP traffic.
 
-The system will not restrict any computer's access of sites via UDP, IMCP,
-or other non-TCP protocols, though the system will still log all non-TCP
-traffic.
+If time allows, we would like to make this system easy to use from a
+non-technical user's perspective. There are three ``stretch goals'' we have
+thought of. The first is allowing parents to add and delete sites from the
+whitelist without requiring superuser access or system administrator
+experience. Changes to the whitelist will be logged in a revision control
+system. The second is to allow children to request that a site be added to the
+whitelist (i.e. through a webpage). The parents will receive a notification of
+the request, and can send a suitable authorization. The thread improvement is
+to develop a custom network monitoring report that makes more sense to a
+non-technical parent than the standard monitor logs. We do not want these goals
+to detract from building a system that is safe and secure so we plan on
+addressing if there is time. A final stretch goal unrelated to usability
+improvements is to do an independent security analysis of SNISR.
 
-Stretch requirement: The system will allow a parent to add or delete sites
-from the whitelist. without requiring superuser access or system
-administrator experience.  Changes to the whitelist shall be logged in a
-revision control system.
+To evaluate our system, we plan on using this in a real family setting. We will
+get feedback from the children using the system as well as the monitor logs to
+make sure the system is behaving as expected.
 
-Stretch requirement: The system will allow the children to request that a
-site be added to the whitelist by entering its URL onto a webpage.  The
-parents will be able to receive such a notification remotely, and send a
-suitable authorization to the system.  We (the authors of this proposal)
-anticipate implementing this by sending an email to the parents that is
-accessible via smartphone, and to accept a reply via email.  The system
-would need to only accept replies from the parents' email addresses, and may
-need additional guards against spoofing.
-
-Stretch requirement: Do an independent security analysis of SNISR.
-
-Stretch requirement: If needed and desired: develop a custom network
-monitoring report that makes more sense to a non-technical parent than the
-standard reports.
-
-Snort\cite{snort}
 
 \section*{Thread Model}
+The adversary of this system is the children using it. This includes children
+trying to circumvent the system accidentally or purposefully. We assume that
+children ages 3 to 16 will be using this system will basic computer knowledge.
+We assume that children have physical access to the server that our system will
+be running on.
 
 \section*{Related Work}
+There are many different commercial or free parental filters
+(\cite{k9}\cite{netnanny}\cite{mcafee}) that already exist. These solutions
+don't provide the technical details on how they work for comfortable use.
+
+There are two major open source parental filters. The first,
+KidLogger~\cite{kidlogger}, provides a wide variety of tracking tools such as
+key logging, time tracking and web history monitoring. This software runs on
+the child's computer which does not meet the needs of our project. The other
+open source parental filter is DansGuardian~\cite{dansgaurdian}. DansGuardian
+filters by content rather than website. Since we want control over what
+websites children can visit and not just the content, we feel that this
+approach does not fit our needs.  DansGuardian also has not been updated
+recently (Sep 2012) and in order to be used, all traffic needs to be routed
+through it. One of our design goals is to allow Internet use even during server
+failure which DansGuardian does not meet.
 
 \section*{Milestones}
 
-URLS:
-For BASE: http://sourceforge.net/projects/secureideas/
-        and http://base.professionallyevil.com/
-For ACID LAB: http://acidlab.sourceforge.net
 
 {
   \bibliographystyle{acm}
