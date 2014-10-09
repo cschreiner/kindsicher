@@ -1,0 +1,69 @@
+Outline for proposed CS6964 project:
+
+Title: Safe-Browsing for Children at Home
+
+The goal of this project is to create a controlled online environment for
+children at home, even when the parents can not be closely supervising them.
+The system will allow the children to only access known safe internet sites,
+without restricting parental access.  The system will also log _all_
+internet traffic in and out of the home, and provide a means for parents to
+view the logs, so they can make a rational response to any anomalies that
+occur.
+
+Top level requirements:
+
+The system will allow the children to only log into "children's" computers,
+not the parents'.  This will be implemented by adding a feature to the SNISR
+network login system.
+
+The system will allow the parents' computers unrestricted access to the
+internet (though even traffic from the parents' computers will be logged).
+
+The system will allow the childrens' computers to only communicate with
+internet sites on a "whitelist", when communicating via TCP.  This will be
+implemented by adding TCP connection shutdown rules to the SNORT network
+monitoring tools.
+
+The system will include a whitelist of known safe internet sites.  We (the
+authors of this proposal) expect that a significant amount of the work on
+the project will be developing an workable whitelist that allows children to
+do online homework and other tasks.  It is understood that the list will
+need development and modification beyond the scope of this project.
+
+The system will implement logging via the SNORT network monitoring tool, and
+will make the logs available to the parents via SNORT's companion tool,
+BASE.  (Note: BASE's predecessor was ACID LAB.)
+
+The system will not restrict any computer's access of sites via UDP, IMCP,
+or other non-TCP protocols, though the system will still log all non-TCP
+traffic.
+
+Stretch requirement: The system will allow a parent to add or delete sites
+from the whitelist. without requiring superuser access or system
+administrator experience.  Changes to the whitelist shall be logged in a
+revision control system.
+
+Stretch requirement: The system will allow the children to request that a
+site be added to the whitelist by entering its URL onto a webpage.  The
+parents will be able to receive such a notification remotely, and send a
+suitable authorization to the system.  We (the authors of this proposal)
+anticipate implementing this by sending an email to the parents that is
+accessible via smartphone, and to accept a reply via email.  The system
+would need to only accept replies from the parents' email addresses, and may
+need additional guards against spoofing.
+
+Stretch requirement: Do an independent security analysis of SNISR.
+
+Stretch requirement: If needed and desired: develop a custom network
+monitoring report that makes more sense to a non-technical parent than the
+standard reports.
+
+URLS:
+For SNORT: http://www.snort.org
+For BASE: http://sourceforge.net/projects/secureideas/
+	and http://base.professionallyevil.com/
+For ACID LAB: http://acidlab.sourceforge.net
+For SNISR: http://www.mathoni.net/cas/swforge/snisr/
+
+(end of document)
+
