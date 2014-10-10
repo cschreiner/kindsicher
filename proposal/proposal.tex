@@ -44,17 +44,16 @@
 \section*{Introduction}
 It is important for parents to protect their children from purposeful or
 accidental access to harmful websites on the Internet. Parents can't always be
-watching what a child is doing and as a result, parental filtering is
-% CAS suggest "some automatic filtering" instead of "parental filtering"
+watching what a child is doing and as a result, some automatic filtering is
 necessary. The goal of this project is to create a controlled online
 environment for children at home, even when the parents can not be closely
 supervising them. The system will allow the children to only access known safe
 Internet sites, without restricting parental access. The system will also log
 all Internet traffic in and out of the home, and provide a means for parents to
 view the logs, so they can make a rational response to any anomalies that
-occur. The blocking of unapproved websites is the first line of defense in our system,
-with logging acting as a second line of defense. It allows parents to review
-Internet activity and change their approach if necessary.
+occur. The blocking of unapproved websites is the first line of defense in our
+system, with logging acting as a second line of defense. It allows parents to
+review Internet activity and change their approach if necessary.
 
 We selected this project because all of us in the group have families with
 children so it is applicable to all of us. After looking through different
@@ -82,8 +81,7 @@ BASE~\cite{base}, previously called ACID LAB~\cite{acidlab}. The system will
 not restrict any computer's access of sites via UDP, IMCP, or other non-TCP
 protocols, though the system will still log all non-TCP traffic.
 
-If time allows, we would like to make this system easy to use from a
-% CAS suggest "easier to use" instead of "easy to use"
+If time allows, we would like to make this system easier to use from a
 non-technical user's perspective. There are three ``stretch goals'' we have
 thought of. The first is allowing parents to add and delete sites from the
 whitelist without requiring superuser access or system administrator
@@ -106,11 +104,19 @@ non-whitelisted websites, and logging network usage. Each member of the group
 with be in charge of one of these parts receiving help from the other group
 members as needed.
 
+
+\section*{Potential Obstacles}
+
 We expect that a significant amount of the work on the project will be
 developing an workable whitelist that allows children to do online homework and
 other tasks. This could be a potential obstacle for the project. It is
 understood that the list will need development and modification beyond the
 scope of this project.
+
+Another obstacle we could face is that the hardware of the server that our
+system is running on is not fast enough to block access under stress
+conditions. We accept the fact that some accesses may not be blocked and think
+that this could happen only under rare circumstances.
 
 
 \section*{Threat Model}
@@ -123,26 +129,23 @@ system will be running on.
 
 \section*{Related Work}
 There are many different commercial or free parental filters
-(\cite{k9}\cite{netnanny}\cite{mcafee}) that already exist. These solutions
-% CAS suggest adding OpenDNS as a known site w/o technical details.
-don't provide the technical details on how they work for comfortable use. It is
-% CAS sugest "provide enough technical" instead of "provide the technical"
-important for us to know how something like this works so we know the
-limitations of it.
+(\cite{k9}\cite{netnanny}\cite{mcafee}\cite{opendns}) that already exist. These
+solutions do not provide enough technical details on how they work for
+comfortable use. It is important for us to know how something like this works
+so we know the limitations of it.
 
 There are two major open source parental filters. The first,
 KidLogger~\cite{kidlogger}, provides a wide variety of tracking tools such as
 key logging, time tracking and web history monitoring. This software runs on
-the child's computer which does not meet the needs of our project. The other
-% CAS suggest: software running on the child's computer does not protect
-% against access via a guest computer.
-open source parental filter is DansGuardian~\cite{dansgaurdian}. DansGuardian
-filters by content rather than website. Since we want control over what
-websites children can visit and not just the content, we feel that this
-approach does not fit our needs.  DansGuardian also has not been updated
-recently (Sep 2012) and in order to be used, all traffic needs to be routed
-through it. One of our design goals is to allow Internet use even during server
-failure which DansGuardian does not meet.
+the child's computer which does not meet the needs of our project because it
+does not protect access from a guest's computer. The other open source parental
+filter is DansGuardian~\cite{dansgaurdian}. DansGuardian filters by content
+rather than website. Since we want control over what websites children can
+visit and not just the content, we feel that this approach does not fit our
+needs.  DansGuardian also has not been updated recently (Sep 2012) and in order
+to be used, all traffic needs to be routed through it. One of our design goals
+is to allow Internet use even during server failure which DansGuardian does not
+meet.
 
 \section*{Milestones}
 \begin{itemize}
@@ -153,16 +156,6 @@ failure which DansGuardian does not meet.
     \item Develop whitelist
     \item Integrate system into family environment
 \end{itemize}
-
-% CAS suggest: add something about potential obstacles. Here are my offhand
-% thoughts, feel free to discuss or elaborate.
-% [ ] Purchased server hardware may not be fast enough to block access under
-% 	stress conditions.  Mitigation: accept fact that some accesses may
-% 	not be blocked.
-% [ ] The list of websites the children need to use may change faster than 
-%	this semster project can accomodate.  Mitigation: add the "stretch 
-%	goal" features allowing parents to edit the list.  These features
-%	may need to be added after then end of this semster.
 
 {
   \bibliographystyle{acm}
