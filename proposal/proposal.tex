@@ -45,7 +45,7 @@
 It is important for parents to protect their children from purposeful or
 accidental access to harmful websites on the Internet. Parents can't always be
 watching what a child is doing and as a result, parental filtering is
-% suggest "some automatic filtering" instead of "parental filtering"
+% CAS suggest "some automatic filtering" instead of "parental filtering"
 necessary. The goal of this project is to create a controlled online
 environment for children at home, even when the parents can not be closely
 supervising them. The system will allow the children to only access known safe
@@ -83,7 +83,7 @@ not restrict any computer's access of sites via UDP, IMCP, or other non-TCP
 protocols, though the system will still log all non-TCP traffic.
 
 If time allows, we would like to make this system easy to use from a
-% suggest "easier to use" instead of "easy to use"
+% CAS suggest "easier to use" instead of "easy to use"
 non-technical user's perspective. There are three ``stretch goals'' we have
 thought of. The first is allowing parents to add and delete sites from the
 whitelist without requiring superuser access or system administrator
@@ -96,7 +96,7 @@ non-technical parent than the standard monitor logs. A final stretch goal
 unrelated to usability improvements is to do an independent security analysis
 of SNISR. We do not want these goals to detract from building a system that is
 safe and secure so we plan on addressing if there is time.
-% suggest "addressing only if" instead of "addressing if"
+% CAS suggest "addressing only if" instead of "addressing if"
 
 To evaluate our system, we plan on using it in a real family setting. We will
 get feedback from the children and parents using the system as well as the
@@ -125,9 +125,9 @@ system will be running on.
 \section*{Related Work}
 There are many different commercial or free parental filters
 (\cite{k9}\cite{netnanny}\cite{mcafee}) that already exist. These solutions
-% suggest adding OpenDNS as a known site w/o technical details.
+% CAS suggest adding OpenDNS as a known site w/o technical details.
 don't provide the technical details on how they work for comfortable use. It is
-% sugest "provide enough technical" instead of "provide the technical"
+% CAS sugest "provide enough technical" instead of "provide the technical"
 important for us to know how something like this works so we know the
 limitations of it.
 
@@ -135,6 +135,8 @@ There are two major open source parental filters. The first,
 KidLogger~\cite{kidlogger}, provides a wide variety of tracking tools such as
 key logging, time tracking and web history monitoring. This software runs on
 the child's computer which does not meet the needs of our project. The other
+% CAS suggest: software running on the child's computer does not protect
+% against access via a guest computer.
 open source parental filter is DansGuardian~\cite{dansgaurdian}. DansGuardian
 filters by content rather than website. Since we want control over what
 websites children can visit and not just the content, we feel that this
@@ -152,6 +154,16 @@ failure which DansGuardian does not meet.
     \item Develop whitelist
     \item Integrate system into family environment
 \end{itemize}
+
+% CAS suggest: add something about potential obstacles. Here are my offhand
+% thoughts, feel free to discuss or elaborate.
+% [ ] Purchased server hardware may not be fast enough to block access under
+% 	stress conditions.  Mitigation: accept fact that some accesses may
+% 	not be blocked.
+% [ ] The list of websites the children need to use may change faster than 
+%	this semster project can accomodate.  Mitigation: add the "stretch 
+%	goal" features allowing parents to edit the list.  These features
+%	may need to be added after then end of this semster.
 
 {
   \bibliographystyle{acm}
