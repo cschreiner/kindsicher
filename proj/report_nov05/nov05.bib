@@ -1,0 +1,252 @@
+@COMMENT {
+ CAS template for a bibtex file
+ definition:
+ ftp://ftp.ctan.org/tex-archive/biblio/bibtex/contrib/doc/btxdoc.pdf
+ See also:
+   http://www.cs.vassar.edu/people/priestdo/tips/bibtex
+   http://ccm.ucdenver.edu/wiki/How_to_write_BibTeX_files
+   http://tex.stackexchange.com/questions/93972/comment-out-sections-of-text-in-bib-file
+}
+
+BOOK { <tag>, remember to add a @ before the entry tag
+   %= book with an explicit publisher
+   author= "", % or editor
+   editor= "", % or author
+   title= "",
+   publisher= "",
+   year= "",
+   % optional
+   volume= "",
+   series= "",
+   address= "",
+   edition= "",
+   month= "",
+   month= "",
+   note= "",
+   key= "" }
+
+BOOKLET { <tag>, remember to add a @ before the entry tag
+   %= Printed and bound work, but without a named publisher or 
+   %= sponsoring institution
+   title= "",
+   % optional
+   author= "", % or editor
+   howpublished= "", % or author
+   address= "",
+   month= "",
+   year= "",
+   note= "",
+   key= "" }
+
+CONFERENCE { <tag>, remember to add a @ before the entry tag
+   %= conference entry -- an article from the proceedings of a conference.
+   %= same as @inproceedings
+   author= "",
+   title= "",
+   booktitle= "",
+   year= "",
+   % optional
+   editor= "",
+   publisher= "",
+   pages= "",
+   organization= "",
+   address= "",
+   month= "",
+   note= "",
+   key= "" }
+   
+INBOOK { <tag>, remember to add a @ before the entry tag
+   %= part of a book, i.e. chapter or page range
+   author= "", % or editor
+   editor= "", % or author
+   title= "",
+   chapter= "", # or pages
+   pages= "", # or chapter
+   publisher= "",
+   year= "",
+   % optional
+   volume= "",
+   series= "",
+   address= "",
+   edition= "",
+   month= "",
+   month= "",
+   note= "",
+   key= "" }
+
+INCOLLECTION { <tag>, remember to add a @ before the entry tag
+   %= a part of a book with its own title
+   author= "",
+   title= "",
+   booktitle= "",
+   journal= "",
+   year= "",
+   % optional
+   editor= "",
+   volume= "",
+   number= "",
+   pages= "",
+   publisher= "",
+   organization= "",
+   address= "",
+   month= "",
+   note= "",
+   key= "" }
+
+% article
+ARTICLE { <tag>, remember to add a @ before the entry tag
+   author= "",
+   title= "",
+   journal= "",
+   year= "",
+   % optional
+   volume= "",
+   number= "",
+   pages= "",
+   month= "",
+   note= "",
+   key= "" }
+   
+incollection ( <tag>, remember to add a @ before the entry tag
+   %= chapter in book
+   author= "",
+   title= "",
+   editor= "",
+   booktitle= "",
+   publisher= "",
+   address= "",
+   year= "",
+   key= "" }
+
+INPROCEEDINGS { <tag>, remember to add a @ before the entry tag
+   %= an article in the proceedings of a conference
+   author= "",
+   title= "",
+   booktitle= "",
+   year= "",
+   % optional
+   editor= "",
+   pages= "",
+   organization= "",
+   publisher= "",
+   address= "",
+   month= "",
+   note= "",
+   key= "" }
+
+MANUAL { <tag>, remember to add a @ before the entry tag
+   %= a completely manual entry
+   title= "",
+   % optional
+   author= "",
+   organization= "",
+   address= "",
+   edition= "",
+   month= "",
+   year= "",
+   note= "",
+   key= "" }
+
+MASTERSTHESIS { <tag>, remember to add a @ before the entry tag
+   author= "",
+   title= "",
+   school= "",
+   year= "",
+   % optional
+   address= "",
+   month= "",
+   note= "",
+   key= "" }
+
+PHDTHESIS { <tag>, remember to add a @ before the entry tag
+   author= "",
+   title= "",
+   school= "",
+   year= "",
+   % optional
+   address= "",
+   month= "",
+   note= "",
+   key= "" }
+
+PROCEEDINGS{ <tag>, remember to add a @ before the entry tag
+   title= "",
+   year= "",
+   % optional
+   editor= "",
+   publisher= "",
+   organization= "",
+   address= "",
+   month= "",
+   note= "",
+   key= "" }
+
+TECHREPORT (<tag>, remember to add a @ before the entry tag
+   %= a report published by a school or other institution, usually numbered
+   %= within a series.
+   author= "",
+   title= "",
+   institution= "",
+   year= "",
+   % optional
+   type= "",
+   number= "",
+   address= "",
+   month= "",
+   note= "",
+   key= "" }
+
+UNPUBLISHED { <tag>, remember to add a @ before the entry tag
+   %= a document with author and title, but not formally published.
+   author= "",
+   title= "",
+   note= "",
+   % optional
+   month= "",
+   year= "",
+   key= "" }
+
+% misc
+MISC { <tag>, remember to add a @ before the entry tag
+   % optional
+   author= "",
+   title= "",
+   howpublished= "",
+   MONTH= "",
+   year= "",
+   note= "",
+   key= "" }
+
+MISC { <tag>, remember to add a @ before the entry tag
+   %= webpage
+   title= "",
+   howpublished= { \url{htp://...}
+   note= {Accessed: <date> }
+
+ONLINE { <tag>, remember to add a @ before the entry tag
+   %= webpage
+   title= "",
+   author= "",
+   month= "",
+   year= {19xx},
+   url= {http://...}
+}
+
+MANUAL { <tag>, remember to add a @ before the entry tag
+   %= webpage
+   title= "",
+   author= "",
+   url= "http://...",
+   % or note= "\url{http://...}",
+   year= "2999 (accessed <date>)" }
+
+@COMMENT {
+ Note: the key="xx" field is used to alphabetize and create a label in the
+ citing document if the "author" and "editor" fields are missing.  Do NOT
+ confuse with the citation key aka tag appearing at the beginning of the
+ entry.  
+}
+
+@COMMMENT {
+  end of file
+}
