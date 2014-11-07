@@ -65,8 +65,7 @@
 @INPROCEEDINGS { iha_implementation,
    %= an article in the proceedings of a conference
    author= "Genta Iha, Hiroshi Doi",
-   title= "An Implementation fo the Binding Mechanism in the eb Browser for
-Preventing XSS Attacks: Introducing the Bind-Value Headers",
+   title= "An Implementation fo the Binding Mechanism in the Web Browser for Preventing XSS Attacks: Introducing the Bind-Value Headers",
    booktitle= "2009 International Conference on Avaialbility, Reliability
 and Security",
    year= "2009",
@@ -79,7 +78,10 @@ and Security",
    month= "",
    note= "",
    key= "",
-   proj_note= "notes the hard part of using a whitelist is defining the whitelist", }
+   proj_note= "notes the hard part of using a whitelist is defining the whitelist", 
+   similarity="The article discusses a whitelist, and we are using a whitelist.",
+   difference="The article focuses on preventing XSS attacks, we are focused on filtering internet available to a family's children.",
+   key= "" }
 
 @ARTICLE { ho_statistical, 
    author= "Wai H. Ho, Paul A. Watters",
@@ -93,6 +95,8 @@ and Security",
    month= "",
    note= "",
    proj_note="notes again that hard part of whitelisting is building the whitelist; also has an interesting description of a bayesian classification algo",
+   similarity="Article discusses whitelisting, which is a technique we are using.",
+   difference="Article focuses on techniques to substitute for whitelisting, while we are using whitelisting as our primary technique.",
    key= "" }
 
 @ARTICLE { chen_et_al_novel_web_page_filtering, 
@@ -107,6 +111,8 @@ and Security",
    month= "",
    note= "",
    proj_note="interesting means of combining text and graphical data to detect pornography, shows complexity needed for good automatic classification",
+   similarity="Article discusses an algorithm for automatically classifying webpages to protect users against unwanted sexual content, we are also trying to protect users against unwanted sexual content.",
+   difference="Article focuses on automatic techniques to classify webpages, we rely on a human-generated whitelist.  The article focuses on sexual content, we focus on any content the parents consider objectionable.  (For example, parents might decide not to approve a site merely for best-use-of-time concerns.)",
    key= "" }
 
 @ARTICLE { baykan_et_al_url_based_classification,
@@ -121,6 +127,8 @@ and Security",
    month= "July",
    note= "",
    proj_note="interesting means of classifying a page by its URL and URLs of pages that link to it.  May be useful for classifying pages to make a recommendation for parental approval/rejection.",
+   similarity="The article classifies webpages by their URLs, so are we.",
+   difference="The article automatically classifies webpages into many subject-matter-based categories, we classify into two categories: allowed and forbidden.",
    key= "" }
 
 @ARTICLE { han_automated_whitelist
@@ -134,7 +142,9 @@ and Security",
    pages= "11861-11869",
    month= "Nov",
    note= "",
-   proj_note="example of successfully using whitelists, with means of quickly updating the whitelist.  Shows basic feasibility of whitelisting in select circumstances.",
+   proj_note="example of successfully using whitelists, with means of quickly updating the whitelist.  Shows basic feasibility of whitelisting in select circumstances, and demonstrates the need to easily update the whitelist.",
+   similarity="The article usses a whitelist technique for internet safety."
+   difference="The article focuses on general anti-phishing and anti-name-spoofing, we are focusing on controlling what websites children visit.",
    key= "" }
 
 % ============================================================================
