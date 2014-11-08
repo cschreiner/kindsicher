@@ -1,0 +1,70 @@
+\documentclass[12pt] {article}
+\usepackage[margin=1in]{geometry} %one inch margins
+\usepackage{graphicx} %for figures
+\usepackage{enumerate} %for lists
+\usepackage{fancyhdr} %header
+\pagestyle{fancy}
+\usepackage[font={small,sf},format=plain,labelfont=bf,up]{caption}
+\fancyhf{}
+\fancyhead[l,lo]{\textit{Kindsicher: Safe-Browsing for Children at Home}} %left top header
+\fancyhead[r,ro]{\thepage} %right top header
+
+\usepackage{url}
+\usepackage{indentfirst}
+
+\begin{document}
+
+\title{Kindsicher: Safe-Browsing for Children at Home \\ \vspace{1 mm} {\normalsize Related Work}}
+\author{Chaitanya Achan, Philip Lundrigan, and Christian Schreiner}
+\date \today
+\maketitle
+\setcounter{page}{1}
+
+\begin{itemize}
+\item Zero to eight. Young children and their internet use
+\\ \textit{Holloway,D., Green, L. and Livingstone, S. (2013) LSE, London: EU Kids Online}
+\\  Risks and safety on the internet: the UK report
+\\ \textit{Livingstone, S., Haddon, L., Gorzig, A. and Olafsson, K. (2011) LSE, London: EU Kids Online}
+\\ \underline{Summary}: These two articles are studies that show how children, in two age groups - 8 and under, and 9 to 16, use technology and more specifically, the Internet. They cover the type of activities children perform on the Internet and the potential harm they can be exposed to. They also give some guidelines on how children should be allowed to use the Internet to promote safety and balance.
+\\ \underline{Similarities}: These works look at Internet usage behavior in children with the intent of protecting them from harm by raising awareness. We are building a filtering system that is specifically designed for young children. It is important to know how children use the Internet so that we can build a system that works well for them.
+\\ \underline{Differences}: These works only focuses on usage and gives some recommendations. These are about effects and risks that the Internet can have on children. In our work, we are building a system. We are concerned about giving children a good experience while remaining safe on the Internet.
+
+\item Parental Mediation of Children's Internet Use
+\\ \textit{Livingstone, S. and Helsper, E. J. (2008) Journal of Broadcasting and Electronic Media, Volume 52, Issue 4}
+\\ \underline{Summary}: In this paper, the author’s performed a survey of parents and children to measure the use of the Internet by children. They look at how parents were able to control children’s use of the Internet and if it was effective or not.
+\\ \underline{Similarities}: This work is similar to our work in that we are they discuss how filtering Internet usage positively and negatively affected children and we are building a filter for families. It is important to know what is good and bad about filtering to see if we can make a better design.
+\\ \underline{Differences}: The work done in the paper is more focused on social aspects of filtering whereas we are more concerned about the technical challenges of designing a good system.
+
+\item An Implementation of the Binding Mechanism in the Web Browser for Preventing XSS Attacks: Introducing the Bind-Value Headers
+\\ \textit{Iha, G. and Doi, H. (2009) International Conference on Availability, Reliability and Security}
+\\ \underline{Summary}: This paper notes that the hard part of using a whitelist is defining the whitelist.
+\\ \underline{Similarities}: The article discusses a whitelist, and we are using a whitelist.
+\\ \underline{Differences}: The article focuses on preventing XSS attacks, we are focused on filtering Internet available to a family's children.
+
+\item Statistical and Structural Approaches to Filtering Internet Pornography
+\\ \textit{Ho, W.H.and Watters, P.A. (2004) IEEE Internal Conference on Systems, Man and Cybernetics}
+\\ \underline{Summary}: This paper also notes that hard part of whitelisting is building the whitelist. This also has an interesting description of a Bayesian classification algorithm.
+\\ \underline{Similarities}: Article discusses whitelisting, which is a technique we are using.
+\\ \underline{Differences}: Article focuses on techniques to substitute for whitelisting, while we are using whitelisting as our primary technique.
+
+\item A Novel Web Page Filtering System by Combining Texts and Images
+\\ \textit{Zhaoyao Chen, Ou Wu, Mingliang Zhu, Weiming Hu (2006) IEEE/WIC/ACM International Conference on Web Intelligence}
+\\ \underline{Summary}: This paper presents interesting means of combining text and graphical data to detect pornography and shows the complexity needed for good automatic classification.
+\\ \underline{Similarities}: Article discusses an algorithm for automatically classifying webpages to protect users against unwanted sexual content; we are also trying to protect users against unwanted sexual content.
+\\ \underline{Differences}: Article focuses on automatic techniques to classify webpages, we rely on a human-generated whitelist.  The article focuses on sexual content, we focus on any content the parents consider objectionable. (For example, parents might decide not to approve a site merely for best-use-of-time concerns.)
+
+\item A Comprehensive Study of Features and Algorithms for URL-Based Topic Classification
+\\ \textit{Baykan E., Henzinger M., Marian L. and Weber I. (2011) ACM Transactions on the Web}
+\\ \underline{Summary}: This presents interesting means of classifying a page by its URL and URLs of pages that link to it. This maybe useful for classifying pages to make a recommendation for parental approval/rejection.
+\\ \underline{Similarities}: The article classifies webpages by their URLs, so are we.
+\\ \underline{Differences}: The article automatically classifies webpages into many subject-matter-based categories; we classify into two categories: allowed and forbidden.
+
+\item Using automated individual white-list to protect web digital identities
+\\ \textit{Weili Han, Ye Cao, Elisa Bertino, Jianming Yong (2012)  Export Systems with Applications}
+\\ \underline{Summary}: This provides an example of successfully using whitelists, with means of quickly updating the whitelist.  It shows the basic feasibility of whitelisting in select circumstances, and demonstrates the need to easily update the whitelist.
+\\ \underline{Similarities}: The article uses a whitelist technique for internet safety.
+\\ \underline{Differences}: The article focuses on general anti-phishing and anti-name-spoofing, we are focusing on controlling what websites children visit.
+
+\end{itemize}
+
+\end{document}
