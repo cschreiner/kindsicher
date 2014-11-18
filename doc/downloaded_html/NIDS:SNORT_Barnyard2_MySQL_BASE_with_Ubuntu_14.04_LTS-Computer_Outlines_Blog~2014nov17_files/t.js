@@ -1,0 +1,1 @@
+document.write('<SCR'+'IPT TYPE="text/javascript" SRC="http://cdn.adsrvmedia.net/adsrvmedia/tags/banner/banner.js?context=41171250&size=300x250"></SCR'+'IPT><SCR'+'IPT type="text/javascript" charset="iso-8859-1" src="http://pixel.yabidos.com/fltiu.js?qid=032373f5232373f5136343&cid=461&kqt=10&p=acc72697-b6f7-4190-b236-40fa17f267fc&s=&x=PL2&xc="></SCR'+'IPT>');

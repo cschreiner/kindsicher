@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="fr"><head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+<body>
+
+<script type="text/javascript">
+	function listenMessage(msg){
+		if(msg.data.hasOwnProperty('action') && localStorage){
+			if(msg.data['action'] == 'clean'){
+				localStorage.removeItem('pus-idv');
+			}else if(msg.data['action'] == 'write'){
+				localStorage.setItem('pus-idv',msg.data['param']);
+			}
+		}
+	}
+	if (window.addEventListener) {
+	    window.addEventListener("message", listenMessage, false);
+	} else {
+	    window.attachEvent("onmessage", listenMessage);
+	}
+	if(localStorage && localStorage.getItem('pus-idv') != null ){
+		parent.postMessage('pus-idv-' + localStorage.getItem('pus-idv'),'*');		
+	}
+</script>
+
+
+</body></html>

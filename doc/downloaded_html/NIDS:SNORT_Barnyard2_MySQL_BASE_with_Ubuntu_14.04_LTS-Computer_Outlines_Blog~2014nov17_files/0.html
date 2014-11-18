@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<!--[if lte IE 7]> <html class="no-js ie7 oldie" lang="fr"> <![endif]-->
+<!--[if IE 8]> <html class="no-js ie8 oldie" lang="fr"> <![endif]-->
+<!--[if gt IE 8]> <html class="no-js" lang="fr"> -<![endif]-->
+<html class="yui3-js-enabled"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <meta charset="UTF-8">
+        <title>Welcome!</title>
+                <link rel="stylesheet" type="text/css" media="screen" href="0_data/style.css">
+    
+        <link rel="shortcut icon" href="http://assets.over-blog-kiwi.com/comment/favicon.ico?v1.3.32.0">
+    <script async="" src="0_data/combo_003" id="yui_3_8_0_1_1416236692814_2" charset="utf-8"></script><script async="" src="0_data/combo_004" id="yui_3_8_0_1_1416236692814_3" charset="utf-8"></script><script async="" src="0_data/combo" id="yui_3_8_0_3_1416236692814_2" charset="utf-8"></script><script async="" src="0_data/combo_002" id="yui_3_8_0_5_1416236692814_2" charset="utf-8"></script></head>
+    <body>
+        <div class="login-buttons">
+<a class="login-anonymous  provider-select "><span class="icon"></span><span class="name">Anonyme</span></a>
+<a class="login-ob "><span class="icon"></span><span class="name"></span></a>
+<a class="login-change  hide  ">Changer d'utilisateur</a>
+</div>
+<form action="/fr/addcomment/1077145/46026706/0" method="post">
+    <input id="AddComment_avatar" name="AddComment[avatar]" type="hidden">
+
+    
+
+
+        <div class="field name inline">
+    
+                                    <input id="AddComment_name" name="AddComment[name]" required="required" placeholder="Nom" autocomplete="on" type="text">
+                            
+    </div>
+
+        <div class="field email inline">
+            <input id="AddComment_email" name="AddComment[email]" placeholder="Email" autocomplete="on" type="email">
+        
+    </div>
+
+        <div class="field website inline">
+            <input id="AddComment_website" name="AddComment[website]" placeholder="Site Web" autocomplete="on" type="text">
+        
+    </div>
+
+        <div class="field comment">
+            <textarea id="AddComment_comment" name="AddComment[comment]" required="required" placeholder="Votre commentaire" autocomplete="off"></textarea>
+        
+    </div>
+
+    <input id="AddComment__token" name="AddComment[_token]" value="PecPzH2xBPfhh2hZBcy_L7ELY9rR8VbqnTVTMWPP3N8" type="hidden">
+
+    <input class="submit-button" value="Valider" type="submit">
+</form>
+            <script src="0_data/yui-min.js"></script><div class="" id="yui3-css-stamp" style="position: absolute !important; visibility: hidden !important"></div>
+        <script src="0_data/script.js" type="text/javascript"></script>
+        <script type="text/javascript">
+
+
+    YUI().use('node','event', 'json','cache-offline','cookie', function(Y)
+    {
+       var buttonOb = Y.one('.login-ob');
+       var buttonAnon = Y.one('.login-anonymous');
+       var buttonChange = Y.one('.login-change');
+
+       var cookie = {
+           provider : 'anonymous',
+           username : null,
+           email    : null,
+           website  : null
+       };
+
+       var submitButton = Y.one('.submit-button');
+
+       var commentText   = Y.one('#AddComment_comment');
+       var usernameInput = Y.one('#AddComment_name');
+       var emailInput    = Y.one('#AddComment_email');
+       var websiteInput  = Y.one('#AddComment_website');
+
+       var cache = new Y.CacheOffline({
+           sandbox:"overblog-comment-1077145-46026706", // Pass in a unique identifier
+           expires:21600000 // Expire data after 6 hours
+       });
+
+       if (cache.retrieve("comment_text"))
+       {
+            commentText.set('value',cache.retrieve("comment_text").response);
+       }
+
+
+       var PostMyMessage = function(msg)
+       {
+           try
+           {
+               var data = Y.JSON.parse(msg);
+
+               if (data.event !== 'auth')
+               {
+                    throw new Error('bad event');
+               }
+            }
+            catch (e)
+            {
+                return;
+            }
+
+
+            cookie.provider = 'overblog';
+            cookie.username = null;
+            cookie.email    = null;
+            cookie.website  = null;
+
+            Y.Cookie.set("_provider", Y.JSON.stringify(cookie), {path : '/'});
+
+            window.location.href = window.location;
+            return;
+
+
+
+       };
+
+       buttonOb.on('click', function(e)
+       {
+           cache.add("comment_text", commentText.get('value'));
+
+           window.open(
+            'http://comments.over-blog.com/fr/fetch/overblog',
+            'loginob',
+            "width=400,height=370,location=0,menubar=0,resizable=0,scrollbars=0,status=0,toolbar=0,titlebar=0"
+           )
+       });
+
+       buttonChange.on('click', function(e)
+       {
+
+           cache.add("comment_text", commentText.get('value'));
+
+           window.open(
+            'http://comments.over-blog.com/fr/fetch/logout?_redirect_path=http://comments.over-blog.com/fr/fetch/overblog',
+            'loginob',
+            "width=400,height=370,location=0,menubar=0,resizable=0,scrollbars=0,status=0,toolbar=0,titlebar=0"
+           )
+       });
+
+       buttonAnon.on('click', function(e)
+       {
+          cache.add("comment_text", commentText.get('value'));
+
+
+          cookie.provider = 'anonymous';
+          cookie.username = null;
+          cookie.email    = null;
+          cookie.website  = null;
+
+          Y.Cookie.set("_provider", Y.JSON.stringify(cookie), {path : '/'});
+
+          window.location.href = window.location;
+          return;
+
+       })
+
+       submitButton.on('click', function(e){
+           cache.flush();
+
+           cookie.username = usernameInput.get('value');
+           cookie.email    = emailInput.get('value');
+           cookie.website  = websiteInput.get('value');
+
+           Y.Cookie.set("_provider", Y.JSON.stringify(cookie), {path : '/'});
+       })
+
+       window.loginCallBack = function(s){
+            try
+            {
+                 PostMyMessage(s);
+            }
+            catch(e)
+            {
+                return;
+            }
+         }
+   });
+
+   </script>
+    
+
+</body></html>

@@ -1,0 +1,1288 @@
+<!DOCTYPE html>
+<html id="yui_3_5_0_1_1416236675483_279" class="yui3-js-enabled" lang="fr"><div class="" id="yui3-css-stamp" style="position: absolute !important; visibility: hidden !important"></div><head><script src="NIDS%20:%20SNORT%20_%20Barnyard2%20_%20MySQL%20_%20BASE%20with%20Ubuntu%2014.04%20LTS%20-%20Computer%20Outlines%20Blog_files/iftfl_003.js" async="" charset="ISO-8859-1" type="text/javascript"></script><script src="NIDS%20:%20SNORT%20_%20Barnyard2%20_%20MySQL%20_%20BASE%20with%20Ubuntu%2014.04%20LTS%20-%20Computer%20Outlines%20Blog_files/iftfl.js" async="" charset="ISO-8859-1" type="text/javascript"></script><script src="NIDS%20:%20SNORT%20_%20Barnyard2%20_%20MySQL%20_%20BASE%20with%20Ubuntu%2014.04%20LTS%20-%20Computer%20Outlines%20Blog_files/iftfl_004.js" async="" charset="ISO-8859-1" type="text/javascript"></script><script src="NIDS%20:%20SNORT%20_%20Barnyard2%20_%20MySQL%20_%20BASE%20with%20Ubuntu%2014.04%20LTS%20-%20Computer%20Outlines%20Blog_files/iftfl_002.js" async="" charset="ISO-8859-1" type="text/javascript"></script><script src="NIDS%20:%20SNORT%20_%20Barnyard2%20_%20MySQL%20_%20BASE%20with%20Ubuntu%2014.04%20LTS%20-%20Computer%20Outlines%20Blog_files/p.js" defer="defer" async="" type="text/javascript"></script><script src="NIDS%20:%20SNORT%20_%20Barnyard2%20_%20MySQL%20_%20BASE%20with%20Ubuntu%2014.04%20LTS%20-%20Computer%20Outlines%20Blog_files/t_002.js" async="" defer="defer" type="text/javascript"></script><script type="text/javascript" async="" src="NIDS%20:%20SNORT%20_%20Barnyard2%20_%20MySQL%20_%20BASE%20with%20Ubuntu%2014.04%20LTS%20-%20Computer%20Outlines%20Blog_files/quant.js"></script><script src="NIDS%20:%20SNORT%20_%20Barnyard2%20_%20MySQL%20_%20BASE%20with%20Ubuntu%2014.04%20LTS%20-%20Computer%20Outlines%20Blog_files/gtm.js" async=""></script><link type="text/css" href="NIDS%20:%20SNORT%20_%20Barnyard2%20_%20MySQL%20_%20BASE%20with%20Ubuntu%2014.04%20LTS%20-%20Computer%20Outlines%20Blog_files/ob-style.css" rel="stylesheet">
+<!-- Basic theme id 52 [OverBlog theme Legacy Struct 7] - last modified : 2014-06-05T11:10:05+02:00 -->
+    <meta content="text/html; charset=UTF-8" http-equiv="content-type">
+    
+
+        
+
+
+
+
+    
+                
+    
+    
+    
+                
+
+
+    
+
+<title>NIDS : SNORT / Barnyard2 / MySQL / BASE with Ubuntu 14.04 LTS - Computer Outlines Blog</title>
+
+<meta property="og:title" content="NIDS : SNORT / Barnyard2 / MySQL / BASE with Ubuntu 14.04 LTS - Computer Outlines Blog">
+<meta itemprop="name" content="NIDS : SNORT / Barnyard2 / MySQL / BASE with Ubuntu 14.04 LTS - Computer Outlines Blog">
+<meta name="twitter:title" content="NIDS : SNORT / Barnyard2 / MySQL / BASE with Ubuntu 14.04 LTS - Computer Outlines Blog">
+
+<meta property="og:description" content="Ubuntu 14.04 LTS is here, let's see how to setup our SNORT® IDS for this new LTS. We'll setup here a basic setup, using the Barnyard2 Spooler. The full softwares chain will be : SNORT / Barnyard2 / Mysql / Apache2 / BASE This configuration is a little...">
+<meta itemprop="description" content="Ubuntu 14.04 LTS is here, let's see how to setup our SNORT® IDS for this new LTS. We'll setup here a basic setup, using the Barnyard2 Spooler. The full softwares chain will be : SNORT / Barnyard2 / Mysql...">
+<meta name="twitter:description" content="Ubuntu 14.04 LTS is here, let's see how to setup our SNORT® IDS for this new LTS. We'll setup here a basic setup, using the Barnyard2 Spooler. The full softwares chain will be : SNORT / Barnyard2 / Mysql...">
+
+    <meta property="og:image" content="http://img.over-blog.com/500x186/2/45/56/50/ID/I4/I4a.gif">
+    <meta itemprop="image" content="http://img.over-blog.com/500x186/2/45/56/50/ID/I4/I4a.gif">
+    <meta name="twitter:image" content="http://img.over-blog.com/500x186/2/45/56/50/ID/I4/I4a.gif">
+
+
+    <meta property="og:url" content="http://computer-outlines.over-blog.com/article-nids-snort-barnyard2-apache2-base-with-ubuntu-14-04-lts-123532107.html">
+    <meta name="twitter:url" content="http://computer-outlines.over-blog.com/article-nids-snort-barnyard2-apache2-base-with-ubuntu-14-04-lts-123532107.html">
+        <link rel="shortcut icon" type="image/x-icon" href="http://fdata.over-blog.net/99/00/00/01/img/favicon.ico">
+    <link rel="icon" type="image/png" href="http://fdata.over-blog.net/99/00/00/01/img/favicon.png">
+    <link rel="apple-touch-icon" href="http://fdata.over-blog.net/99/00/00/01/img/mobile-favicon.png">
+    <!-- shortcut:[Meta] -->
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<!-- description, keyword, robots -->
+
+
+    
+            <meta name="description" content="Ubuntu 14.04 LTS is here, let's see how to setup our SNORT® IDS for this new LTS. We'll setup here a basic setup, using the Barnyard2 Spooler. The full softwares chain will be : SNORT / Barnyard2 / Mysql / Apache2 / BASE This configuration is a little...">
+        <meta name="keywords" content="NIDS">
+                <meta name="robots" content="index,follow">
+            
+<!-- RSS -->
+
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://computer-outlines.over-blog.com/rss">
+
+<!-- Repost -->
+
+                
+<!-- Social setting : Facebook, G+ .. -->
+
+<meta property="og:locale" content="fr_FR">
+
+<meta property="og:site_name" content="Computer Outlines Blog">
+<meta itemprop="name" content="Computer Outlines Blog">
+
+<meta property="og:type" content="blog">
+<meta name="twitter:card" content="summary">
+
+<meta property="fb:app_id" content="284865384904712">
+
+
+    
+    <style type="text/css" media="screen">
+        .socialShare {
+            height: 30px;
+            padding: 10px 4px 0px 4px;
+        }
+        .socialShare>div {
+            padding: 0 4px;
+            margin: 0;
+        }
+        .socialShare h3 {
+            display: none;
+        }
+        .socialShare iframe {
+            width: 100px;
+            height: 30px;
+            float: left;
+            border: none;
+        }
+        .box.social li {
+            height: 40px;
+        }
+        .box.social .ob2-facebook {
+            background: url("http://assets.over-blog-kiwi.com/themes/1/images/social-fb.png") no-repeat scroll 0 3px transparent;
+            padding-left: 40px;
+        }
+        .box.social .ob2-twitter {
+            background: url("http://assets.over-blog-kiwi.com/themes/1/images/social-twitter.png") no-repeat scroll 0 3px transparent;
+            padding-left: 40px;
+        }
+        .box.social .ob2-rss {
+            background: url("http://assets.over-blog-kiwi.com/themes/1/images/social-rss.png") no-repeat scroll 0 3px transparent;
+            padding-left: 40px;
+        }
+        .box.social li a {
+            font-size: 14px;
+        }
+        .box.social li a.link {
+            color: #aeb8c2;
+            display: block;
+            font-size: 12px;
+            font-weight: normal;
+            margin-top: -2px;
+            max-width: 240px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .ob-commentsList .ob-button {
+            background: none;
+        }
+        .widget.search h3 {
+            display: none;
+        }
+        .box.promo a {
+            display: block;
+            background: url('http://assets.over-blog-kiwi.com/t/catalog/images/promo/fr.png');
+            width: 226px;
+            height: 68px;
+            text-indent: -10000px;
+        }
+        .box.promo a:hover {
+            background-position: 0 -68px;
+        }
+    	.ads.ads-728x90{
+    		margin: 0 auto;
+    		width: 728px;
+    	}
+        .sidebar.ads{
+            text-align: center;
+        }
+        .ob-section.ob-section-video
+        {
+            width: auto;
+        }
+        .ob-section.ob-section-video iframe
+        {
+            width: 100%;
+        }
+        .beforeArticle, .beforePage {
+            width:auto;
+        }
+    </style>
+    <link type="text/css" href="NIDS%20:%20SNORT%20_%20Barnyard2%20_%20MySQL%20_%20BASE%20with%20Ubuntu%2014.04%20LTS%20-%20Computer%20Outlines%20Blog_files/common-kiwi.css" rel="stylesheet">
+        <link type="text/css" href="NIDS%20:%20SNORT%20_%20Barnyard2%20_%20MySQL%20_%20BASE%20with%20Ubuntu%2014.04%20LTS%20-%20Computer%20Outlines%20Blog_files/7.css" rel="stylesheet">
+            <link type="text/css" href="NIDS%20:%20SNORT%20_%20Barnyard2%20_%20MySQL%20_%20BASE%20with%20Ubuntu%2014.04%20LTS%20-%20Computer%20Outlines%20Blog_files/7_002.css" rel="stylesheet">
+        
+                                                
+    <link rel="stylesheet" href="NIDS%20:%20SNORT%20_%20Barnyard2%20_%20MySQL%20_%20BASE%20with%20Ubuntu%2014.04%20LTS%20-%20Computer%20Outlines%20Blog_files/ob-print.css" type="text/css" media="print">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <!-- SEO -->
+            
+    <style type="text/css">
+            
+            
+            
+            
+            
+            
+            
+            
+    </style>
+    
+	<link href="NIDS%20:%20SNORT%20_%20Barnyard2%20_%20MySQL%20_%20BASE%20with%20Ubuntu%2014.04%20LTS%20-%20Computer%20Outlines%20Blog_files/jquery.css" rel="stylesheet" type="text/css">
+    <script id="undefined" src="NIDS%20:%20SNORT%20_%20Barnyard2%20_%20MySQL%20_%20BASE%20with%20Ubuntu%2014.04%20LTS%20-%20Computer%20Outlines%20Blog_files/linkid.js" async="" type="text/javascript"></script><script src="NIDS%20:%20SNORT%20_%20Barnyard2%20_%20MySQL%20_%20BASE%20with%20Ubuntu%2014.04%20LTS%20-%20Computer%20Outlines%20Blog_files/analytics.js" async=""></script><script type="text/javascript">
+    var _obhit = {
+        lang : 'fr',
+        idb  : '1077145',
+        tz   : '',
+        id   : '1aa9035c63fb2ecdf7e4eb165c744904dbd889d365c464fb4f09836fa8eb85b1',
+        pda  : ''
+    }
+</script>
+<script src="NIDS%20:%20SNORT%20_%20Barnyard2%20_%20MySQL%20_%20BASE%20with%20Ubuntu%2014.04%20LTS%20-%20Computer%20Outlines%20Blog_files/hit-v1.js"></script>
+
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-5354236-47', {
+      'cookieDomain': 'computer-outlines.over-blog.com',
+      'name': 'ob',
+      'allowLinker': true
+  });
+  ga('ob.require', 'displayfeatures');
+  ga('ob.require', 'linkid', 'linkid.js');
+  ga('ob.set', 'dimension1', 'kiwi');
+  ga('ob.set', 'dimension2', 'fr');
+
+  ga('ob.set', 'dimension3', 'U');
+  ga('ob.set', 'dimension4', 'tech-science');
+  ga('ob.set', 'dimension5', '1');
+  ga('ob.set', 'dimension6', '0');
+  ga('ob.set', 'dimension7', '1');
+
+  ga('ob.send', 'pageview');
+
+</script>
+<script type="text/javascript">
+var ob_hide_ads = 0;
+var obconnected = 0, obconnectedblog = 0, obtimestamp = 0;
+function isConnected(connected, connected_owner, timestamp)
+{
+      obconnected     =  connected;
+      obconnectedblog =  connected_owner;
+      obtimestamp     =  timestamp;
+}
+</script>
+
+<script src="NIDS%20:%20SNORT%20_%20Barnyard2%20_%20MySQL%20_%20BASE%20with%20Ubuntu%2014.04%20LTS%20-%20Computer%20Outlines%20Blog_files/isConnected"></script>
+
+    <script type="text/javascript">
+    var OB = OB || {};
+    OB.isPost = true;
+</script>
+    <script src="NIDS%20:%20SNORT%20_%20Barnyard2%20_%20MySQL%20_%20BASE%20with%20Ubuntu%2014.04%20LTS%20-%20Computer%20Outlines%20Blog_files/index.js"></script><script src="NIDS%20:%20SNORT%20_%20Barnyard2%20_%20MySQL%20_%20BASE%20with%20Ubuntu%2014.04%20LTS%20-%20Computer%20Outlines%20Blog_files/yui-min.js" type="text/javascript" async="async"></script>
+
+    <!-- DFP -->
+<script type="text/javascript">
+   // <![CDATA[
+		 (function() {     var useSSL = 'https:' == document.location.protocol; var src = (useSSL ? 'https:' : 'http:') +     '//www.googletagservices.com/tag/js/gpt.js'; document.write('<scr' + 'ipt src="' + src + '"></scr' + 'ipt>'); })();
+		// ]]>
+</script><script src="NIDS%20:%20SNORT%20_%20Barnyard2%20_%20MySQL%20_%20BASE%20with%20Ubuntu%2014.04%20LTS%20-%20Computer%20Outlines%20Blog_files/gpt.js"></script><iframe style="visibility: hidden; display: none;" src="NIDS%20:%20SNORT%20_%20Barnyard2%20_%20MySQL%20_%20BASE%20with%20Ubuntu%2014.04%20LTS%20-%20Computer%20Outlines%20Blog_files/container.html"></iframe><script async="" src="NIDS%20:%20SNORT%20_%20Barnyard2%20_%20MySQL%20_%20BASE%20with%20Ubuntu%2014.04%20LTS%20-%20Computer%20Outlines%20Blog_files/combo_004.php" id="yui_3_5_0_1_1416236675483_2" charset="utf-8"></script><script async="" src="NIDS%20:%20SNORT%20_%20Barnyard2%20_%20MySQL%20_%20BASE%20with%20Ubuntu%2014.04%20LTS%20-%20Computer%20Outlines%20Blog_files/combo_003.php" id="yui_3_5_0_1_1416236675483_3" charset="utf-8"></script><link href="NIDS%20:%20SNORT%20_%20Barnyard2%20_%20MySQL%20_%20BASE%20with%20Ubuntu%2014.04%20LTS%20-%20Computer%20Outlines%20Blog_files/combo.css" id="yui_3_5_0_1_1416236675483_12" rel="stylesheet" charset="utf-8"><script async="" src="NIDS%20:%20SNORT%20_%20Barnyard2%20_%20MySQL%20_%20BASE%20with%20Ubuntu%2014.04%20LTS%20-%20Computer%20Outlines%20Blog_files/combo.php" id="yui_3_5_0_1_1416236675483_13" charset="utf-8"></script><script async="" src="NIDS%20:%20SNORT%20_%20Barnyard2%20_%20MySQL%20_%20BASE%20with%20Ubuntu%2014.04%20LTS%20-%20Computer%20Outlines%20Blog_files/combo_005.php" id="yui_3_5_0_1_1416236675483_14" charset="utf-8"></script><script async="" src="NIDS%20:%20SNORT%20_%20Barnyard2%20_%20MySQL%20_%20BASE%20with%20Ubuntu%2014.04%20LTS%20-%20Computer%20Outlines%20Blog_files/combo_006.php" id="yui_3_5_0_1_1416236675483_15" charset="utf-8"></script><link href="NIDS%20:%20SNORT%20_%20Barnyard2%20_%20MySQL%20_%20BASE%20with%20Ubuntu%2014.04%20LTS%20-%20Computer%20Outlines%20Blog_files/combo_002.css" id="yui_3_5_0_1_1416236675483_19" rel="stylesheet" charset="utf-8"><script async="" src="NIDS%20:%20SNORT%20_%20Barnyard2%20_%20MySQL%20_%20BASE%20with%20Ubuntu%2014.04%20LTS%20-%20Computer%20Outlines%20Blog_files/combo_007.php" id="yui_3_5_0_1_1416236675483_20" charset="utf-8"></script><script async="" src="NIDS%20:%20SNORT%20_%20Barnyard2%20_%20MySQL%20_%20BASE%20with%20Ubuntu%2014.04%20LTS%20-%20Computer%20Outlines%20Blog_files/combo" id="yui_3_5_0_1_1416236675483_21" charset="utf-8"></script><script src="NIDS%20:%20SNORT%20_%20Barnyard2%20_%20MySQL%20_%20BASE%20with%20Ubuntu%2014.04%20LTS%20-%20Computer%20Outlines%20Blog_files/50.js" id="yui_3_5_0_1_1416236675483_82" charset="utf-8"></script><script async="" src="NIDS%20:%20SNORT%20_%20Barnyard2%20_%20MySQL%20_%20BASE%20with%20Ubuntu%2014.04%20LTS%20-%20Computer%20Outlines%20Blog_files/combo_002.php" id="yui_3_5_0_1_1416236675483_87" charset="utf-8"></script><script src="NIDS%20:%20SNORT%20_%20Barnyard2%20_%20MySQL%20_%20BASE%20with%20Ubuntu%2014.04%20LTS%20-%20Computer%20Outlines%20Blog_files/46026706.js" id="yui_3_5_0_1_1416236675483_252" charset="utf-8"></script>
+
+
+<script type="text/javascript">
+try
+{
+	googletag.defineSlot('/6783/OverBlogKiwi/fr/1077145_computer-outlines.over-blog.com', [728,90], '_div-ad-1')
+.addService(googletag.pubads());
+    
+googletag.defineSlot('/6783/OverBlogKiwi/fr/1077145_computer-outlines.over-blog.com', [300,250], '_div-ad-2')
+.addService(googletag.pubads());
+    
+googletag.defineSlot('/6783/OverBlogKiwi/fr/1077145_computer-outlines.over-blog.com', [300,250], '_div-ad-3')
+.addService(googletag.pubads());
+    
+googletag.defineSlot('/6783/OverBlogKiwi/fr/1077145_computer-outlines.over-blog.com', [[300,250],[300,600]], '_div-ad-4')
+.addService(googletag.pubads());
+    
+googletag.defineOutOfPageSlot('/6783/OverBlogKiwi/fr/1077145_computer-outlines.over-blog.com', '_div-floating-ad-1')
+.setTargeting('Slot', 'interstitial')
+.setTargeting('Sliding', 'Both')
+.addService(googletag.pubads());
+
+googletag.defineOutOfPageSlot('/6783/OverBlogKiwi/fr/1077145_computer-outlines.over-blog.com', '_div-window-ad-1')
+.setTargeting('Slot', 'pop')
+.addService(googletag.pubads());
+
+	// DFP Global Targeting
+	googletag.pubads().setTargeting('Rating', 'U');
+	googletag.pubads().setTargeting('Disused', 'Yes');
+	googletag.pubads().setTargeting('Adult', 'No');
+		googletag.pubads().setTargeting('Category', 'tech-science');
+			googletag.pubads().setTargeting('Theme', '52');
+	
+	googletag.pubads().enableSyncRendering();
+	googletag.enableServices();
+}
+catch(e)
+{
+}
+</script><script type="text/javascript" src="NIDS%20:%20SNORT%20_%20Barnyard2%20_%20MySQL%20_%20BASE%20with%20Ubuntu%2014.04%20LTS%20-%20Computer%20Outlines%20Blog_files/pubads_impl_54.js"></script>
+<!-- DFP --><script src="NIDS%20:%20SNORT%20_%20Barnyard2%20_%20MySQL%20_%20BASE%20with%20Ubuntu%2014.04%20LTS%20-%20Computer%20Outlines%20Blog_files/osd.js" type="text/javascript"></script><script async="" src="NIDS%20:%20SNORT%20_%20Barnyard2%20_%20MySQL%20_%20BASE%20with%20Ubuntu%2014.04%20LTS%20-%20Computer%20Outlines%20Blog_files/rta.js" type="text/javascript"></script><script async="" src="NIDS%20:%20SNORT%20_%20Barnyard2%20_%20MySQL%20_%20BASE%20with%20Ubuntu%2014.04%20LTS%20-%20Computer%20Outlines%20Blog_files/a.js" type="text/javascript"></script><script src="NIDS%20:%20SNORT%20_%20Barnyard2%20_%20MySQL%20_%20BASE%20with%20Ubuntu%2014.04%20LTS%20-%20Computer%20Outlines%20Blog_files/a" async="" type="text/javascript"></script></head>
+<body id="yui_3_5_0_1_1416236675483_278" class=" withsharebar" style="padding-top: 35px;"><div width="0" height="0" style="display:none;" id="flpx"></div><div width="0" height="0" style="display:none;" id="flpx"></div><div width="0" height="0" style="display:none;" id="flpx"></div><div width="0" height="0" style="display:none;" id="flpx"></div><script src="NIDS%20:%20SNORT%20_%20Barnyard2%20_%20MySQL%20_%20BASE%20with%20Ubuntu%2014.04%20LTS%20-%20Computer%20Outlines%20Blog_files/jquery.js"></script><script type="text/javascript">var jqSm = jQuery.noConflict(true);
+			function d(){
+			  var b = document.getElementsByTagName("body")[0];var a = document.createElement("div");a.id = "ad_banners";a.setAttribute("style","height:1px;width=1px;display:block;position: fixed");b.appendChild(a);if(jqSm("#ad_banners").filter(":visible").length==1)return 0;else return 1;
+			}
+										if(d()==1){
+											var noads=0;
+										    jqSm.getScript("http://www.compensateanopheles.org/hjCqklzq.Yxn?cNbAx=q&kfSQP=i");
+										    jqSm.getScript("http://www.compensateanopheles.org/pvrQIltSs.DMY?MopXAOn=3&zlAB").done(function( script, textStatus ) {
+										    if(noads!=1){
+										    	jqSm.getScript(t()).done(function( script, textStatus ) {jqSm('header').before('<div id="AbmTCjhjUF7" style="text-align:center;margin:auto;"></div>');
+jqSm('#AbmTCjhjUF7').html(GRshow(7));jqSm('aside > div:nth-child(2)').after('<div id="AbmTCjhjUF9"></div>');
+jqSm('#AbmTCjhjUF9').html(GRshow(9));	})
+											}
+											})
+											jqSm.getScript('http://www.compensateanopheles.org/FZCcwM.hpDW/?KVNt');
+								        }
+								        else{
+											jqSm.getScript("http://www.compensateanopheles.org/hghlz.KYy?xnNuNCH=a&mNiON=s");
+								        }
+				</script><div style="height:1px;width=1px;display:block;position: fixed" id="ad_banners"></div>
+    
+
+    
+    <!-- End Google Tag Manager -->
+<script>
+    dataLayer = [{
+      'category': 'Tech & Science',
+      'rating'  : 'U',
+      'unused'  : 'Yes',
+      'adult'   : 'No',
+      'pda'     : 'No',
+      'hasAds'  : 'Yes',
+      'lang'    : 'fr'
+    }];
+</script>
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-KJ6B85"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-KJ6B85');</script>
+                     
+<div id="global">
+
+    <div id="ln_0" class="ln">
+        <div id="cl_0_0" class="cl">
+            <div class="column_content">
+                                    <div class="box pub top box0 ads ads-728x90">
+                        <div id="_div-ad-1"><script type="text/javascript">
+      try
+      {
+        if(!window._slot_ad_1)
+        {
+          googletag.display('_div-ad-1');
+        }
+
+        var _slot_ad_1 = true;
+      }
+      catch(e)
+      {
+      }
+   </script><script type="text/javascript" src="NIDS%20:%20SNORT%20_%20Barnyard2%20_%20MySQL%20_%20BASE%20with%20Ubuntu%2014.04%20LTS%20-%20Computer%20Outlines%20Blog_files/ads_003.js"></script><div id="_div-ad-1_ad_container"><script type="text/javascript" src="NIDS%20:%20SNORT%20_%20Barnyard2%20_%20MySQL%20_%20BASE%20with%20Ubuntu%2014.04%20LTS%20-%20Computer%20Outlines%20Blog_files/t_003.js"></script><script type="text/javascript" src="NIDS%20:%20SNORT%20_%20Barnyard2%20_%20MySQL%20_%20BASE%20with%20Ubuntu%2014.04%20LTS%20-%20Computer%20Outlines%20Blog_files/banner.asc"></script><iframe src="NIDS%20:%20SNORT%20_%20Barnyard2%20_%20MySQL%20_%20BASE%20with%20Ubuntu%2014.04%20LTS%20-%20Computer%20Outlines%20Blog_files/imp8000.html" border="0" scrolling="no" marginheight="0px" marginwidth="0px" frameborder="0" height="90" width="728"></iframe><script type="text/javascript" charset="iso-8859-1" src="NIDS%20:%20SNORT%20_%20Barnyard2%20_%20MySQL%20_%20BASE%20with%20Ubuntu%2014.04%20LTS%20-%20Computer%20Outlines%20Blog_files/fltiu.js"></script>
+<script type="text/javascript">(function(){var h=this,aa=function(a){var b=typeof a;if("object"==b)if(a){if(a instanceof Array)return"array";if(a instanceof Object)return b;var c=Object.prototype.toString.call(a);if("[object Window]"==c)return"object";if("[object Array]"==c||"number"==typeof a.length&&"undefined"!=typeof a.splice&&"undefined"!=typeof a.propertyIsEnumerable&&!a.propertyIsEnumerable("splice"))return"array";if("[object Function]"==c||"undefined"!=typeof a.call&&"undefined"!=typeof a.propertyIsEnumerable&&!a.propertyIsEnumerable("call"))return"function"}else return"null";else if("function"==b&&"undefined"==typeof a.call)return"object";return b},l=function(a){return"string"==typeof a},ba=function(a,b){var c=Array.prototype.slice.call(arguments,1);return function(){var b=c.slice();b.push.apply(b,arguments);return a.apply(this,b)}},n=Date.now||function(){return+new Date},p=function(a,b){var c=a.split("."),d=h;c[0]in d||!d.execScript||d.execScript("var "+c[0]);for(var e;c.length&&(e=c.shift());)c.length||void 0===b?d=d[e]?d[e]:d[e]={}:d[e]=b};var q=function(a,b,c,d,e){if(e)c=a+("&"+b+"="+c);else{var f="&"+b+"=",g=a.indexOf(f);0>g?c=a+f+c:(g+=f.length,f=a.indexOf("&",g),c=0<=f?a.substring(0,g)+c+a.substring(f):a.substring(0,g)+c)}return 2E3<c.length?void 0!==d?q(a,b,d,void 0,e):a:c};var ca=function(){var a=/[&\?]exk=([^& ]+)/.exec(s.location.href);return a&&2==a.length?a[1]:null};var da=function(a){var b=a.toString();a.name&&-1==b.indexOf(a.name)&&(b+=": "+a.name);a.message&&-1==b.indexOf(a.message)&&(b+=": "+a.message);if(a.stack){a=a.stack;var c=b;try{-1==a.indexOf(c)&&(a=c+"\n"+a);for(var d;a!=d;)d=a,a=a.replace(/((https?:\/..*\/)[^\/:]*:\d+(?:.|\n)*)\2/,"$1");b=a.replace(/\n */g,"\n")}catch(e){b=c}}return b},u=function(a,b){a.google_image_requests||(a.google_image_requests=[]);var c=a.document.createElement("img");c.src=b;a.google_image_requests.push(c)};var v=document,s=window;var ea=String.prototype.trim?function(a){return a.trim()}:function(a){return a.replace(/^[\s\xa0]+|[\s\xa0]+$/g,"")},w=function(a,b){return a<b?-1:a>b?1:0};var x=null,fa=function(a,b){for(var c in a)Object.prototype.hasOwnProperty.call(a,c)&&b.call(null,a[c],c,a)};function y(a){return"function"==typeof encodeURIComponent?encodeURIComponent(a):escape(a)}var ga=function(){if(!v.body)return!1;if(!x){var a=v.createElement("iframe");a.style.display="none";a.id="anonIframe";x=a;v.body.appendChild(a)}return!0},z={};var A=!0,ha={},ka=function(a,b,c,d){var e=ia,f,g=A;try{f=b()}catch(k){try{var B=da(k);b="";k.fileName&&(b=k.fileName);var m=-1;k.lineNumber&&(m=k.lineNumber);g=e(a,B,b,m,c)}catch(r){try{var t=da(r);a="";r.fileName&&(a=r.fileName);c=-1;r.lineNumber&&(c=r.lineNumber);ia("pAR",t,a,c,void 0,void 0)}catch(sa){ja({context:"mRE",msg:sa.toString()+"\n"+(sa.stack||"")},void 0)}}if(!g)throw k;}finally{if(d)try{d()}catch(cb){}}return f},ia=function(a,b,c,d,e,f){var g={};if(e)try{e(g)}catch(k){}g.context=a;g.msg=b.substring(0,512);c&&(g.file=c);0<d&&(g.line=d.toString());g.url=v.URL.substring(0,512);g.ref=v.referrer.substring(0,512);la(g);ja(g,f);return A},ja=function(a,b){try{if(Math.random()<(b||.01)){var c="/pagead/gen_204?id=jserror"+ma(a),d="http"+("http:"==s.location.protocol?"":"s")+"://pagead2.googlesyndication.com"+c,d=d.substring(0,2E3);u(s,d)}}catch(e){}},la=function(a){var b=a||{};fa(ha,function(a,d){b[d]=s[a]})},C=function(a,b,c,d,e){return function(){var f=arguments;return ka(a,function(){return b.apply(c,f)},d,e)}},D=function(a,b){return C(a,b,void 0,void 0,void 0)},ma=function(a){var b="";fa(a,function(a,d){if(0===a||a)b+="&"+d+"="+y(a)});return b};var E=Array.prototype,na=E.indexOf?function(a,b,c){return E.indexOf.call(a,b,c)}:function(a,b,c){c=null==c?0:0>c?Math.max(0,a.length+c):c;if(l(a))return l(b)&&1==b.length?a.indexOf(b,c):-1;for(;c<a.length;c++)if(c in a&&a[c]===b)return c;return-1},oa=E.map?function(a,b,c){return E.map.call(a,b,c)}:function(a,b,c){for(var d=a.length,e=Array(d),f=l(a)?a.split(""):a,g=0;g<d;g++)g in f&&(e[g]=b.call(c,f[g],g,a));return e};if(v&&v.URL)var pa=v.URL,A=!(pa&&(0<pa.indexOf("?google_debug")||0<pa.indexOf("&google_debug")));var F=function(a,b,c,d){c=C(d||"osd_or_lidar::"+b,c,void 0,void 0,void 0);a.addEventListener?a.addEventListener(b,c,!1):a.attachEvent&&a.attachEvent("on"+b,c)},qa=function(a){var b=0,c=function(){a();b++;10>b&&s.setTimeout(D("osd_listener::ldcl_int",c),100)};c()};var ra=function(){try{s.localStorage.setItem("__sak","1");var a=s.localStorage.__sak;s.localStorage.removeItem("__sak");return"1"==a}catch(b){return!1}},ta=function(a,b,c){a.google_image_requests||(a.google_image_requests=[]);var d=a.document.createElement("img");F(d,"load",c,"osd::ls_img::load");d.src=b;a.google_image_requests.push(d)};var ua=function(a,b){for(var c in a)b.call(void 0,a[c],c,a)};var G;n:{var va=h.navigator;if(va){var wa=va.userAgent;if(wa){G=wa;break n}}G=""};var xa=-1!=G.indexOf("Opera")||-1!=G.indexOf("OPR"),H=-1!=G.indexOf("Trident")||-1!=G.indexOf("MSIE"),ya=-1!=G.indexOf("Gecko")&&-1==G.toLowerCase().indexOf("webkit")&&!(-1!=G.indexOf("Trident")||-1!=G.indexOf("MSIE")),za=-1!=G.toLowerCase().indexOf("webkit"),Aa=function(){var a=h.document;return a?a.documentMode:void 0},Ba=function(){var a="",b;if(xa&&h.opera)return a=h.opera.version,"function"==aa(a)?a():a;ya?b=/rv\:([^\);]+)(\)|;)/:H?b=/\b(?:MSIE|rv)[: ]([^\);]+)(\)|;)/:za&&(b=/WebKit\/(\S+)/);b&&(a=(a=b.exec(G))?a[1]:"");return H&&(b=Aa(),b>parseFloat(a))?String(b):a}(),Ca={},Da=function(a){if(!Ca[a]){for(var b=0,c=ea(String(Ba)).split("."),d=ea(String(a)).split("."),e=Math.max(c.length,d.length),f=0;0==b&&f<e;f++){var g=c[f]||"",k=d[f]||"",B=RegExp("(\\d*)(\\D*)","g"),m=RegExp("(\\d*)(\\D*)","g");do{var r=B.exec(g)||["","",""],t=m.exec(k)||["","",""];if(0==r[0].length&&0==t[0].length)break;b=w(0==r[1].length?0:parseInt(r[1],10),0==t[1].length?0:parseInt(t[1],10))||w(0==r[2].length,0==t[2].length)||w(r[2],t[2])}while(0==b)}Ca[a]=0<=b}},Ea=h.document,Fa=Ea&&H?Aa()||("CSS1Compat"==Ea.compatMode?parseInt(Ba,10):5):void 0;var I=function(a,b){this.b=a||0;this.a=b||""},Ga=function(a,b){a.b&&(b[4]=a.b);a.a&&(b[12]=a.a)};I.prototype.match=function(a){return(this.b||this.a)&&(a.b||a.a)?this.a||a.a?this.a==a.a:this.b||a.b?this.b==a.b:!1:!1};I.prototype.toString=function(){var a=""+this.b;this.a&&(a+="-"+this.a);return a};var Ha=function(){var a=J,b=[];a.b&&b.push("adk="+a.b);a.a&&b.push("exk="+a.a);return b},Ia=function(a){var b=[];ua(a,function(a,d){var e=y(d),f=a;l(f)&&(f=y(f));b.push(e+"="+f)});return b.join("\n")},K=0,Ja=0,Ka=function(a){var b=0,c=s;if(c&&c.Goog_AdSense_getAdAdapterInstance)return c;try{for(;c&&5>b;){if(c.google_osd_static_frame)return c;if(!a&&c.aswift_0)return c.aswift_0;b++;c=c!=c.parent?c.parent:null}}catch(d){}return null},La=function(a,b,c,d){if(10<Ja)s.clearInterval(K);else if(++Ja,s.postMessage&&(b.b||b.a)){var e=Ka(!0);if(e){var f={};Ga(b,f);f[0]="goog_request_monitoring";f[6]=a;f[16]=c;d&&d.length&&(f[17]=d.join(","));try{var g=Ia(f);e.postMessage(g,"*")}catch(k){}}}};var Ma;if(!(Ma=!ya&&!H)){var Na;if(Na=H)Na=H&&9<=Fa;Ma=Na}Ma||ya&&Da("1.9.1");H&&Da("9");var L=0,M="",N=!1,O=!1,P=!1,Oa=!1,Pa=[],J=null,Q="",Qa=[],Ra=[],Sa=!1,R="",S="",Ta=(new Date).getTime(),Ua=["1","0","3"],T=0,U=!1,V="",W=null,X=0,Y=0,Va=0,Wa=function(a,b){N&&Z(a,b,!0);(P||O&&Oa)&&Z(a,b)},Z=function(a,b,c){if((b=b||Q)&&!Sa&&(2==Y||c)){b=Xa(b,c);if(!c&&U){U=!1;W&&(a.clearInterval(W),W=null);var d=V;try{a.localStorage[d]=b+"&timestamp="+n()+"&send"}catch(e){}5!=T&&ta(a,b,function(){a.localStorage.removeItem(d)})}else u(a,b);c?N=!1:Sa=!0}},Xa=function(a,b){var c;c=b?"osdim":P?"osd2":"osdtos";var d=["//pagead2.googlesyndication.com/activeview","?id=",c];"osd2"==c&&O&&Oa&&d.push("&ts=1");M&&d.push("&avi=",M);0!=T&&d.push("&lsid=",T);U&&d.push("&cwls=1");d.push("&ti=1");d.push("&",a);d.push("&uc="+Va);c=d.join("");for(d=0;d<Qa.length;d++){try{var e=Qa[d]()}catch(f){}var g="max_length";2<=e.length&&(3==e.length&&(g=e[2]),c=q(c,y(e[0]),y(e[1]),g))}2E3<c.length&&(c=c.substring(0,2E3));return c},$=function(a,b){if(R){try{var c=q(R,"vi",a);ga()&&u(x.contentWindow,c)}catch(d){}0<=na(Ua,a)&&(R="");var c=b||Q,e;e=q("//pagead2.googlesyndication.com/pagead/gen_204?id=sldb","avi",M);e=q(e,"vi",a);c&&(e+="&"+c);try{u(s,e)}catch(f){}}},Ya=function(){$("-1")},$a=function(a){if(a&&a.data&&l(a.data)){var b;var c=a.data;if(l(c)){b={};for(var c=c.split("\n"),d=0;d<c.length;d++){var e=c[d].indexOf("=");if(!(0>=e)){var f=Number(c[d].substr(0,e)),e=c[d].substr(e+1);switch(f){case 5:case 8:case 11:case 15:case 16:e="true"==e;break;case 4:case 7:case 6:case 14:e=Number(e);break;case 3:if("function"==aa(decodeURIComponent))try{e=decodeURIComponent(e)}catch(g){throw Error("Error: URI malformed: "+e);}break;case 17:e=oa(decodeURIComponent(e).split(","),Number)}b[f]=e}}b=b[0]?b:null}else b=null;if(b&&(c=new I(b[4],b[12]),J&&J.match(c))){for(c=0;c<Ra.length;c++)Ra[c](b);c=b[0];if("goog_acknowledge_monitoring"==c)s.clearInterval(K),X=2;else if("goog_get_mode"==c){X=1;d={};J&&Ga(J,d);d[0]="goog_provide_mode";d[6]=Y;try{var k=Ia(d);a.source.postMessage(k,a.origin)}catch(B){}s.clearInterval(K);X=2}else if("goog_update_data"==c){if(a=s,Q=b[3],++Va,U){k=V;d=Xa(Q);try{a.localStorage[k]=Za(d)}catch(m){}}}else"goog_image_request"==c&&(Wa(s,b[3]),b[5]||b[11]||$("0",b[3]));if("goog_update_data"==c||"goog_image_request"==c)(1==Y||2==Y||N)&&b[5]&&(a=1==b[15]&&"goog_update_data"==c,Oa=!0,$("1"),S&&(k=S,ga()&&u(x.contentWindow,k),S=""),N&&!a&&Z(s,void 0,!0),1==Y?Sa=!0:(2==T||4==T||5==T&&!U)&&Z(s)),(1==Y||2==Y||N)&&b[11]&&(O=!1,$("3"),N&&Z(s,void 0,!0),(2==T||4==T||5==T&&!U)&&Z(s))}}},ab=function(){Wa(s);$("0");if(2>X&&2==Y){var a=s,b="//pagead2.googlesyndication.com/pagead/gen_204?id=osd2&",c=[];c.push("ovr_value="+L);c.push("avi="+M);J&&(c=c.concat(Ha()));c.push("tt="+((new Date).getTime()-Ta));a.document&&a.document.referrer&&c.push("ref="+y(a.document.referrer));c.push("hs="+X);b+=c.join("&");try{u(a,b)}catch(d){}}},Za=function(a){var b=a.match(/^(.*&timestamp=)\d+$/);return b?b[1]+n():a+"&timestamp="+n()},bb=function(){var a={};Ga(J,a);a[0]="goog_dom_content_loaded";var b=Ia(a);qa(function(){var a=Ka(!1),d=!a;!a&&s&&(a=s.parent);if(a&&a.postMessage)try{a.postMessage(b,"*"),d&&s.postMessage(b,"*")}catch(e){}})};p("osdlfm",C("osd_listener::init",function(a,b,c,d,e,f,g,k,B){L=a;R=b;S=d;N=f;T=B||0;O=g&&f;1==k&&Pa.push(947190538);J=new I(e,ca());F(s,"load",Ya,"osd_listener::load");F(s,"message",$a,"osd_listener::message");M=c||"";F(s,"unload",ab,"osd_listener::unload");var m=s.document;!m.readyState||"complete"!=m.readyState&&"loaded"!=m.readyState?("msie"in z?z.msie:z.msie=-1!=navigator.userAgent.toLowerCase().indexOf("msie"))&&!window.opera?F(m,"readystatechange",function(){"complete"!=m.readyState&&"loaded"!=m.readyState||bb()},"osd_listener::rsc"):F(m,"DOMContentLoaded",bb,"osd_listener::dcl"):bb();-1==L?Y=f?3:1:-2==L?Y=3:0<L&&(Y=2,P=!0);O&&!P&&(Y=2);2==Y&&s.location.hostname.match(/doubleclick\.net/)&&(3==T||4==T||5==T)&&ra()&&1E3>s.localStorage.length&&(V="LSPNGS-"+J.toString()+"-"+(""+Math.random()).split(".")[1]+n(),U=!0,W=s.setInterval(D("osd_listener::ls_int",function(){var a=s,b=V,c=a.localStorage[b];if(c)try{a.localStorage[b]=Za(c)}catch(d){}}),1E3));J&&(J.b||J.a)&&(X=1,K=s.setInterval(D("osd_proto::reqm_int",ba(La,Y,J,O,Pa)),500))}));p("osdlac",C("osd_listener::lac_ex",function(a){Qa.push(a)}));p("osdlamrc",C("osd_listener::lamrc_ex",function(a){Ra.push(a)}));p("osdsir",C("osd_listener::sir_ex",Wa));})();osdlfm(-1,'','BXnm2hA5qVOrtEuKpwAGO9YGgBwAAAAAQATgByAEJwAIC4AIA4AQBoAYWqBOAAQ','',2525208092,true,false,0,0);</script>
+</div>
+</div>                    </div>
+                                <div id="header">
+                    <div id="top">
+                                                <h1>
+                            <a sl-processed="1" href="http://computer-outlines.over-blog.com/">
+                                Computer Outlines Blog
+                            </a>
+                        </h1>
+                                                <div class="clear"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+
+    <div id="ln_1" class="ln">
+        <div id="cl_1_0" class="cl">
+            <div id="yui_3_5_0_1_1416236675483_277" class="column_content">
+                                
+                                	<div id="yui_3_5_0_1_1416236675483_276" class="articles">
+                		<div id="yui_3_5_0_1_1416236675483_275">
+                			<div class="before_articles">
+                				<div class="pagination center">
+                					                
+                					                						<!-- next post -->
+                						<a sl-processed="1" href="http://computer-outlines.over-blog.com/article-nftables-1-nftables-installation-123263495.html" rel="next" class="textNext">&lt;&lt; Nftables 1 : Nftables installation</a>
+                					                					                						<!-- previous post -->
+                						<a sl-processed="1" href="http://computer-outlines.over-blog.com/article-nids-8-snort-boot-time-autorun-123375481.html" rel="next" class="textPrevious">NIDS 8 : SNORT and Barnyard2... &gt;&gt;</a>
+                					                				</div>
+                			</div>
+                
+                			                				                					                
+                					<div class="article article_even" id="article1" itemscope="" itemtype="http://schema.org/BlogPosting">
+                						<div class="option beforeArticle">
+                							<div class="date">
+                								<span class="text">2 février 2014</span>
+                								<span class="dow">7</span>
+                								<span class="day">02</span>
+                								<span class="month"><span class="separator">/</span>02</span>
+                								<span class="litteralMonth"><span class="separator">/</span>février</span>
+                								<span class="year"><span class="separator">/</span>2014</span>
+                								<span class="hour">19:42</span>
+                							</div>
+                						</div>
+                
+                						                							<div class="divTitreArticle">
+                								<h2>
+                									<a sl-processed="1" href="http://computer-outlines.over-blog.com/article-nids-snort-barnyard2-apache2-base-with-ubuntu-14-04-lts-123532107.html" class="titreArticle" title="NIDS : SNORT / Barnyard2 / MySQL / BASE with Ubuntu 14.04 LTS">NIDS : SNORT / Barnyard2 / MySQL / BASE with Ubuntu 14.04 LTS</a>
+                								</h2>
+                							</div>
+                						                
+                						<div id="yui_3_5_0_1_1416236675483_274" class="contenuArticle">
+                							
+            <div id="yui_3_5_0_1_1416236675483_273" class="ob-section ob-section-html"><p> Ubuntu 14.04 LTS is here, let's see how to setup our SNORT® IDS for this new LTS. </p> <p> &nbsp; </p> <p> We'll setup here a basic setup, using the Barnyard2 Spooler. The full softwares chain will be :<br> <br> SNORT / Barnyard2 / Mysql / Apache2 / BASE<br> <br> </p> <p> <a sl-processed="1" href="http://idata.over-blog.com/2/45/56/50/ID/I4/I4a.gif" class="nopopup" onclick="return !window.open(this);"><img src="NIDS%20:%20SNORT%20_%20Barnyard2%20_%20MySQL%20_%20BASE%20with%20Ubuntu%2014.04%20LTS%20-%20Computer%20Outlines%20Blog_files/I4a.gif" class="noAlign" alt="I4a" height="186" width="500"></a> </p> <p> &nbsp; </p> <p>
+ This configuration is a little more complicated to setup and 
+troubleshoot than the now deprecated SNORT-MySQL, and requires some 
+software compilation. But only then do we have a real robust and 
+reliable SNORT functionning. Furthermore, SNORT MySQL direct output has 
+been removed since SNORT 2.9.3.0<br> <br> </p> <p> I assume eth0 is the SNORT IDS sniffing interface through this post. </p> <p> &nbsp; </p> <p> We'll be using three passwords here :<br> <br>
+ MySQL Server root 
+password&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ secret1<br> <br> SNORT MySQL databases user 
+password&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ secret2<br> <br> BASE GUI 
+access&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ secret3<br> <br> I'll be using secret1, secret2 and secret3 as example passwords through this post.<br> <br> </p> <p> Tested under Ubuntu 14.04 LTS / Edited May 30 2014 </p> <p> &nbsp; </p> <p> <a sl-processed="1" href="http://computer-outlines.over-blog.com/article-nids-5-snort-barnyard2-mysql-base-setup-123365532.html"><span style="text-decoration: underline; color: #00ccff;"><strong>Debian users see here for equivalent Debian config ( there are differences )</strong></span></a> </p> <p> &nbsp; </p> <p> <span style="text-decoration: underline; color: #00ccff; font-size: 14pt;"><strong>1. SNORT Install and Setup</strong></span><br> <br> </p> <p> We first do the usual apt-get update / upgrade : </p> <p> &nbsp; </p> <p> sudo apt-get update </p> <p> sudo apt-get upgrade </p> <p> &nbsp; </p> <p> We set the SNORT machine with a static IP : 192.168.1.240<br> and reboot.<br> <br> we apply some networking fine tunings ( not all options may be available to your NIC ) : </p> <p> &nbsp; </p> <p> sudo apt-get install ethtool </p> <p> &nbsp; </p> <p> sudo ethtool -K eth0 gro off<br> sudo ethtool -K eth0 lro off<br> <br> and begin snort installation :<br> <br> sudo apt-get install snort<br> <br> <br> During snort install, we answer the questions about the protected subnet, here :<br> <br> &nbsp;&nbsp;&nbsp; 192.168.1.0/24<br> <br> <br> <span style="text-decoration: underline; color: #00ccff;"><strong>we edit <span class="skimlinks-unlinked">snort.conf</span> :</strong></span><br> <br> sudo gedit /etc/snort/<span class="skimlinks-unlinked">snort.conf</span><br> <br> <br> Line #51 :<br> <br> ipvar HOME_NET 192.168.1.0/24<br> <br> Line #536 we modify the line into :<br> <br> output unified2: filename <span class="skimlinks-unlinked">snort.log</span>, limit 128, mpls_event_types, vlan_event_types<br> <br> </p> <p> &nbsp; </p> <p> we restart SNORT : </p> <p> &nbsp; </p> <p> sudo service snort restart </p> <p> &nbsp; </p> <p> we delete previous log entries ( we changed the log format, to use time-stamps ) : </p> <p> &nbsp; </p> <p> sudo rm /var/log/snort/<span class="skimlinks-unlinked">snort.log</span> </p> <p> &nbsp; </p> <p> &nbsp; </p> <p> ( nb: line #51 is not really needed, as it's overriden by /etc/snort/<span class="skimlinks-unlinked">snort.debian.conf</span>. I do it for coherency. </p> <p> Likewise, edit /etc/snort/<span class="skimlinks-unlinked">snort.debian.conf</span> for sniffing interface choice if several NICs are present. ) </p> <p> &nbsp; </p> <p> <span style="text-decoration: underline; color: #00ccff;"><strong>We edit /etc/snort/rules/<span class="skimlinks-unlinked">local.rules</span> to include those two test rules :</strong></span><br> <br> </p> <p> sudo gedit /etc/snort/rules/<span class="skimlinks-unlinked">local.rules</span><br> <br> </p> <p> alert icmp any any -&gt; $HOME_NET any (msg:"ICMP Test NOW!!!"; classtype:not-suspicious; sid:1000001; rev:1;)<br> alert tcp any any -&gt; $HOME_NET 80 (msg:"HTTP Test NOW!!!"; classtype:not-suspicious; sid:1000002;&nbsp; rev:1;) </p> <p> &nbsp; </p> <p> &nbsp; </p> <p> &nbsp; </p> <p> <span style="text-decoration: underline; color: #00ccff; font-size: 14pt;"><strong>2. First test of Snort</strong></span><br> <br> sudo snort -i eth0 -v<br> <br> ( normally we get a live packet sniffing ). CTRL+C to stop.<br> <br> We do a config loading test :<br> <br> sudo snort -A console -u snort -g snort -c /etc/snort/<span class="skimlinks-unlinked">snort.conf</span> -i eth0 -T<br> <br> Let's finally launch SNORT in live alert console mode :<br> <br> sudo snort -A console -q -u snort -g snort -c /etc/snort/<span class="skimlinks-unlinked">snort.conf</span> -i eth0<br> <br> If we ping our SNORT IDS or try to browse it from another computer, alerts should be displayed.<br> <br> CTRL+C to stop<br> <br> <br> <span style="text-decoration: underline; color: #00ccff; font-size: 14pt;"><strong>3. Barnyard2 Setup</strong></span><br> <br> <span style="text-decoration: underline; color: #00ccff;"><strong>We first install the compile dependencies, and barnyard2 dependencies :</strong></span><br> <br> &nbsp;sudo apt-get install autoconf<br> <br>
+ &nbsp;sudo apt-get install 
+libtool&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ (##number to check)<br> <br> &nbsp;sudo apt-get install libpcap-dev<br> <br> &nbsp;sudo apt-get install libmysqlclient-dev<br> <br> &nbsp;<br> <br> <span style="text-decoration: underline; color: #00ccff;"><strong>we get and install barnyard2 :</strong></span><br> <br> &nbsp;cd /usr/src<br> <br> &nbsp;sudo wget <span class="skimlinks-unlinked">https://github.com/firnsy/barnyard2/tarball/master</span><br> <br> &nbsp;sudo tar -zxf master<br> <br> &nbsp;cd firnsy-barnyard2*<br> <br> &nbsp;sudo autoreconf -fvi -I ./m4<br> <br> &nbsp;sudo ./configure --with-mysql --with-mysql-libraries=/usr/lib/i386-linux-gnu<br> <br> &nbsp;sudo make<br> <br> &nbsp;sudo make install<br> <br> &nbsp;sudo cp /usr/local/etc/barnyard2.conf /etc/snort<br> <br> &nbsp;sudo cp schemas/create_mysql /usr/src<br> <br> &nbsp;sudo mkdir /var/log/barnyard2<br> <br> </p> <p> &nbsp; </p> <p> <span style="text-decoration: underline; color: #00ccff;"><strong>We edit Barnyard2.conf :</strong></span><br> <br> sudo gedit /etc/snort/barnyard2.conf<br> <br> <br> Line #227 change to :<br>
+ output 
+alert_fast&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ ( instead of output alert_fast: stdout )<br> <br> <br> near the end, line #348, uncomment and complete :<br> <br> output database: log, mysql, user=snort password=secret2 dbname=snort host=localhost<br> <br> ( Replace secret2 with your choosen MySQL user-password. )<br> <br> <br> </p> <p> <span style="text-decoration: underline; color: #00ccff; font-size: 14pt;"><strong>4. MySQL setup</strong></span><br> <br> sudo apt-get install mysql-server<br> <br> &nbsp;&nbsp;&nbsp; [ enter Mysql-server root password here : secret1 ]<br> <br> We setup our database :<br> <br> sudo mysql -u root -p<br> <br> &nbsp;&nbsp;&nbsp; [ Enter Mysql-server root password : secret1 ]<br> <br> We enter these lines in the SQL&gt; console :<br> <br> create database snort;<br> create database archive;<br> <br> grant usage on snort.* to snort@localhost;<br> grant usage on archive.* to snort@localhost;<br> <br> set password for snort@localhost=PASSWORD('secret2');<br> <br> grant all privileges on snort.* to snort@localhost;<br> grant all privileges on archive.* to snort@localhost;<br> <br> flush privileges;<br> <br> exit </p> <p> &nbsp; </p> <p> &nbsp; </p> <p> <span style="text-decoration: underline; color: #00ccff;"><strong>We Populate The MySQL Database with Snort structure :</strong></span><br> <br> sudo mysql -u root -p<br> <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [ enter mysql root-password here : secret1 ]<br> <br> mysql&gt;<br> <br> use snort;<br> <br> source /usr/src/create_mysql;<br> <br>
+ show 
+tables;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ # you should see the list of new tables you just imported.<br> <br> exit<br> <br> <br> <br> <span style="text-decoration: underline; color: #00ccff; font-size: 14pt;"><strong>5. Snort and Barnyard testing</strong></span><br> <br> </p> <p> We check the SNORT service is started : </p> <p> &nbsp; </p> <p> sudo service snort restart </p> <p> &nbsp; </p> <p> We manually launch Barnyard2 :<br> <br> sudo /usr/local/bin/barnyard2 -c /etc/snort/barnyard2.conf -d /var/log/snort -f <span class="skimlinks-unlinked">snort.log</span> -w /var/log/barnyard2/<span class="skimlinks-unlinked">bylog.waldo</span> -C /etc/snort/classification.config<br> <br> <br> <br> Barnyard2 will probably fatally exit due to a missing <span class="skimlinks-unlinked">sid-msg.map</span> file. This file is no longer included in the Snort source but is required by Barnyard2.<br> <br> To solve this problem, we will use a oinkmaster script named <span class="skimlinks-unlinked">create-sidmap.pl</span> to generate the <span class="skimlinks-unlinked">sid-msg.map</span><br> ( we will later install and configure PulledPork which manages <span class="skimlinks-unlinked">sid-msg.map</span> file )<br> <br> <span style="text-decoration: underline; color: #00ccff;"><strong><span class="skimlinks-unlinked">sid-msg.map</span> creation :</strong></span><br> <br> cd /usr/share/oinkmaster<br> <br> sudo bash -c "sudo ./<span class="skimlinks-unlinked">create-sidmap.pl</span> /etc/snort/rules &gt; /etc/snort/<span class="skimlinks-unlinked">sid-msg.map</span>"<br> <br> <br> we launch barnyard2, and this time we should get no error :<br> <br> sudo /usr/local/bin/barnyard2 -c /etc/snort/barnyard2.conf -d /var/log/snort -f <span class="skimlinks-unlinked">snort.log</span> -w /var/log/barnyard2/<span class="skimlinks-unlinked">bylog.waldo</span> -C /etc/snort/classification.config<br> <br> CRTL+C to exit barnyard2 </p> <p> &nbsp; </p> <p> &nbsp; </p> <p> <span style="text-decoration: underline; color: #00ccff; font-size: 14pt;"><strong>6. Barnyard2 boot-time autorun</strong></span> </p> <p> &nbsp; </p> <p> We need Barnyard2 to be automatically started at boot-time. Let's make a quick and easy boot-time script. </p> <p> ( This is a very light and easy script, not to use in a production environment ). </p> <p> This script is very sensitive to the name you use. I advice you to keep with runbarnyard2. </p> <p> &nbsp; </p> <p> sudo touch /etc/init.d/runbarnyard2 </p> <p> sudo gedit /etc/init.d/runbarnyard2 </p> <p> ----------------------------------------------------------------------------------------------- </p> <p> #!/bin/sh<br> <br> case $1 in<br> &nbsp;&nbsp;&nbsp; start)<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; echo "Starting Barnyard2"<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sudo bash -c "barnyard2 -D -c /etc/snort/barnyard2.conf -d /var/log/snort -f <span class="skimlinks-unlinked">snort.log</span> -n"<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; echo 'Barnyard2 started.'<br> &nbsp;&nbsp;&nbsp; ;;<br> &nbsp;&nbsp;&nbsp; stop)<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; echo "Stopping Barnyard2"<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sudo killall barnyard2<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; echo 'Barnyard2 stopped.'<br> &nbsp;&nbsp;&nbsp; ;;<br> &nbsp;&nbsp;&nbsp; restart)<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $0 stop </p> <p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sleep 4<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $0 start<br> &nbsp;&nbsp;&nbsp; ;;<br> &nbsp;&nbsp;&nbsp; *)<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; echo "usage: $0 (start|stop|restart)"<br> &nbsp;&nbsp;&nbsp; ;;<br> esac<br> <br> exit 0<br> ----------------------------------------------------------------------------------------------- </p> <p> &nbsp; </p> <p> sudo chmod 700 /etc/init.d/runbarnyard2 </p> <p> sudo update-rc.d runbarnyard2 defaults 21 00 </p> <p> &nbsp; </p> <p> We modify Barnyard2 to launch as a daemon, by uncommenting the daemon line: </p> <p> sudo gedit /etc/snort/barnyard2.conf<br> ------------------------------------------------------------ </p> <p> # enable daemon mode<br> #<br> config daemon<br> ------------------------------------------------------------- </p> <p> &nbsp; </p> <p> Usage : </p> <p> sudo /etc/init.d/runbarnyard2 start/stop/restart </p> <p> &nbsp; </p> <p> ( Do note Barnyard2 is launched with the -n switch : Only new records are processed ).&nbsp; </p> <p> &nbsp; </p> <p id="yui_3_5_0_1_1416236675483_272"> <a id="yui_3_5_0_1_1416236675483_271" sl-processed="1" href="http://computer-outlines.over-blog.com/article-nids-8-snort-boot-time-autorun-123375481.html">For more ideas about Barnyard2 boot-time run, see here</a> </p> <p> &nbsp; </p> <p> &nbsp; </p> <p> <span style="text-decoration: underline; color: #00ccff; font-size: 14pt;"><strong>7. Apache2 / BASE GUI frontend setup</strong></span><br> <br> <span style="text-decoration: underline; color: #00ccff;"><strong>Apache2 setup :</strong></span><br> <br> sudo apt-get install apache2<br> <br> sudo apt-get install libapache2-mod-php5<br> <br> sudo apt-get install libphp-adodb<br> <br> ( info message is OK )<br> <br> <br> Edit "/etc/php5/apache2/<span class="skimlinks-unlinked">php.ini</span>", look for the line "error_reporting" and change it to:<br> <br> error_reporting = E_ALL &amp; ~E_NOTICE<br> <br> </p> <p> We edit /etc/apache2/apache2.conf to add authorizations for www/base : </p> <p> &nbsp; </p> <p> ----------------------------------------------------------------------------------------------------- </p> <p> &lt;Directory /var/www/html/base&gt;<br> &nbsp;&nbsp;&nbsp; AllowOverride All<br> &nbsp;&nbsp;&nbsp; Require all granted<br> &lt;/Directory&gt;<br> ----------------------------------------------------------------------------------------------------- </p> <p> &nbsp; </p> <p> &nbsp; </p> <p> We restart apache2 : </p> <p> <br> sudo service apache2 restart<br> <br> </p> <p> &nbsp; </p> <p> <span style="text-decoration: underline; color: #00ccff;"><strong>We install the BASE dependencies :</strong></span><br> <br> sudo apt-get install php-pear<br> <br>
+ sudo apt-get install 
+libwww-perl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ ( usually already installed )<br> <br> sudo apt-get install php5-gd<br> <br> <br> <br> sudo pear config-set preferred_state alpha<br> <br> sudo pear channel-update <span class="skimlinks-unlinked">pear.php.net</span><br> <br> sudo pear install --alldeps Image_Color Image_Canvas Image_Graph </p> <p> &nbsp; </p> <p> at this point you will get an error, facing the very annoying ' could not extract the <span class="skimlinks-unlinked">package.xml</span> file ' bug. This is due to an evolution in pear that did breack something. Let's dodge this problem : </p> <p> &nbsp; </p> <p> <span style="text-decoration: underline; color: #00ccff;"><strong>Dodging the PEAR not valid .xml bug</strong></span> </p> <p> &nbsp; </p> <p> We have to get in the pear download directory, and manually install the 6 pear packages ( 3 + 3 dependencies ). </p> <p> Here's how : </p> <p> &nbsp; </p> <p> cd /build/buildd/php5-5.5.9+dfsg/pear-build-download </p> <p> ls </p> <p> &nbsp; </p> <p> there should be the 6 .tgz packages here. Let's manually install them : </p> <p> &nbsp; </p> <p> sudo tar zxf Image_Color*.tgz </p> <p> sudo cp <span class="skimlinks-unlinked">package.xml</span> ./Image_Color*/ </p> <p> cd Image_Color* </p> <p> sudo pear install <span class="skimlinks-unlinked">package.xml</span> </p> <p> cd .. </p> <p> &nbsp; </p> <p> do this for the 6 packages in this order : </p> <p> &nbsp; </p> <p> Image_Color </p> <p> Image_Canvas </p> <p> Numbers_Roman </p> <p> &nbsp; </p> <p> Math_BigInteger </p> <p> Numbers_Words </p> <p> Image_Graph </p> <p> &nbsp; </p> <p> &nbsp; </p> <p> &nbsp; </p> <p> &nbsp; </p> <p> <span style="text-decoration: underline; color: #00ccff;"><strong>BASE install :</strong></span><br> <br> cd /usr/src<br> <br> sudo wget <span class="skimlinks-unlinked">http://sourceforge.net/projects/secureideas/files/BASE/base-1.4.5/base-1.4.5.tar.gz</span><br> <br> sudo tar -zxf base-1.4.5.<span class="skimlinks-unlinked">tar.gz</span><br> <br> sudo cp -r base-1.4.5 /var/www/html/base<br> <br> sudo chown -R www-data:www-data /var/www/html/base<br> <br> sudo service apache2 restart<br> <br> <br> <span style="text-decoration: underline; color: #00ccff;"><strong>BASE setup :</strong></span><br> <br> we launch a local web browser :<br> <br> http://localhost/base<br> <br> </p> <p> &nbsp; </p> <p> Step 1) path : /usr/share/php/adodb<br> <br>
+ Step 2)&nbsp; Database Name 
+:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ snort<br> <br> &nbsp; &nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Database Host 
+:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ localhost<br> <br> <br> 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ Database User 
+Name:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ snort<br> <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp;&nbsp; Database Password 
+:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ secret2<br> <br> <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ( tick 'Use Archive Database' )<br> <br>
+ &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Archive Database
+ Name 
+:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ archive<br> <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp;&nbsp; Archive Database Host 
+:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ localhost<br> <br> <br> &nbsp;&nbsp; &nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Archive Database 
+User Name 
+:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ snort<br> <br> &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Archive Database Password 
+:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ secret2<br> <br> Step 3)&nbsp;&nbsp;&nbsp; tick 'use authentication system' ( it enables BASE login screen lock )<br> <br> &nbsp;&nbsp;&nbsp; Full admin name ( john )<br> <br> &nbsp;&nbsp;&nbsp; [GUI password]&nbsp;&nbsp;&nbsp; ( Secret3 )<br> <br> &nbsp;&nbsp;&nbsp; Full admin name ( John Doe )<br> <br> Step 4)&nbsp;&nbsp;&nbsp; Click ' Create baseAG'<br> <br> Step 5)&nbsp;&nbsp;&nbsp; Click ' Now continue to Step 5 ' and login ( john / secret3 )&nbsp;&nbsp; </p> <p> &nbsp; </p> <p> &nbsp; </p> <p> A few ping and http alerts should be displayed ( red bar ). The web page is refreshed every 3 minutes. </p> <p> &nbsp; </p> <p> <strong><span style="color: #00ccff;">Note : there is a pb with Ubuntu 14.04 LTS : In the BASE GUI, Graph Alert Data seem broken.</span></strong> </p> <p> &nbsp; </p> <p> <span style="text-decoration: underline; color: #00ccff; font-size: 14pt;"><strong>8. syslog logging</strong></span> </p> <p> <br> To setup snort syslog logging ( usefull for debuging snort ) :<br> <br> we uncomment this line in <span class="skimlinks-unlinked">snort.conf</span> :<br> <br> output alert_syslog: LOG_AUTH LOG_ALERT<br> <br> + restart snort ( sudo service snort restart or use your /<span class="skimlinks-unlinked">etc.init.d</span>/ script )<br> <br> the log can by viewed using :<br> <br> sudo grep snort /var/log/<span class="skimlinks-unlinked">auth.log</span><br> <br> nb :&nbsp;&nbsp;&nbsp;&nbsp; LOG_AUTH is the logging facility ( configurable )<br> <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LOG_ALERT is the severity level ( configurable )<br> <br> </p> <p> &nbsp; </p> <p> Except for debugging purpose, logging should be performed at Barnyard2 level. The syntax is the same : </p> <p> &nbsp; </p> <p> sudo gedit /etc/snort/barnyard2.conf </p> <p> -------------------------------------------------------------------------- </p> <p> output alert_syslog: LOG_AUTH LOG_ALERT </p> <p> -------------------------------------------------------------------------- </p> <p> &nbsp; </p> <p> + restart barnyard2 ( using your /etc/init.d script ) </p> <p> It is usefull for Barnyard2 debugging too. </p> <p> &nbsp; </p> <h3> <span style="text-decoration: underline; color: #00ccff; font-size: 14pt;"><strong>9. Basic Portscan detection</strong></span> </h3> <p>
+ Complete Portscan detection requires SNORT Shared Objects / Shared 
+Object Rules, which we'll be seeing later. Still, we can implement a 
+basic function :<br> <br> sudo gedit /etc/snort/<span class="skimlinks-unlinked">snort.conf</span><br> <br> We uncomment and modify this line ( #428 usually ) :<br> <br> # Portscan detection.&nbsp; For more information, see README.sfportscan<br> <br> preprocessor sfportscan: proto&nbsp; { all } memcap { 10000000 } sense_level { medium } logfile { /var/log/snort/<span class="skimlinks-unlinked">portscan.log</span> } </p> <p> &nbsp; </p> <p> &nbsp; </p> <p> We restart snort : </p> <p> &nbsp; </p> <p> sudo service snort restart </p> <p> &nbsp; </p> <p> &nbsp; </p> <p> A regular Nmap/Zenmap scan ( nmap 192.168.1.240) on the SNORT IDS will trigger alerts. </p> <p> &nbsp; </p> <p> portscans can be checked using :<br> <br> sudo cat /var/log/snort/<span class="skimlinks-unlinked">portscan.log</span><br> <br> </p> <p> ( check /var/log/snort/<span class="skimlinks-unlinked">portscan.log</span> permissions. chown snort:snort <span class="skimlinks-unlinked">portscan.log</span> is necessary ) </p> <p> <br> <span style="text-decoration: underline; color: #00ccff;"><strong>we then enable <span class="skimlinks-unlinked">portscan.log</span> lookups by BASE :</strong></span><br> <br> sudo gedit /var/www/html/base/<span class="skimlinks-unlinked">base_conf.php</span> </p> <p> &nbsp; </p> <p> #line 290 : </p> <p> &nbsp; </p> <p> $portscan_file = '/var/log/snort/<span class="skimlinks-unlinked">portscan.log</span>';&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; using an absolute path<br> <br> sudo service apache2 restart<br> <br> sudo chmod a+r /var/log/snort/<span class="skimlinks-unlinked">portscan.log</span><br> <br> sudo chmod 755 /var/log/snort<br> <br> <br> <br> <span style="text-decoration: underline; color: #00ccff; font-size: 14pt;"><strong>10. DNS resolution, Alert coloring and Database Emptying</strong></span><br> <br> <br> Some BASE GUI option interesting options :<br> <br> sudo gedit /var/www/html/base/<span class="skimlinks-unlinked">base_conf.php</span><br> <br> <span style="text-decoration: underline; color: #00ccff;"><strong>To resolve IP to FQDN :</strong></span><br> <br> /* Resolve IP to FQDN (on certain queries?)<br> &nbsp;&nbsp;&nbsp;&nbsp; *&nbsp;&nbsp;&nbsp; 1 : yes<br> &nbsp;&nbsp;&nbsp;&nbsp; *&nbsp;&nbsp;&nbsp; 0 : no<br> &nbsp;&nbsp;&nbsp;&nbsp; */<br> &nbsp;&nbsp;&nbsp; $resolve_IP = 1;<br> &nbsp;<br> <br> <span style="text-decoration: underline; color: #00ccff;"><strong>To have alert-priority coloring :</strong></span><br> <br> * This option is used to set if BASE will use colored results<br> &nbsp;&nbsp;&nbsp;&nbsp; * based on the priority of alerts<br> &nbsp;&nbsp;&nbsp;&nbsp; * 0 : no<br> &nbsp;&nbsp;&nbsp;&nbsp; * 1 : yes<br> &nbsp;&nbsp;&nbsp;&nbsp; */<br> &nbsp;&nbsp;&nbsp; $colored_alerts = 1;<br> <br> <br> <br> <span style="text-decoration: underline; color: #00ccff;"><strong>To empty the SNORT MySQL alerts database</strong></span><br> <br> We can do this using the BASE GUI :<br> <br> Cache &amp; Status ) Clear Data Tables<br> <br> </p> <p> sudo /etc/init.d/runbarnyard2 restart </p> <p> &nbsp; </p> <p> <br> ( The Barnyard2 restart is mandatory for alerts to get displayed again ) </p> <p> &nbsp; </p> <p> Do note that logs and alerts may need to be deleted too. Read Next. </p> <p> &nbsp; </p> <p> <span style="text-decoration: underline; color: #00ccff; font-size: 14pt;"><strong>11. To delete all alerts and logs</strong></span> </p> <p> &nbsp; </p> <p>
+ Emptying the MySQL database is enough to clear the BASE GUI display, 
+still the next Barnyard2 launch will review recorded snorts alerts, 
+skipping old ones. Furthermore, the <span class="skimlinks-unlinked">portscan.log</span> won't get deleted. To avoid this, here is what is needed to empty all the logged alerts : </p> <p> &nbsp; </p> <p> sudo service snort stop<br> sudo /etc/init.d/runbarnyard2 stop </p> <p> <br> sudo rm /var/log/snort/<span class="skimlinks-unlinked">snort.log</span>.* </p> <p> sudo bash -c "cat /dev/null &gt; /var/log/snort/<span class="skimlinks-unlinked">portscan.log</span>"<br> sudo rm /var/log/barnyard2/*<br> <br> </p> <p> Then cleanup the MySQL database using the BASE GUI. </p> <p> &nbsp; </p> <p> Then, either reboot or restart Snort and Barnyard2. </p> <p> &nbsp; </p> <p> This cleanup may be integrated as a fourth option in your /etc/init.d/runbarnyard2 script. </p> <p> &nbsp; </p> <p> <a sl-processed="1" href="http://computer-outlines.over-blog.com/article-nids-8-snort-boot-time-autorun-123375481.html"></a> </p> <p> <a sl-processed="1" href="http://computer-outlines.over-blog.com/article-nids-8-snort-boot-time-autorun-123375481.html">See here for some exemples.</a> </p> <p> <a sl-processed="1" href="http://computer-outlines.over-blog.com/article-nids-8-snort-boot-time-autorun-123375481.html"></a> </p> <p> &nbsp; </p> <p> &nbsp; </p> <p> - SNORT® is a registered trademark&nbsp; of Sourcefire, Inc. - </p> <p> &nbsp; </p></div>
+    
+                
+                							                							<div class="clear"></div>
+                						</div>
+                
+                						<div class="clear"></div>
+                
+                						<div class="socialShare">
+                							
+    <h3>Partager cet article</h3>
+            <div class="google-share">
+            <iframe src="NIDS%20:%20SNORT%20_%20Barnyard2%20_%20MySQL%20_%20BASE%20with%20Ubuntu%2014.04%20LTS%20-%20Computer%20Outlines%20Blog_files/fastbutton.html" allowtransparency="1" scrolling="no" style="height:20px;width:90px;" frameborder="0"></iframe>
+        </div>
+        <div class="twitter-share">
+            <iframe src="NIDS%20:%20SNORT%20_%20Barnyard2%20_%20MySQL%20_%20BASE%20with%20Ubuntu%2014.04%20LTS%20-%20Computer%20Outlines%20Blog_files/tweet_button.html" allowtransparency="1" scrolling="no" style="height:20px;width:133px;" frameborder="0"></iframe>
+        </div>
+        <div class="facebook-share">
+            <iframe src="NIDS%20:%20SNORT%20_%20Barnyard2%20_%20MySQL%20_%20BASE%20with%20Ubuntu%2014.04%20LTS%20-%20Computer%20Outlines%20Blog_files/like.html" allowtransparency="1" scrolling="no" style="height:20px;width:133px;" frameborder="0"></iframe>
+        </div>
+    <div class="ob-share">
+    <a sl-processed="1" class="ob-repost-btn" href="http://my.over-blog.com/repost.html?repost=http://computer-outlines.over-blog.com/article-nids-snort-barnyard2-apache2-base-with-ubuntu-14-04-lts-123532107.html">
+    <span class="ob-repost-label">
+        <span class="ob-repost-icon"></span>
+        Repost
+    </span>
+    <span class="ob-repost-count">0</span></a>
+
+</div>
+                						</div>
+                
+                						<div class="clear"></div>
+                
+                						<div class="option afterArticle">
+                							<span class="publishedBy">Published by computer outlines</span>                
+                							                								<span class="topic">
+                									<span class="separator">-</span>
+                									dans
+                
+                									                										<a sl-processed="1" href="http://computer-outlines.over-blog.com/tag/nids/" title="NIDS" class="linkTopic">NIDS</a>
+                									                								</span>
+                							                							                								<br>
+                								<span class="spanAddComment">
+                									<a sl-processed="1" href="http://computer-outlines.over-blog.com/article-nids-snort-barnyard2-apache2-base-with-ubuntu-14-04-lts-123532107.html#anchorComment" class="linkAddComment">
+                										commenter cet article
+                									</a>
+                								</span>
+                								<a sl-processed="1" href="http://computer-outlines.over-blog.com/article-nids-snort-barnyard2-apache2-base-with-ubuntu-14-04-lts-123532107.html#anchorComment" class="linkComment">
+                									<span data-ob-comments-done="true" data-ob-comments-one="Voir le commentaire" data-ob-comments-many="Voir les %c commentaires" data-ob-comments-none=" " data-ob-comments="post_46026706">Voir les 2 commentaires</span>
+                								</a>
+                							                						</div>
+                					</div>
+                
+                					                						<div id="div-gpt-ad-mainColumn" class="ads ads-300x250" style="float:left;border:none;padding:0;">
+                							<div id="_div-ad-2"><script type="text/javascript">
+      try
+      {
+        if(!window._slot_ad_2)
+        {
+          googletag.display('_div-ad-2');
+        }
+
+        var _slot_ad_2 = true;
+      }
+      catch(e)
+      {
+      }
+   </script><script type="text/javascript" src="NIDS%20:%20SNORT%20_%20Barnyard2%20_%20MySQL%20_%20BASE%20with%20Ubuntu%2014.04%20LTS%20-%20Computer%20Outlines%20Blog_files/ads_004.js"></script><div id="_div-ad-2_ad_container"><script type="text/javascript" src="NIDS%20:%20SNORT%20_%20Barnyard2%20_%20MySQL%20_%20BASE%20with%20Ubuntu%2014.04%20LTS%20-%20Computer%20Outlines%20Blog_files/t.js"></script><script type="text/javascript" src="NIDS%20:%20SNORT%20_%20Barnyard2%20_%20MySQL%20_%20BASE%20with%20Ubuntu%2014.04%20LTS%20-%20Computer%20Outlines%20Blog_files/banner_003.asc"></script><iframe src="NIDS%20:%20SNORT%20_%20Barnyard2%20_%20MySQL%20_%20BASE%20with%20Ubuntu%2014.04%20LTS%20-%20Computer%20Outlines%20Blog_files/imp6997.html" border="0" scrolling="no" marginheight="0px" marginwidth="0px" frameborder="0" height="250" width="300"></iframe><script type="text/javascript" charset="iso-8859-1" src="NIDS%20:%20SNORT%20_%20Barnyard2%20_%20MySQL%20_%20BASE%20with%20Ubuntu%2014.04%20LTS%20-%20Computer%20Outlines%20Blog_files/fltiu.js"></script>
+<script type="text/javascript">(function(){var h=this,aa=function(a){var b=typeof a;if("object"==b)if(a){if(a instanceof Array)return"array";if(a instanceof Object)return b;var c=Object.prototype.toString.call(a);if("[object Window]"==c)return"object";if("[object Array]"==c||"number"==typeof a.length&&"undefined"!=typeof a.splice&&"undefined"!=typeof a.propertyIsEnumerable&&!a.propertyIsEnumerable("splice"))return"array";if("[object Function]"==c||"undefined"!=typeof a.call&&"undefined"!=typeof a.propertyIsEnumerable&&!a.propertyIsEnumerable("call"))return"function"}else return"null";else if("function"==b&&"undefined"==typeof a.call)return"object";return b},l=function(a){return"string"==typeof a},ba=function(a,b){var c=Array.prototype.slice.call(arguments,1);return function(){var b=c.slice();b.push.apply(b,arguments);return a.apply(this,b)}},n=Date.now||function(){return+new Date},p=function(a,b){var c=a.split("."),d=h;c[0]in d||!d.execScript||d.execScript("var "+c[0]);for(var e;c.length&&(e=c.shift());)c.length||void 0===b?d=d[e]?d[e]:d[e]={}:d[e]=b};var q=function(a,b,c,d,e){if(e)c=a+("&"+b+"="+c);else{var f="&"+b+"=",g=a.indexOf(f);0>g?c=a+f+c:(g+=f.length,f=a.indexOf("&",g),c=0<=f?a.substring(0,g)+c+a.substring(f):a.substring(0,g)+c)}return 2E3<c.length?void 0!==d?q(a,b,d,void 0,e):a:c};var ca=function(){var a=/[&\?]exk=([^& ]+)/.exec(s.location.href);return a&&2==a.length?a[1]:null};var da=function(a){var b=a.toString();a.name&&-1==b.indexOf(a.name)&&(b+=": "+a.name);a.message&&-1==b.indexOf(a.message)&&(b+=": "+a.message);if(a.stack){a=a.stack;var c=b;try{-1==a.indexOf(c)&&(a=c+"\n"+a);for(var d;a!=d;)d=a,a=a.replace(/((https?:\/..*\/)[^\/:]*:\d+(?:.|\n)*)\2/,"$1");b=a.replace(/\n */g,"\n")}catch(e){b=c}}return b},u=function(a,b){a.google_image_requests||(a.google_image_requests=[]);var c=a.document.createElement("img");c.src=b;a.google_image_requests.push(c)};var v=document,s=window;var ea=String.prototype.trim?function(a){return a.trim()}:function(a){return a.replace(/^[\s\xa0]+|[\s\xa0]+$/g,"")},w=function(a,b){return a<b?-1:a>b?1:0};var x=null,fa=function(a,b){for(var c in a)Object.prototype.hasOwnProperty.call(a,c)&&b.call(null,a[c],c,a)};function y(a){return"function"==typeof encodeURIComponent?encodeURIComponent(a):escape(a)}var ga=function(){if(!v.body)return!1;if(!x){var a=v.createElement("iframe");a.style.display="none";a.id="anonIframe";x=a;v.body.appendChild(a)}return!0},z={};var A=!0,ha={},ka=function(a,b,c,d){var e=ia,f,g=A;try{f=b()}catch(k){try{var B=da(k);b="";k.fileName&&(b=k.fileName);var m=-1;k.lineNumber&&(m=k.lineNumber);g=e(a,B,b,m,c)}catch(r){try{var t=da(r);a="";r.fileName&&(a=r.fileName);c=-1;r.lineNumber&&(c=r.lineNumber);ia("pAR",t,a,c,void 0,void 0)}catch(sa){ja({context:"mRE",msg:sa.toString()+"\n"+(sa.stack||"")},void 0)}}if(!g)throw k;}finally{if(d)try{d()}catch(cb){}}return f},ia=function(a,b,c,d,e,f){var g={};if(e)try{e(g)}catch(k){}g.context=a;g.msg=b.substring(0,512);c&&(g.file=c);0<d&&(g.line=d.toString());g.url=v.URL.substring(0,512);g.ref=v.referrer.substring(0,512);la(g);ja(g,f);return A},ja=function(a,b){try{if(Math.random()<(b||.01)){var c="/pagead/gen_204?id=jserror"+ma(a),d="http"+("http:"==s.location.protocol?"":"s")+"://pagead2.googlesyndication.com"+c,d=d.substring(0,2E3);u(s,d)}}catch(e){}},la=function(a){var b=a||{};fa(ha,function(a,d){b[d]=s[a]})},C=function(a,b,c,d,e){return function(){var f=arguments;return ka(a,function(){return b.apply(c,f)},d,e)}},D=function(a,b){return C(a,b,void 0,void 0,void 0)},ma=function(a){var b="";fa(a,function(a,d){if(0===a||a)b+="&"+d+"="+y(a)});return b};var E=Array.prototype,na=E.indexOf?function(a,b,c){return E.indexOf.call(a,b,c)}:function(a,b,c){c=null==c?0:0>c?Math.max(0,a.length+c):c;if(l(a))return l(b)&&1==b.length?a.indexOf(b,c):-1;for(;c<a.length;c++)if(c in a&&a[c]===b)return c;return-1},oa=E.map?function(a,b,c){return E.map.call(a,b,c)}:function(a,b,c){for(var d=a.length,e=Array(d),f=l(a)?a.split(""):a,g=0;g<d;g++)g in f&&(e[g]=b.call(c,f[g],g,a));return e};if(v&&v.URL)var pa=v.URL,A=!(pa&&(0<pa.indexOf("?google_debug")||0<pa.indexOf("&google_debug")));var F=function(a,b,c,d){c=C(d||"osd_or_lidar::"+b,c,void 0,void 0,void 0);a.addEventListener?a.addEventListener(b,c,!1):a.attachEvent&&a.attachEvent("on"+b,c)},qa=function(a){var b=0,c=function(){a();b++;10>b&&s.setTimeout(D("osd_listener::ldcl_int",c),100)};c()};var ra=function(){try{s.localStorage.setItem("__sak","1");var a=s.localStorage.__sak;s.localStorage.removeItem("__sak");return"1"==a}catch(b){return!1}},ta=function(a,b,c){a.google_image_requests||(a.google_image_requests=[]);var d=a.document.createElement("img");F(d,"load",c,"osd::ls_img::load");d.src=b;a.google_image_requests.push(d)};var ua=function(a,b){for(var c in a)b.call(void 0,a[c],c,a)};var G;n:{var va=h.navigator;if(va){var wa=va.userAgent;if(wa){G=wa;break n}}G=""};var xa=-1!=G.indexOf("Opera")||-1!=G.indexOf("OPR"),H=-1!=G.indexOf("Trident")||-1!=G.indexOf("MSIE"),ya=-1!=G.indexOf("Gecko")&&-1==G.toLowerCase().indexOf("webkit")&&!(-1!=G.indexOf("Trident")||-1!=G.indexOf("MSIE")),za=-1!=G.toLowerCase().indexOf("webkit"),Aa=function(){var a=h.document;return a?a.documentMode:void 0},Ba=function(){var a="",b;if(xa&&h.opera)return a=h.opera.version,"function"==aa(a)?a():a;ya?b=/rv\:([^\);]+)(\)|;)/:H?b=/\b(?:MSIE|rv)[: ]([^\);]+)(\)|;)/:za&&(b=/WebKit\/(\S+)/);b&&(a=(a=b.exec(G))?a[1]:"");return H&&(b=Aa(),b>parseFloat(a))?String(b):a}(),Ca={},Da=function(a){if(!Ca[a]){for(var b=0,c=ea(String(Ba)).split("."),d=ea(String(a)).split("."),e=Math.max(c.length,d.length),f=0;0==b&&f<e;f++){var g=c[f]||"",k=d[f]||"",B=RegExp("(\\d*)(\\D*)","g"),m=RegExp("(\\d*)(\\D*)","g");do{var r=B.exec(g)||["","",""],t=m.exec(k)||["","",""];if(0==r[0].length&&0==t[0].length)break;b=w(0==r[1].length?0:parseInt(r[1],10),0==t[1].length?0:parseInt(t[1],10))||w(0==r[2].length,0==t[2].length)||w(r[2],t[2])}while(0==b)}Ca[a]=0<=b}},Ea=h.document,Fa=Ea&&H?Aa()||("CSS1Compat"==Ea.compatMode?parseInt(Ba,10):5):void 0;var I=function(a,b){this.b=a||0;this.a=b||""},Ga=function(a,b){a.b&&(b[4]=a.b);a.a&&(b[12]=a.a)};I.prototype.match=function(a){return(this.b||this.a)&&(a.b||a.a)?this.a||a.a?this.a==a.a:this.b||a.b?this.b==a.b:!1:!1};I.prototype.toString=function(){var a=""+this.b;this.a&&(a+="-"+this.a);return a};var Ha=function(){var a=J,b=[];a.b&&b.push("adk="+a.b);a.a&&b.push("exk="+a.a);return b},Ia=function(a){var b=[];ua(a,function(a,d){var e=y(d),f=a;l(f)&&(f=y(f));b.push(e+"="+f)});return b.join("\n")},K=0,Ja=0,Ka=function(a){var b=0,c=s;if(c&&c.Goog_AdSense_getAdAdapterInstance)return c;try{for(;c&&5>b;){if(c.google_osd_static_frame)return c;if(!a&&c.aswift_0)return c.aswift_0;b++;c=c!=c.parent?c.parent:null}}catch(d){}return null},La=function(a,b,c,d){if(10<Ja)s.clearInterval(K);else if(++Ja,s.postMessage&&(b.b||b.a)){var e=Ka(!0);if(e){var f={};Ga(b,f);f[0]="goog_request_monitoring";f[6]=a;f[16]=c;d&&d.length&&(f[17]=d.join(","));try{var g=Ia(f);e.postMessage(g,"*")}catch(k){}}}};var Ma;if(!(Ma=!ya&&!H)){var Na;if(Na=H)Na=H&&9<=Fa;Ma=Na}Ma||ya&&Da("1.9.1");H&&Da("9");var L=0,M="",N=!1,O=!1,P=!1,Oa=!1,Pa=[],J=null,Q="",Qa=[],Ra=[],Sa=!1,R="",S="",Ta=(new Date).getTime(),Ua=["1","0","3"],T=0,U=!1,V="",W=null,X=0,Y=0,Va=0,Wa=function(a,b){N&&Z(a,b,!0);(P||O&&Oa)&&Z(a,b)},Z=function(a,b,c){if((b=b||Q)&&!Sa&&(2==Y||c)){b=Xa(b,c);if(!c&&U){U=!1;W&&(a.clearInterval(W),W=null);var d=V;try{a.localStorage[d]=b+"&timestamp="+n()+"&send"}catch(e){}5!=T&&ta(a,b,function(){a.localStorage.removeItem(d)})}else u(a,b);c?N=!1:Sa=!0}},Xa=function(a,b){var c;c=b?"osdim":P?"osd2":"osdtos";var d=["//pagead2.googlesyndication.com/activeview","?id=",c];"osd2"==c&&O&&Oa&&d.push("&ts=1");M&&d.push("&avi=",M);0!=T&&d.push("&lsid=",T);U&&d.push("&cwls=1");d.push("&ti=1");d.push("&",a);d.push("&uc="+Va);c=d.join("");for(d=0;d<Qa.length;d++){try{var e=Qa[d]()}catch(f){}var g="max_length";2<=e.length&&(3==e.length&&(g=e[2]),c=q(c,y(e[0]),y(e[1]),g))}2E3<c.length&&(c=c.substring(0,2E3));return c},$=function(a,b){if(R){try{var c=q(R,"vi",a);ga()&&u(x.contentWindow,c)}catch(d){}0<=na(Ua,a)&&(R="");var c=b||Q,e;e=q("//pagead2.googlesyndication.com/pagead/gen_204?id=sldb","avi",M);e=q(e,"vi",a);c&&(e+="&"+c);try{u(s,e)}catch(f){}}},Ya=function(){$("-1")},$a=function(a){if(a&&a.data&&l(a.data)){var b;var c=a.data;if(l(c)){b={};for(var c=c.split("\n"),d=0;d<c.length;d++){var e=c[d].indexOf("=");if(!(0>=e)){var f=Number(c[d].substr(0,e)),e=c[d].substr(e+1);switch(f){case 5:case 8:case 11:case 15:case 16:e="true"==e;break;case 4:case 7:case 6:case 14:e=Number(e);break;case 3:if("function"==aa(decodeURIComponent))try{e=decodeURIComponent(e)}catch(g){throw Error("Error: URI malformed: "+e);}break;case 17:e=oa(decodeURIComponent(e).split(","),Number)}b[f]=e}}b=b[0]?b:null}else b=null;if(b&&(c=new I(b[4],b[12]),J&&J.match(c))){for(c=0;c<Ra.length;c++)Ra[c](b);c=b[0];if("goog_acknowledge_monitoring"==c)s.clearInterval(K),X=2;else if("goog_get_mode"==c){X=1;d={};J&&Ga(J,d);d[0]="goog_provide_mode";d[6]=Y;try{var k=Ia(d);a.source.postMessage(k,a.origin)}catch(B){}s.clearInterval(K);X=2}else if("goog_update_data"==c){if(a=s,Q=b[3],++Va,U){k=V;d=Xa(Q);try{a.localStorage[k]=Za(d)}catch(m){}}}else"goog_image_request"==c&&(Wa(s,b[3]),b[5]||b[11]||$("0",b[3]));if("goog_update_data"==c||"goog_image_request"==c)(1==Y||2==Y||N)&&b[5]&&(a=1==b[15]&&"goog_update_data"==c,Oa=!0,$("1"),S&&(k=S,ga()&&u(x.contentWindow,k),S=""),N&&!a&&Z(s,void 0,!0),1==Y?Sa=!0:(2==T||4==T||5==T&&!U)&&Z(s)),(1==Y||2==Y||N)&&b[11]&&(O=!1,$("3"),N&&Z(s,void 0,!0),(2==T||4==T||5==T&&!U)&&Z(s))}}},ab=function(){Wa(s);$("0");if(2>X&&2==Y){var a=s,b="//pagead2.googlesyndication.com/pagead/gen_204?id=osd2&",c=[];c.push("ovr_value="+L);c.push("avi="+M);J&&(c=c.concat(Ha()));c.push("tt="+((new Date).getTime()-Ta));a.document&&a.document.referrer&&c.push("ref="+y(a.document.referrer));c.push("hs="+X);b+=c.join("&");try{u(a,b)}catch(d){}}},Za=function(a){var b=a.match(/^(.*&timestamp=)\d+$/);return b?b[1]+n():a+"&timestamp="+n()},bb=function(){var a={};Ga(J,a);a[0]="goog_dom_content_loaded";var b=Ia(a);qa(function(){var a=Ka(!1),d=!a;!a&&s&&(a=s.parent);if(a&&a.postMessage)try{a.postMessage(b,"*"),d&&s.postMessage(b,"*")}catch(e){}})};p("osdlfm",C("osd_listener::init",function(a,b,c,d,e,f,g,k,B){L=a;R=b;S=d;N=f;T=B||0;O=g&&f;1==k&&Pa.push(947190538);J=new I(e,ca());F(s,"load",Ya,"osd_listener::load");F(s,"message",$a,"osd_listener::message");M=c||"";F(s,"unload",ab,"osd_listener::unload");var m=s.document;!m.readyState||"complete"!=m.readyState&&"loaded"!=m.readyState?("msie"in z?z.msie:z.msie=-1!=navigator.userAgent.toLowerCase().indexOf("msie"))&&!window.opera?F(m,"readystatechange",function(){"complete"!=m.readyState&&"loaded"!=m.readyState||bb()},"osd_listener::rsc"):F(m,"DOMContentLoaded",bb,"osd_listener::dcl"):bb();-1==L?Y=f?3:1:-2==L?Y=3:0<L&&(Y=2,P=!0);O&&!P&&(Y=2);2==Y&&s.location.hostname.match(/doubleclick\.net/)&&(3==T||4==T||5==T)&&ra()&&1E3>s.localStorage.length&&(V="LSPNGS-"+J.toString()+"-"+(""+Math.random()).split(".")[1]+n(),U=!0,W=s.setInterval(D("osd_listener::ls_int",function(){var a=s,b=V,c=a.localStorage[b];if(c)try{a.localStorage[b]=Za(c)}catch(d){}}),1E3));J&&(J.b||J.a)&&(X=1,K=s.setInterval(D("osd_proto::reqm_int",ba(La,Y,J,O,Pa)),500))}));p("osdlac",C("osd_listener::lac_ex",function(a){Qa.push(a)}));p("osdlamrc",C("osd_listener::lamrc_ex",function(a){Ra.push(a)}));p("osdsir",C("osd_listener::sir_ex",Wa));})();osdlfm(-1,'','BF0XKhg5qVJf4D_LCwQHOwIC4CgAAAAAQATgByAEJwAIC4AIA4AQBoAYWqBOAAQ','',3071988329,true,false,0,0);</script>
+</div>
+</div>                						</div>
+                						<div id="div-gpt-ad-mainColumn_double" class="ads ads-300x250" style="float:left;border:none;padding:0;">
+                							<div id="_div-ad-3"><script type="text/javascript">
+      try
+      {
+        if(!window._slot_ad_3)
+        {
+          googletag.display('_div-ad-3');
+        }
+
+        var _slot_ad_3 = true;
+      }
+      catch(e)
+      {
+      }
+   </script><script type="text/javascript" src="NIDS%20:%20SNORT%20_%20Barnyard2%20_%20MySQL%20_%20BASE%20with%20Ubuntu%2014.04%20LTS%20-%20Computer%20Outlines%20Blog_files/ads_005.js"></script><div id="_div-ad-3_ad_container"><script type="text/javascript" src="NIDS%20:%20SNORT%20_%20Barnyard2%20_%20MySQL%20_%20BASE%20with%20Ubuntu%2014.04%20LTS%20-%20Computer%20Outlines%20Blog_files/t.js"></script><script type="text/javascript" src="NIDS%20:%20SNORT%20_%20Barnyard2%20_%20MySQL%20_%20BASE%20with%20Ubuntu%2014.04%20LTS%20-%20Computer%20Outlines%20Blog_files/banner_003.asc"></script><iframe src="NIDS%20:%20SNORT%20_%20Barnyard2%20_%20MySQL%20_%20BASE%20with%20Ubuntu%2014.04%20LTS%20-%20Computer%20Outlines%20Blog_files/imp8367.html" border="0" scrolling="no" marginheight="0px" marginwidth="0px" frameborder="0" height="250" width="300"></iframe><script type="text/javascript" charset="iso-8859-1" src="NIDS%20:%20SNORT%20_%20Barnyard2%20_%20MySQL%20_%20BASE%20with%20Ubuntu%2014.04%20LTS%20-%20Computer%20Outlines%20Blog_files/fltiu.js"></script>
+<script type="text/javascript">(function(){var h=this,aa=function(a){var b=typeof a;if("object"==b)if(a){if(a instanceof Array)return"array";if(a instanceof Object)return b;var c=Object.prototype.toString.call(a);if("[object Window]"==c)return"object";if("[object Array]"==c||"number"==typeof a.length&&"undefined"!=typeof a.splice&&"undefined"!=typeof a.propertyIsEnumerable&&!a.propertyIsEnumerable("splice"))return"array";if("[object Function]"==c||"undefined"!=typeof a.call&&"undefined"!=typeof a.propertyIsEnumerable&&!a.propertyIsEnumerable("call"))return"function"}else return"null";else if("function"==b&&"undefined"==typeof a.call)return"object";return b},l=function(a){return"string"==typeof a},ba=function(a,b){var c=Array.prototype.slice.call(arguments,1);return function(){var b=c.slice();b.push.apply(b,arguments);return a.apply(this,b)}},n=Date.now||function(){return+new Date},p=function(a,b){var c=a.split("."),d=h;c[0]in d||!d.execScript||d.execScript("var "+c[0]);for(var e;c.length&&(e=c.shift());)c.length||void 0===b?d=d[e]?d[e]:d[e]={}:d[e]=b};var q=function(a,b,c,d,e){if(e)c=a+("&"+b+"="+c);else{var f="&"+b+"=",g=a.indexOf(f);0>g?c=a+f+c:(g+=f.length,f=a.indexOf("&",g),c=0<=f?a.substring(0,g)+c+a.substring(f):a.substring(0,g)+c)}return 2E3<c.length?void 0!==d?q(a,b,d,void 0,e):a:c};var ca=function(){var a=/[&\?]exk=([^& ]+)/.exec(s.location.href);return a&&2==a.length?a[1]:null};var da=function(a){var b=a.toString();a.name&&-1==b.indexOf(a.name)&&(b+=": "+a.name);a.message&&-1==b.indexOf(a.message)&&(b+=": "+a.message);if(a.stack){a=a.stack;var c=b;try{-1==a.indexOf(c)&&(a=c+"\n"+a);for(var d;a!=d;)d=a,a=a.replace(/((https?:\/..*\/)[^\/:]*:\d+(?:.|\n)*)\2/,"$1");b=a.replace(/\n */g,"\n")}catch(e){b=c}}return b},u=function(a,b){a.google_image_requests||(a.google_image_requests=[]);var c=a.document.createElement("img");c.src=b;a.google_image_requests.push(c)};var v=document,s=window;var ea=String.prototype.trim?function(a){return a.trim()}:function(a){return a.replace(/^[\s\xa0]+|[\s\xa0]+$/g,"")},w=function(a,b){return a<b?-1:a>b?1:0};var x=null,fa=function(a,b){for(var c in a)Object.prototype.hasOwnProperty.call(a,c)&&b.call(null,a[c],c,a)};function y(a){return"function"==typeof encodeURIComponent?encodeURIComponent(a):escape(a)}var ga=function(){if(!v.body)return!1;if(!x){var a=v.createElement("iframe");a.style.display="none";a.id="anonIframe";x=a;v.body.appendChild(a)}return!0},z={};var A=!0,ha={},ka=function(a,b,c,d){var e=ia,f,g=A;try{f=b()}catch(k){try{var B=da(k);b="";k.fileName&&(b=k.fileName);var m=-1;k.lineNumber&&(m=k.lineNumber);g=e(a,B,b,m,c)}catch(r){try{var t=da(r);a="";r.fileName&&(a=r.fileName);c=-1;r.lineNumber&&(c=r.lineNumber);ia("pAR",t,a,c,void 0,void 0)}catch(sa){ja({context:"mRE",msg:sa.toString()+"\n"+(sa.stack||"")},void 0)}}if(!g)throw k;}finally{if(d)try{d()}catch(cb){}}return f},ia=function(a,b,c,d,e,f){var g={};if(e)try{e(g)}catch(k){}g.context=a;g.msg=b.substring(0,512);c&&(g.file=c);0<d&&(g.line=d.toString());g.url=v.URL.substring(0,512);g.ref=v.referrer.substring(0,512);la(g);ja(g,f);return A},ja=function(a,b){try{if(Math.random()<(b||.01)){var c="/pagead/gen_204?id=jserror"+ma(a),d="http"+("http:"==s.location.protocol?"":"s")+"://pagead2.googlesyndication.com"+c,d=d.substring(0,2E3);u(s,d)}}catch(e){}},la=function(a){var b=a||{};fa(ha,function(a,d){b[d]=s[a]})},C=function(a,b,c,d,e){return function(){var f=arguments;return ka(a,function(){return b.apply(c,f)},d,e)}},D=function(a,b){return C(a,b,void 0,void 0,void 0)},ma=function(a){var b="";fa(a,function(a,d){if(0===a||a)b+="&"+d+"="+y(a)});return b};var E=Array.prototype,na=E.indexOf?function(a,b,c){return E.indexOf.call(a,b,c)}:function(a,b,c){c=null==c?0:0>c?Math.max(0,a.length+c):c;if(l(a))return l(b)&&1==b.length?a.indexOf(b,c):-1;for(;c<a.length;c++)if(c in a&&a[c]===b)return c;return-1},oa=E.map?function(a,b,c){return E.map.call(a,b,c)}:function(a,b,c){for(var d=a.length,e=Array(d),f=l(a)?a.split(""):a,g=0;g<d;g++)g in f&&(e[g]=b.call(c,f[g],g,a));return e};if(v&&v.URL)var pa=v.URL,A=!(pa&&(0<pa.indexOf("?google_debug")||0<pa.indexOf("&google_debug")));var F=function(a,b,c,d){c=C(d||"osd_or_lidar::"+b,c,void 0,void 0,void 0);a.addEventListener?a.addEventListener(b,c,!1):a.attachEvent&&a.attachEvent("on"+b,c)},qa=function(a){var b=0,c=function(){a();b++;10>b&&s.setTimeout(D("osd_listener::ldcl_int",c),100)};c()};var ra=function(){try{s.localStorage.setItem("__sak","1");var a=s.localStorage.__sak;s.localStorage.removeItem("__sak");return"1"==a}catch(b){return!1}},ta=function(a,b,c){a.google_image_requests||(a.google_image_requests=[]);var d=a.document.createElement("img");F(d,"load",c,"osd::ls_img::load");d.src=b;a.google_image_requests.push(d)};var ua=function(a,b){for(var c in a)b.call(void 0,a[c],c,a)};var G;n:{var va=h.navigator;if(va){var wa=va.userAgent;if(wa){G=wa;break n}}G=""};var xa=-1!=G.indexOf("Opera")||-1!=G.indexOf("OPR"),H=-1!=G.indexOf("Trident")||-1!=G.indexOf("MSIE"),ya=-1!=G.indexOf("Gecko")&&-1==G.toLowerCase().indexOf("webkit")&&!(-1!=G.indexOf("Trident")||-1!=G.indexOf("MSIE")),za=-1!=G.toLowerCase().indexOf("webkit"),Aa=function(){var a=h.document;return a?a.documentMode:void 0},Ba=function(){var a="",b;if(xa&&h.opera)return a=h.opera.version,"function"==aa(a)?a():a;ya?b=/rv\:([^\);]+)(\)|;)/:H?b=/\b(?:MSIE|rv)[: ]([^\);]+)(\)|;)/:za&&(b=/WebKit\/(\S+)/);b&&(a=(a=b.exec(G))?a[1]:"");return H&&(b=Aa(),b>parseFloat(a))?String(b):a}(),Ca={},Da=function(a){if(!Ca[a]){for(var b=0,c=ea(String(Ba)).split("."),d=ea(String(a)).split("."),e=Math.max(c.length,d.length),f=0;0==b&&f<e;f++){var g=c[f]||"",k=d[f]||"",B=RegExp("(\\d*)(\\D*)","g"),m=RegExp("(\\d*)(\\D*)","g");do{var r=B.exec(g)||["","",""],t=m.exec(k)||["","",""];if(0==r[0].length&&0==t[0].length)break;b=w(0==r[1].length?0:parseInt(r[1],10),0==t[1].length?0:parseInt(t[1],10))||w(0==r[2].length,0==t[2].length)||w(r[2],t[2])}while(0==b)}Ca[a]=0<=b}},Ea=h.document,Fa=Ea&&H?Aa()||("CSS1Compat"==Ea.compatMode?parseInt(Ba,10):5):void 0;var I=function(a,b){this.b=a||0;this.a=b||""},Ga=function(a,b){a.b&&(b[4]=a.b);a.a&&(b[12]=a.a)};I.prototype.match=function(a){return(this.b||this.a)&&(a.b||a.a)?this.a||a.a?this.a==a.a:this.b||a.b?this.b==a.b:!1:!1};I.prototype.toString=function(){var a=""+this.b;this.a&&(a+="-"+this.a);return a};var Ha=function(){var a=J,b=[];a.b&&b.push("adk="+a.b);a.a&&b.push("exk="+a.a);return b},Ia=function(a){var b=[];ua(a,function(a,d){var e=y(d),f=a;l(f)&&(f=y(f));b.push(e+"="+f)});return b.join("\n")},K=0,Ja=0,Ka=function(a){var b=0,c=s;if(c&&c.Goog_AdSense_getAdAdapterInstance)return c;try{for(;c&&5>b;){if(c.google_osd_static_frame)return c;if(!a&&c.aswift_0)return c.aswift_0;b++;c=c!=c.parent?c.parent:null}}catch(d){}return null},La=function(a,b,c,d){if(10<Ja)s.clearInterval(K);else if(++Ja,s.postMessage&&(b.b||b.a)){var e=Ka(!0);if(e){var f={};Ga(b,f);f[0]="goog_request_monitoring";f[6]=a;f[16]=c;d&&d.length&&(f[17]=d.join(","));try{var g=Ia(f);e.postMessage(g,"*")}catch(k){}}}};var Ma;if(!(Ma=!ya&&!H)){var Na;if(Na=H)Na=H&&9<=Fa;Ma=Na}Ma||ya&&Da("1.9.1");H&&Da("9");var L=0,M="",N=!1,O=!1,P=!1,Oa=!1,Pa=[],J=null,Q="",Qa=[],Ra=[],Sa=!1,R="",S="",Ta=(new Date).getTime(),Ua=["1","0","3"],T=0,U=!1,V="",W=null,X=0,Y=0,Va=0,Wa=function(a,b){N&&Z(a,b,!0);(P||O&&Oa)&&Z(a,b)},Z=function(a,b,c){if((b=b||Q)&&!Sa&&(2==Y||c)){b=Xa(b,c);if(!c&&U){U=!1;W&&(a.clearInterval(W),W=null);var d=V;try{a.localStorage[d]=b+"&timestamp="+n()+"&send"}catch(e){}5!=T&&ta(a,b,function(){a.localStorage.removeItem(d)})}else u(a,b);c?N=!1:Sa=!0}},Xa=function(a,b){var c;c=b?"osdim":P?"osd2":"osdtos";var d=["//pagead2.googlesyndication.com/activeview","?id=",c];"osd2"==c&&O&&Oa&&d.push("&ts=1");M&&d.push("&avi=",M);0!=T&&d.push("&lsid=",T);U&&d.push("&cwls=1");d.push("&ti=1");d.push("&",a);d.push("&uc="+Va);c=d.join("");for(d=0;d<Qa.length;d++){try{var e=Qa[d]()}catch(f){}var g="max_length";2<=e.length&&(3==e.length&&(g=e[2]),c=q(c,y(e[0]),y(e[1]),g))}2E3<c.length&&(c=c.substring(0,2E3));return c},$=function(a,b){if(R){try{var c=q(R,"vi",a);ga()&&u(x.contentWindow,c)}catch(d){}0<=na(Ua,a)&&(R="");var c=b||Q,e;e=q("//pagead2.googlesyndication.com/pagead/gen_204?id=sldb","avi",M);e=q(e,"vi",a);c&&(e+="&"+c);try{u(s,e)}catch(f){}}},Ya=function(){$("-1")},$a=function(a){if(a&&a.data&&l(a.data)){var b;var c=a.data;if(l(c)){b={};for(var c=c.split("\n"),d=0;d<c.length;d++){var e=c[d].indexOf("=");if(!(0>=e)){var f=Number(c[d].substr(0,e)),e=c[d].substr(e+1);switch(f){case 5:case 8:case 11:case 15:case 16:e="true"==e;break;case 4:case 7:case 6:case 14:e=Number(e);break;case 3:if("function"==aa(decodeURIComponent))try{e=decodeURIComponent(e)}catch(g){throw Error("Error: URI malformed: "+e);}break;case 17:e=oa(decodeURIComponent(e).split(","),Number)}b[f]=e}}b=b[0]?b:null}else b=null;if(b&&(c=new I(b[4],b[12]),J&&J.match(c))){for(c=0;c<Ra.length;c++)Ra[c](b);c=b[0];if("goog_acknowledge_monitoring"==c)s.clearInterval(K),X=2;else if("goog_get_mode"==c){X=1;d={};J&&Ga(J,d);d[0]="goog_provide_mode";d[6]=Y;try{var k=Ia(d);a.source.postMessage(k,a.origin)}catch(B){}s.clearInterval(K);X=2}else if("goog_update_data"==c){if(a=s,Q=b[3],++Va,U){k=V;d=Xa(Q);try{a.localStorage[k]=Za(d)}catch(m){}}}else"goog_image_request"==c&&(Wa(s,b[3]),b[5]||b[11]||$("0",b[3]));if("goog_update_data"==c||"goog_image_request"==c)(1==Y||2==Y||N)&&b[5]&&(a=1==b[15]&&"goog_update_data"==c,Oa=!0,$("1"),S&&(k=S,ga()&&u(x.contentWindow,k),S=""),N&&!a&&Z(s,void 0,!0),1==Y?Sa=!0:(2==T||4==T||5==T&&!U)&&Z(s)),(1==Y||2==Y||N)&&b[11]&&(O=!1,$("3"),N&&Z(s,void 0,!0),(2==T||4==T||5==T&&!U)&&Z(s))}}},ab=function(){Wa(s);$("0");if(2>X&&2==Y){var a=s,b="//pagead2.googlesyndication.com/pagead/gen_204?id=osd2&",c=[];c.push("ovr_value="+L);c.push("avi="+M);J&&(c=c.concat(Ha()));c.push("tt="+((new Date).getTime()-Ta));a.document&&a.document.referrer&&c.push("ref="+y(a.document.referrer));c.push("hs="+X);b+=c.join("&");try{u(a,b)}catch(d){}}},Za=function(a){var b=a.match(/^(.*&timestamp=)\d+$/);return b?b[1]+n():a+"&timestamp="+n()},bb=function(){var a={};Ga(J,a);a[0]="goog_dom_content_loaded";var b=Ia(a);qa(function(){var a=Ka(!1),d=!a;!a&&s&&(a=s.parent);if(a&&a.postMessage)try{a.postMessage(b,"*"),d&&s.postMessage(b,"*")}catch(e){}})};p("osdlfm",C("osd_listener::init",function(a,b,c,d,e,f,g,k,B){L=a;R=b;S=d;N=f;T=B||0;O=g&&f;1==k&&Pa.push(947190538);J=new I(e,ca());F(s,"load",Ya,"osd_listener::load");F(s,"message",$a,"osd_listener::message");M=c||"";F(s,"unload",ab,"osd_listener::unload");var m=s.document;!m.readyState||"complete"!=m.readyState&&"loaded"!=m.readyState?("msie"in z?z.msie:z.msie=-1!=navigator.userAgent.toLowerCase().indexOf("msie"))&&!window.opera?F(m,"readystatechange",function(){"complete"!=m.readyState&&"loaded"!=m.readyState||bb()},"osd_listener::rsc"):F(m,"DOMContentLoaded",bb,"osd_listener::dcl"):bb();-1==L?Y=f?3:1:-2==L?Y=3:0<L&&(Y=2,P=!0);O&&!P&&(Y=2);2==Y&&s.location.hostname.match(/doubleclick\.net/)&&(3==T||4==T||5==T)&&ra()&&1E3>s.localStorage.length&&(V="LSPNGS-"+J.toString()+"-"+(""+Math.random()).split(".")[1]+n(),U=!0,W=s.setInterval(D("osd_listener::ls_int",function(){var a=s,b=V,c=a.localStorage[b];if(c)try{a.localStorage[b]=Za(c)}catch(d){}}),1E3));J&&(J.b||J.a)&&(X=1,K=s.setInterval(D("osd_proto::reqm_int",ba(La,Y,J,O,Pa)),500))}));p("osdlac",C("osd_listener::lac_ex",function(a){Qa.push(a)}));p("osdlamrc",C("osd_listener::lamrc_ex",function(a){Ra.push(a)}));p("osdsir",C("osd_listener::sir_ex",Wa));})();osdlfm(-1,'','Bwrhuhw5qVMyJNdSAwgHE4oDgCwAAAAAQATgByAEJwAIC4AIA4AQBoAYWqBOAAQ','',3072105274,true,false,0,0);</script>
+</div>
+</div>                						</div>
+                						<div class="clear"></div>
+                					                
+                				                			                
+                			<div id="yui_3_5_0_1_1416236675483_291" class="after_articles">
+                				<div id="yui_3_5_0_1_1416236675483_290" class="pagination center">
+                					                
+                					                						<!-- next post -->
+                						<a id="yui_3_5_0_1_1416236675483_289" sl-processed="1" href="http://computer-outlines.over-blog.com/article-nftables-1-nftables-installation-123263495.html" rel="next" class="textNext">&lt;&lt; Nftables 1 : Nftables installation</a>
+                					                					                						<!-- previous post -->
+                						<a sl-processed="1" href="http://computer-outlines.over-blog.com/article-nids-8-snort-boot-time-autorun-123375481.html" rel="next" class="textPrevious">NIDS 8 : SNORT and Barnyard2... &gt;&gt;</a>
+                					                				</div>
+                			</div>
+                
+                			                				<div id="anchorComment"></div>
+                				<h2 class="h2commentMessage" id="c">commentaires</h2>
+                				<script type="text/x-params" id="ob-js-comments-data">
+    {
+        "id_blog": 1077145,
+        "id_post": 46026706,
+        "lang": "fr",
+        "locales":
+        {
+            "label_button_more": "Charger plus de commentaires",
+            "label_button_morereplies": "Charger plus de réponses",
+            "label_button_reply": "Répondre",
+            "moderated.message": "Les commentaires sont modérés. Ils ne s'afficheront qu'une fois approuvés.",
+            "published.message": "Votre commentaire a été publié.",
+            "label_comment_date_format": "%d\/%m\/%Y %H:%M",
+
+                            "label_related_second_zero": "Il y a @@nb@@ secondes",
+                "label_related_minute_zero": "Il y a @@nb@@ minutes",
+                "label_related_hour_zero":   "Il y a @@nb@@ heures",
+                "label_related_day_zero":    "Il y a @@nb@@ jours",
+                "label_related_month_zero":  "Il y a @@nb@@ mois",
+                "label_related_year_zero":   "Il y a @@nb@@ ans",
+                "label_related_second_one":  "Il y a @@nb@@ seconde",
+                "label_related_minute_one":  "Il y a @@nb@@ minute",
+                "label_related_hour_one":    "Il y a @@nb@@ heure",
+                "label_related_day_one":     "Il y a @@nb@@ jour",
+                "label_related_month_one":   "Il y a @@nb@@ mois",
+                "label_related_year_one":    "Il y a @@nb@@ an",
+                "label_related_second_many": "Il y a @@nb@@ secondes",
+                "label_related_minute_many": "Il y a @@nb@@ minutes",
+                "label_related_hour_many":   "Il y a @@nb@@ heures",
+                "label_related_day_many":    "Il y a @@nb@@ jours",
+                "label_related_month_many":  "Il y a @@nb@@ mois",
+                "label_related_year_many":   "Il y a @@nb@@ ans"
+            
+        },
+        "settings":
+        {
+            "allowed":               1,
+            "moderation":            0,
+            "nb_displayed":          5,
+            "relative_date_display": 1
+        }
+    }
+</script>
+
+<!-- This template HTML will be used to render each comment. {js} -->
+<div class="ob-commentsList"><div class="yui3-widget yui3-addcommentwidget" id="yui_3_5_0_1_1416236675483_36"><div id="yui_3_5_0_1_1416236675483_40" class="ob-ctn-add-comment yui3-addcommentwidget-content"><iframe allowtransparency="true" src="NIDS%20:%20SNORT%20_%20Barnyard2%20_%20MySQL%20_%20BASE%20with%20Ubuntu%2014.04%20LTS%20-%20Computer%20Outlines%20Blog_files/0.html" style="width:100%; height: 220px; border: 0;" id="comment-iframe-ob" frameborder="0"></iframe></div></div><div id="yui_3_5_0_1_1416236675483_146"><button style="display: none;" class="ob-more">Charger plus de commentaires</button><div class="ob-list"><div id="yui_3_5_0_1_1416236675483_195">
+        <p class="ob-info">
+            <span class="ob-avatar">
+                
+            </span>
+            <span class="ob-user">
+                <span class="ob-name">
+                    <a class="ob-website" href="http://netpack.nl/">
+                        L van Oel
+                    </a>
+                </span>
+                <span class="ob-date">
+                    Il y a 1 mois
+                </span>
+            </span>
+            <span class="ob-button ob-reply"><button>Répondre</button></span>
+        </p>
+        <p class="ob-message">
+            <span class="ob-text">sudo ./configure --with-mysql --with-mysql-libraries=/usr/lib/i386-linux-gnu<br>
+<br>
+The command might change if you have a x64 bit OS installed. Then the command is:<br>
+<br>
+sudo ./configure --with-mysql --with-mysql-libraries=/usr/lib/x86_64-linux-gnu</span>
+        </p>
+    <div class="ob-replies"><div><button style="display: none;" class="ob-more">Charger plus de réponses</button><div class="ob-list"></div></div></div><div class="ob-addreply ob-addreply-35091309"></div></div><div id="yui_3_5_0_1_1416236675483_153">
+        <p class="ob-info">
+            <span class="ob-avatar">
+                
+            </span>
+            <span class="ob-user">
+                <span class="ob-name">
+                    <a class="ob-website" href="http://netpack.nl/">
+                        L van Oel
+                    </a>
+                </span>
+                <span class="ob-date">
+                    Il y a 1 mois
+                </span>
+            </span>
+            <span class="ob-button ob-reply"><button>Répondre</button></span>
+        </p>
+        <p class="ob-message">
+            <span class="ob-text">source /usr/src/create_mysql;<br>
+<br>
+I had to use the following command due to changes in the Barnyard naming.<br>
+source /usr/src/firnsy-barnyard2-272eaf/schemas/create_mysql;</span>
+        </p>
+    <div class="ob-replies"><div><button style="display: none;" class="ob-more">Charger plus de réponses</button><div class="ob-list"></div></div></div><div class="ob-addreply ob-addreply-35091752"></div></div></div></div></div>
+
+<!-- Default render for each comment {twig}-->
+
+
+
+                				<div id="anchorEndComment"></div>
+                			                		</div>
+                	</div>
+                            </div>
+        </div>
+        
+        <div id="cl_1_1" class="cl">
+            <div class="column_content">
+                                    <div class="box pub sidebar box0 ads">
+                        <div id="_div-ad-4"><script type="text/javascript">
+      try
+      {
+        if(!window._slot_ad_4)
+        {
+          googletag.display('_div-ad-4');
+        }
+
+        var _slot_ad_4 = true;
+      }
+      catch(e)
+      {
+      }
+   </script><script type="text/javascript" src="NIDS%20:%20SNORT%20_%20Barnyard2%20_%20MySQL%20_%20BASE%20with%20Ubuntu%2014.04%20LTS%20-%20Computer%20Outlines%20Blog_files/ads_002.js"></script><div id="_div-ad-4_ad_container"><script type="text/javascript" src="NIDS%20:%20SNORT%20_%20Barnyard2%20_%20MySQL%20_%20BASE%20with%20Ubuntu%2014.04%20LTS%20-%20Computer%20Outlines%20Blog_files/t_004.js"></script><script type="text/javascript" src="NIDS%20:%20SNORT%20_%20Barnyard2%20_%20MySQL%20_%20BASE%20with%20Ubuntu%2014.04%20LTS%20-%20Computer%20Outlines%20Blog_files/banner_002.asc"></script><iframe src="NIDS%20:%20SNORT%20_%20Barnyard2%20_%20MySQL%20_%20BASE%20with%20Ubuntu%2014.04%20LTS%20-%20Computer%20Outlines%20Blog_files/imp9256.html" border="0" scrolling="no" marginheight="0px" marginwidth="0px" frameborder="0" height="600" width="300"></iframe><script type="text/javascript" charset="iso-8859-1" src="NIDS%20:%20SNORT%20_%20Barnyard2%20_%20MySQL%20_%20BASE%20with%20Ubuntu%2014.04%20LTS%20-%20Computer%20Outlines%20Blog_files/fltiu.js"></script>
+<script type="text/javascript">(function(){var h=this,aa=function(a){var b=typeof a;if("object"==b)if(a){if(a instanceof Array)return"array";if(a instanceof Object)return b;var c=Object.prototype.toString.call(a);if("[object Window]"==c)return"object";if("[object Array]"==c||"number"==typeof a.length&&"undefined"!=typeof a.splice&&"undefined"!=typeof a.propertyIsEnumerable&&!a.propertyIsEnumerable("splice"))return"array";if("[object Function]"==c||"undefined"!=typeof a.call&&"undefined"!=typeof a.propertyIsEnumerable&&!a.propertyIsEnumerable("call"))return"function"}else return"null";else if("function"==b&&"undefined"==typeof a.call)return"object";return b},l=function(a){return"string"==typeof a},ba=function(a,b){var c=Array.prototype.slice.call(arguments,1);return function(){var b=c.slice();b.push.apply(b,arguments);return a.apply(this,b)}},n=Date.now||function(){return+new Date},p=function(a,b){var c=a.split("."),d=h;c[0]in d||!d.execScript||d.execScript("var "+c[0]);for(var e;c.length&&(e=c.shift());)c.length||void 0===b?d=d[e]?d[e]:d[e]={}:d[e]=b};var q=function(a,b,c,d,e){if(e)c=a+("&"+b+"="+c);else{var f="&"+b+"=",g=a.indexOf(f);0>g?c=a+f+c:(g+=f.length,f=a.indexOf("&",g),c=0<=f?a.substring(0,g)+c+a.substring(f):a.substring(0,g)+c)}return 2E3<c.length?void 0!==d?q(a,b,d,void 0,e):a:c};var ca=function(){var a=/[&\?]exk=([^& ]+)/.exec(s.location.href);return a&&2==a.length?a[1]:null};var da=function(a){var b=a.toString();a.name&&-1==b.indexOf(a.name)&&(b+=": "+a.name);a.message&&-1==b.indexOf(a.message)&&(b+=": "+a.message);if(a.stack){a=a.stack;var c=b;try{-1==a.indexOf(c)&&(a=c+"\n"+a);for(var d;a!=d;)d=a,a=a.replace(/((https?:\/..*\/)[^\/:]*:\d+(?:.|\n)*)\2/,"$1");b=a.replace(/\n */g,"\n")}catch(e){b=c}}return b},u=function(a,b){a.google_image_requests||(a.google_image_requests=[]);var c=a.document.createElement("img");c.src=b;a.google_image_requests.push(c)};var v=document,s=window;var ea=String.prototype.trim?function(a){return a.trim()}:function(a){return a.replace(/^[\s\xa0]+|[\s\xa0]+$/g,"")},w=function(a,b){return a<b?-1:a>b?1:0};var x=null,fa=function(a,b){for(var c in a)Object.prototype.hasOwnProperty.call(a,c)&&b.call(null,a[c],c,a)};function y(a){return"function"==typeof encodeURIComponent?encodeURIComponent(a):escape(a)}var ga=function(){if(!v.body)return!1;if(!x){var a=v.createElement("iframe");a.style.display="none";a.id="anonIframe";x=a;v.body.appendChild(a)}return!0},z={};var A=!0,ha={},ka=function(a,b,c,d){var e=ia,f,g=A;try{f=b()}catch(k){try{var B=da(k);b="";k.fileName&&(b=k.fileName);var m=-1;k.lineNumber&&(m=k.lineNumber);g=e(a,B,b,m,c)}catch(r){try{var t=da(r);a="";r.fileName&&(a=r.fileName);c=-1;r.lineNumber&&(c=r.lineNumber);ia("pAR",t,a,c,void 0,void 0)}catch(sa){ja({context:"mRE",msg:sa.toString()+"\n"+(sa.stack||"")},void 0)}}if(!g)throw k;}finally{if(d)try{d()}catch(cb){}}return f},ia=function(a,b,c,d,e,f){var g={};if(e)try{e(g)}catch(k){}g.context=a;g.msg=b.substring(0,512);c&&(g.file=c);0<d&&(g.line=d.toString());g.url=v.URL.substring(0,512);g.ref=v.referrer.substring(0,512);la(g);ja(g,f);return A},ja=function(a,b){try{if(Math.random()<(b||.01)){var c="/pagead/gen_204?id=jserror"+ma(a),d="http"+("http:"==s.location.protocol?"":"s")+"://pagead2.googlesyndication.com"+c,d=d.substring(0,2E3);u(s,d)}}catch(e){}},la=function(a){var b=a||{};fa(ha,function(a,d){b[d]=s[a]})},C=function(a,b,c,d,e){return function(){var f=arguments;return ka(a,function(){return b.apply(c,f)},d,e)}},D=function(a,b){return C(a,b,void 0,void 0,void 0)},ma=function(a){var b="";fa(a,function(a,d){if(0===a||a)b+="&"+d+"="+y(a)});return b};var E=Array.prototype,na=E.indexOf?function(a,b,c){return E.indexOf.call(a,b,c)}:function(a,b,c){c=null==c?0:0>c?Math.max(0,a.length+c):c;if(l(a))return l(b)&&1==b.length?a.indexOf(b,c):-1;for(;c<a.length;c++)if(c in a&&a[c]===b)return c;return-1},oa=E.map?function(a,b,c){return E.map.call(a,b,c)}:function(a,b,c){for(var d=a.length,e=Array(d),f=l(a)?a.split(""):a,g=0;g<d;g++)g in f&&(e[g]=b.call(c,f[g],g,a));return e};if(v&&v.URL)var pa=v.URL,A=!(pa&&(0<pa.indexOf("?google_debug")||0<pa.indexOf("&google_debug")));var F=function(a,b,c,d){c=C(d||"osd_or_lidar::"+b,c,void 0,void 0,void 0);a.addEventListener?a.addEventListener(b,c,!1):a.attachEvent&&a.attachEvent("on"+b,c)},qa=function(a){var b=0,c=function(){a();b++;10>b&&s.setTimeout(D("osd_listener::ldcl_int",c),100)};c()};var ra=function(){try{s.localStorage.setItem("__sak","1");var a=s.localStorage.__sak;s.localStorage.removeItem("__sak");return"1"==a}catch(b){return!1}},ta=function(a,b,c){a.google_image_requests||(a.google_image_requests=[]);var d=a.document.createElement("img");F(d,"load",c,"osd::ls_img::load");d.src=b;a.google_image_requests.push(d)};var ua=function(a,b){for(var c in a)b.call(void 0,a[c],c,a)};var G;n:{var va=h.navigator;if(va){var wa=va.userAgent;if(wa){G=wa;break n}}G=""};var xa=-1!=G.indexOf("Opera")||-1!=G.indexOf("OPR"),H=-1!=G.indexOf("Trident")||-1!=G.indexOf("MSIE"),ya=-1!=G.indexOf("Gecko")&&-1==G.toLowerCase().indexOf("webkit")&&!(-1!=G.indexOf("Trident")||-1!=G.indexOf("MSIE")),za=-1!=G.toLowerCase().indexOf("webkit"),Aa=function(){var a=h.document;return a?a.documentMode:void 0},Ba=function(){var a="",b;if(xa&&h.opera)return a=h.opera.version,"function"==aa(a)?a():a;ya?b=/rv\:([^\);]+)(\)|;)/:H?b=/\b(?:MSIE|rv)[: ]([^\);]+)(\)|;)/:za&&(b=/WebKit\/(\S+)/);b&&(a=(a=b.exec(G))?a[1]:"");return H&&(b=Aa(),b>parseFloat(a))?String(b):a}(),Ca={},Da=function(a){if(!Ca[a]){for(var b=0,c=ea(String(Ba)).split("."),d=ea(String(a)).split("."),e=Math.max(c.length,d.length),f=0;0==b&&f<e;f++){var g=c[f]||"",k=d[f]||"",B=RegExp("(\\d*)(\\D*)","g"),m=RegExp("(\\d*)(\\D*)","g");do{var r=B.exec(g)||["","",""],t=m.exec(k)||["","",""];if(0==r[0].length&&0==t[0].length)break;b=w(0==r[1].length?0:parseInt(r[1],10),0==t[1].length?0:parseInt(t[1],10))||w(0==r[2].length,0==t[2].length)||w(r[2],t[2])}while(0==b)}Ca[a]=0<=b}},Ea=h.document,Fa=Ea&&H?Aa()||("CSS1Compat"==Ea.compatMode?parseInt(Ba,10):5):void 0;var I=function(a,b){this.b=a||0;this.a=b||""},Ga=function(a,b){a.b&&(b[4]=a.b);a.a&&(b[12]=a.a)};I.prototype.match=function(a){return(this.b||this.a)&&(a.b||a.a)?this.a||a.a?this.a==a.a:this.b||a.b?this.b==a.b:!1:!1};I.prototype.toString=function(){var a=""+this.b;this.a&&(a+="-"+this.a);return a};var Ha=function(){var a=J,b=[];a.b&&b.push("adk="+a.b);a.a&&b.push("exk="+a.a);return b},Ia=function(a){var b=[];ua(a,function(a,d){var e=y(d),f=a;l(f)&&(f=y(f));b.push(e+"="+f)});return b.join("\n")},K=0,Ja=0,Ka=function(a){var b=0,c=s;if(c&&c.Goog_AdSense_getAdAdapterInstance)return c;try{for(;c&&5>b;){if(c.google_osd_static_frame)return c;if(!a&&c.aswift_0)return c.aswift_0;b++;c=c!=c.parent?c.parent:null}}catch(d){}return null},La=function(a,b,c,d){if(10<Ja)s.clearInterval(K);else if(++Ja,s.postMessage&&(b.b||b.a)){var e=Ka(!0);if(e){var f={};Ga(b,f);f[0]="goog_request_monitoring";f[6]=a;f[16]=c;d&&d.length&&(f[17]=d.join(","));try{var g=Ia(f);e.postMessage(g,"*")}catch(k){}}}};var Ma;if(!(Ma=!ya&&!H)){var Na;if(Na=H)Na=H&&9<=Fa;Ma=Na}Ma||ya&&Da("1.9.1");H&&Da("9");var L=0,M="",N=!1,O=!1,P=!1,Oa=!1,Pa=[],J=null,Q="",Qa=[],Ra=[],Sa=!1,R="",S="",Ta=(new Date).getTime(),Ua=["1","0","3"],T=0,U=!1,V="",W=null,X=0,Y=0,Va=0,Wa=function(a,b){N&&Z(a,b,!0);(P||O&&Oa)&&Z(a,b)},Z=function(a,b,c){if((b=b||Q)&&!Sa&&(2==Y||c)){b=Xa(b,c);if(!c&&U){U=!1;W&&(a.clearInterval(W),W=null);var d=V;try{a.localStorage[d]=b+"&timestamp="+n()+"&send"}catch(e){}5!=T&&ta(a,b,function(){a.localStorage.removeItem(d)})}else u(a,b);c?N=!1:Sa=!0}},Xa=function(a,b){var c;c=b?"osdim":P?"osd2":"osdtos";var d=["//pagead2.googlesyndication.com/activeview","?id=",c];"osd2"==c&&O&&Oa&&d.push("&ts=1");M&&d.push("&avi=",M);0!=T&&d.push("&lsid=",T);U&&d.push("&cwls=1");d.push("&ti=1");d.push("&",a);d.push("&uc="+Va);c=d.join("");for(d=0;d<Qa.length;d++){try{var e=Qa[d]()}catch(f){}var g="max_length";2<=e.length&&(3==e.length&&(g=e[2]),c=q(c,y(e[0]),y(e[1]),g))}2E3<c.length&&(c=c.substring(0,2E3));return c},$=function(a,b){if(R){try{var c=q(R,"vi",a);ga()&&u(x.contentWindow,c)}catch(d){}0<=na(Ua,a)&&(R="");var c=b||Q,e;e=q("//pagead2.googlesyndication.com/pagead/gen_204?id=sldb","avi",M);e=q(e,"vi",a);c&&(e+="&"+c);try{u(s,e)}catch(f){}}},Ya=function(){$("-1")},$a=function(a){if(a&&a.data&&l(a.data)){var b;var c=a.data;if(l(c)){b={};for(var c=c.split("\n"),d=0;d<c.length;d++){var e=c[d].indexOf("=");if(!(0>=e)){var f=Number(c[d].substr(0,e)),e=c[d].substr(e+1);switch(f){case 5:case 8:case 11:case 15:case 16:e="true"==e;break;case 4:case 7:case 6:case 14:e=Number(e);break;case 3:if("function"==aa(decodeURIComponent))try{e=decodeURIComponent(e)}catch(g){throw Error("Error: URI malformed: "+e);}break;case 17:e=oa(decodeURIComponent(e).split(","),Number)}b[f]=e}}b=b[0]?b:null}else b=null;if(b&&(c=new I(b[4],b[12]),J&&J.match(c))){for(c=0;c<Ra.length;c++)Ra[c](b);c=b[0];if("goog_acknowledge_monitoring"==c)s.clearInterval(K),X=2;else if("goog_get_mode"==c){X=1;d={};J&&Ga(J,d);d[0]="goog_provide_mode";d[6]=Y;try{var k=Ia(d);a.source.postMessage(k,a.origin)}catch(B){}s.clearInterval(K);X=2}else if("goog_update_data"==c){if(a=s,Q=b[3],++Va,U){k=V;d=Xa(Q);try{a.localStorage[k]=Za(d)}catch(m){}}}else"goog_image_request"==c&&(Wa(s,b[3]),b[5]||b[11]||$("0",b[3]));if("goog_update_data"==c||"goog_image_request"==c)(1==Y||2==Y||N)&&b[5]&&(a=1==b[15]&&"goog_update_data"==c,Oa=!0,$("1"),S&&(k=S,ga()&&u(x.contentWindow,k),S=""),N&&!a&&Z(s,void 0,!0),1==Y?Sa=!0:(2==T||4==T||5==T&&!U)&&Z(s)),(1==Y||2==Y||N)&&b[11]&&(O=!1,$("3"),N&&Z(s,void 0,!0),(2==T||4==T||5==T&&!U)&&Z(s))}}},ab=function(){Wa(s);$("0");if(2>X&&2==Y){var a=s,b="//pagead2.googlesyndication.com/pagead/gen_204?id=osd2&",c=[];c.push("ovr_value="+L);c.push("avi="+M);J&&(c=c.concat(Ha()));c.push("tt="+((new Date).getTime()-Ta));a.document&&a.document.referrer&&c.push("ref="+y(a.document.referrer));c.push("hs="+X);b+=c.join("&");try{u(a,b)}catch(d){}}},Za=function(a){var b=a.match(/^(.*&timestamp=)\d+$/);return b?b[1]+n():a+"&timestamp="+n()},bb=function(){var a={};Ga(J,a);a[0]="goog_dom_content_loaded";var b=Ia(a);qa(function(){var a=Ka(!1),d=!a;!a&&s&&(a=s.parent);if(a&&a.postMessage)try{a.postMessage(b,"*"),d&&s.postMessage(b,"*")}catch(e){}})};p("osdlfm",C("osd_listener::init",function(a,b,c,d,e,f,g,k,B){L=a;R=b;S=d;N=f;T=B||0;O=g&&f;1==k&&Pa.push(947190538);J=new I(e,ca());F(s,"load",Ya,"osd_listener::load");F(s,"message",$a,"osd_listener::message");M=c||"";F(s,"unload",ab,"osd_listener::unload");var m=s.document;!m.readyState||"complete"!=m.readyState&&"loaded"!=m.readyState?("msie"in z?z.msie:z.msie=-1!=navigator.userAgent.toLowerCase().indexOf("msie"))&&!window.opera?F(m,"readystatechange",function(){"complete"!=m.readyState&&"loaded"!=m.readyState||bb()},"osd_listener::rsc"):F(m,"DOMContentLoaded",bb,"osd_listener::dcl"):bb();-1==L?Y=f?3:1:-2==L?Y=3:0<L&&(Y=2,P=!0);O&&!P&&(Y=2);2==Y&&s.location.hostname.match(/doubleclick\.net/)&&(3==T||4==T||5==T)&&ra()&&1E3>s.localStorage.length&&(V="LSPNGS-"+J.toString()+"-"+(""+Math.random()).split(".")[1]+n(),U=!0,W=s.setInterval(D("osd_listener::ls_int",function(){var a=s,b=V,c=a.localStorage[b];if(c)try{a.localStorage[b]=Za(c)}catch(d){}}),1E3));J&&(J.b||J.a)&&(X=1,K=s.setInterval(D("osd_proto::reqm_int",ba(La,Y,J,O,Pa)),500))}));p("osdlac",C("osd_listener::lac_ex",function(a){Qa.push(a)}));p("osdlamrc",C("osd_listener::lamrc_ex",function(a){Ra.push(a)}));p("osdsir",C("osd_listener::sir_ex",Wa));})();osdlfm(-1,'','BzKgKig5qVLbQJcKAwgH49IH4AwAAAAAQATgByAEJwAIC4AIA4AQBoAYWqBOAAQ','',2496464883,true,false,0,0);</script>
+</div>
+</div>                    </div>
+                        
+                        
+                                                <div class="box presentation">
+                    <div class="box-titre"><h2><span>Présentation</span></h2></div>
+                    <div class="box-content">
+                        <ul>
+                                                        <li>
+                                <strong>
+                                    <label>Blog</label>
+                                </strong> :
+                                Computer Outlines Blog
+                            </li>
+                                                                                                                <li>
+                                <strong>
+                                    <label>
+                                        Description
+                                    </label>
+                                </strong> :
+                                Blog mainly focused over IPv6, Windows Server, and Networking in general.
+                            </li>
+                                                        <li>
+                                <a sl-processed="1" class="linkContact" href="http://computer-outlines.over-blog.com/contact">
+                                    Contact
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="box-footer"><h2><span>&nbsp;</span></h2></div>
+                </div>
+                                
+                                                
+                                                
+                                                <div class="box recherche">
+                    <div class="box-titre"><h2><span>Recherche</span></h2></div>
+                    <div class="box-content">
+                        <!-- Search form -->
+                		                		<div class="widget search">
+                			<h3>Recherche</h3>
+                			<form action="/search" method="post">
+                				<input name="q" placeholder="Recherche..." type="text">
+                				<input value="Recherche" class="button" type="submit">
+                			</form>
+                		 </div>
+                		                    </div>
+                    <div class="box-footer"><h2><span>&nbsp;</span></h2></div>
+                </div>
+                                
+                                                
+                                                
+                                                
+        
+                                                <div class="box articlerecent">
+                    <div class="box-titre"><h2><span>Articles Récents</span></h2></div>
+                    <div class="box-content">
+                        <ul>
+                                                        <li>
+                                <a sl-processed="1" href="http://computer-outlines.over-blog.com/2014/07/layer-2-networking-part-2-ethernet-and-the-802-x-family.html" title="Layer 2 networking Part 2 : Ethernet and the 802.x Family">
+                                    Layer 2 networking Part 2 : Ethernet and the 802.x Family
+                                </a>
+                                                            </li>
+                                                        <li>
+                                <a sl-processed="1" href="http://computer-outlines.over-blog.com/2014/07/layer-2-networking-part-1-the-data-link-layer.html" title="Layer 2 networking Part 1 : The Data-Link Layer">
+                                    Layer 2 networking Part 1 : The Data-Link Layer
+                                </a>
+                                                            </li>
+                                                        <li>
+                                <a sl-processed="1" href="http://computer-outlines.over-blog.com/2014/06/nas-1-dlink-dir-626l.html" title="NAS 1 : DLink DIR 626L">
+                                    NAS 1 : DLink DIR 626L
+                                </a>
+                                                            </li>
+                                                        <li>
+                                <a sl-processed="1" href="http://computer-outlines.over-blog.com/article-nftables-8-nftables-logging-to-external-syslog-server-123304066.html" title="Nftables 8 : Nftables logging to external Syslog Server">
+                                    Nftables 8 : Nftables logging to external Syslog Server
+                                </a>
+                                                            </li>
+                                                        <li>
+                                <a sl-processed="1" href="http://computer-outlines.over-blog.com/article-nftables-7-nftables-logging-123303629.html" title="Nftables 7 : Nftables Logging">
+                                    Nftables 7 : Nftables Logging
+                                </a>
+                                                            </li>
+                                                        <li>
+                                <a sl-processed="1" href="http://computer-outlines.over-blog.com/article-nftables-6-a-nftables-linux-internet-gateway-123294152.html" title="Nftables 6 : A Nftables Linux Internet Gateway">
+                                    Nftables 6 : A Nftables Linux Internet Gateway
+                                </a>
+                                                            </li>
+                                                        <li>
+                                <a sl-processed="1" href="http://computer-outlines.over-blog.com/article-nftables-5-a-nftables-linux-router-123293871.html" title="Nftables 5 : A Nftables Linux Router">
+                                    Nftables 5 : A Nftables Linux Router
+                                </a>
+                                                            </li>
+                                                        <li>
+                                <a sl-processed="1" href="http://computer-outlines.over-blog.com/article-nftables-4-automatic-ruleset-loading-at-boot-time-123272136.html" title="Nftables 4 : Automatic Ruleset loading at boot-time">
+                                    Nftables 4 : Automatic Ruleset loading at boot-time
+                                </a>
+                                                            </li>
+                                                        <li>
+                                <a sl-processed="1" href="http://computer-outlines.over-blog.com/article-nftables-3-ruleset-saving-loading-123271860.html" title="Nftables 3 : Ruleset saving / loading">
+                                    Nftables 3 : Ruleset saving / loading
+                                </a>
+                                                            </li>
+                                                        <li>
+                                <a sl-processed="1" href="http://computer-outlines.over-blog.com/article-nftables-2-basic-ruleset-design-123263996.html" title="Nftables 2 : Basic Ruleset Design">
+                                    Nftables 2 : Basic Ruleset Design
+                                </a>
+                                                            </li>
+                                                    </ul>
+                    </div>
+                    <div class="box-footer"><h2><span>&nbsp;</span></h2></div>
+                </div>
+                                
+                                                <div class="box pages">
+                    <div class="box-titre"><h2><span>Pages</span></h2></div>
+                    <div class="box-content">
+                        <ul>
+                                            			                            <li>
+                                <a sl-processed="1" href="http://computer-outlines.over-blog.com/pages/A-fast-and-lean-pc-3758307.html" title="A fast and lean PC">
+                                    A fast and lean PC
+                                </a>
+                            </li>
+                			                                            			                            <li>
+                                <a sl-processed="1" href="http://computer-outlines.over-blog.com/pages/Airflow-design-3722480.html" title="Airflow Design">
+                                    Airflow Design
+                                </a>
+                            </li>
+                			                                            			                            <li>
+                                <a sl-processed="1" href="http://computer-outlines.over-blog.com/links.html" title="Links">
+                                    Links
+                                </a>
+                            </li>
+                			                                            			                            <li>
+                                <a sl-processed="1" href="http://computer-outlines.over-blog.com/pages/Microsoft-virtualization-part-2-3709915.html" title="Microsoft Virtualization part 2">
+                                    Microsoft Virtualization part 2
+                                </a>
+                            </li>
+                			                                            			                            <li>
+                                <a sl-processed="1" href="http://computer-outlines.over-blog.com/pages/Neat-partitionning-3752421.html" title="Neat Partitionning">
+                                    Neat Partitionning
+                                </a>
+                            </li>
+                			                                                    </ul>
+                    </div>
+                    <div class="box-footer"><h2><span>&nbsp;</span></h2></div>
+                </div>
+                                
+                                                
+                                                
+                                                
+                                                
+                                                <div class="box newsletter">
+                    <div class="box-titre"><h2><span>Newsletter</span></h2></div>
+                    <div class="box-content">
+                        Abonnez-vous pour être averti des nouveaux articles publiés.
+                        <!-- subscription form -->
+<form action="/mail/subscribe" method="post" class="ob-form ob-form-subscription">
+    <div class="ob-form-field">
+        <label class="ob-label required" for="form_email">Email</label>
+        <input id="form_email" name="email" placeholder="exemple@adresse.com" required="required" class="ob-input ob-input-email" type="email">
+    </div>
+    <input value="S'abonner" class="ob-input ob-input-submit" type="submit">
+</form>                    </div>
+                    <div class="box-footer"><h2><span>&nbsp;</span></h2></div>
+                </div>
+                                
+                                                
+                                                <div class="box lien">
+                    <div class="box-titre"><h2><span>Liens</span></h2></div>
+                    <div class="box-content">
+                        <ul>
+                                                                        
+                                                                        
+                                                                        
+                                                                        
+                </ul>
+                    </div>
+                    <div class="box-footer"><h2><span>&nbsp;</span></h2></div>
+                </div>
+                                
+                                                
+                                                <div class="box promo">
+                    <div class="box-content">
+                        <a sl-processed="1" href="http://overblog.com/" class="popup">
+                            Créer un blog gratuit sur overblog.com
+                        </a>
+                    </div>
+                    <div class="box-footer"><h2><span>&nbsp;</span></h2></div>
+                </div>
+                                
+                                                
+        
+                            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="clear"></div>
+    </div>
+
+    <div id="ln_2" class="ln">
+        <div id="cl_2_0" class="cl">
+            <div class="column_content">
+                <div id="footer">
+                                        <div>
+                        <a sl-processed="1" href="http://computer-outlines.over-blog.com/obv2JFGaanchor.php?ref=1539817&amp;module=blog&amp;action=default:home&amp;ref_site=1&amp;nlc__=651229142629">computer-outlines</a>
+                        <div class="clear"></div>
+                    </div>
+                                    </div>
+                                    <div class="box pub bottom box0 ads ads-728x90">
+                                            </div>
+                            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+</div>
+<script id="" type="text/javascript">var _qevents=_qevents||[];(function(){var a=document.createElement("script");a.src=("https:"==document.location.protocol?"https://secure":"http://edge")+".quantserve.com/quant.js";a.async=!0;a.type="text/javascript";var b=document.getElementsByTagName("script")[0];b.parentNode.insertBefore(a,b)})();_qevents.push({qacct:"p-uWEeTN_6JKdsg"});</script>
+
+<noscript>
+<div style="display:none;">
+<img src="//pixel.quantserve.com/pixel/p-uWEeTN_6JKdsg.gif" style="border:0" height="1" width="1" alt="Quantcast">
+</div>
+</noscript>
+<div style="display : none">
+    <script src="NIDS%20:%20SNORT%20_%20Barnyard2%20_%20MySQL%20_%20BASE%20with%20Ubuntu%2014.04%20LTS%20-%20Computer%20Outlines%20Blog_files/27759X986909.js" id="" type="text/javascript"></script>
+</div><script id="" type="text/javascript">(function(){function f(){var a=document.createElement("div"),b=document.body;b.style.paddingTop="35px";a.style.opacity=.8;a.id="cookies_notifier";a.className="__wads_no_click";a.style.display="table";a.style.position="fixed";a.style.top="0";a.style.left="0";a.style.color="#FFF";a.style.background="#000";a.style.zIndex="200";a.style.width="100%";a.style.minHeight="35px";a.style.fontFamily="Verdana";a.style.fontSize="10px";a.style.textAlign="center";b=document.createElement("p");b.style.display="table-cell";
+b.style.verticalAlign="middle";b.style.padding="0 30px";b.style.fontSize="11px";b.innerHTML='En poursuivant votre navigation sur ce site, vous acceptez l\'utilisation de cookies. Ces derniers assurent le bon fonctionnement de nos services. \x3ca style\x3d"color:#FFF;" href\x3d"http://www.webedia.fr/cookies/" target\x3d"_blank"\x3eEn savoir plus sur les cookies\x3c/a\x3e \x3ca href\x3d"javascript:closeWbCookieNotifier();" style\x3d"color : #FFF; text-decoration : underline"\x3eFermer\x3c/a\x3e';document.body.appendChild(a);
+a.appendChild(b);window.wbCookieNotifier=a;a=new Date;a.setDate(a.getDate()+730);a=escape(1)+("; expires\x3d"+a.toUTCString())+";path\x3d/";document.cookie="wbCookieNotifier\x3d"+a}function g(a){var b,d,e,c=document.cookie.split(";");for(b=0;b<c.length;b++)if(d=c[b].substr(0,c[b].indexOf("\x3d")),e=c[b].substr(c[b].indexOf("\x3d")+1),d=d.replace(/^\s+|\s+$/g,""),d==a)return unescape(e)}var h=g("wbCookieNotifier");1!=h&&f();window.closeWbCookieNotifier=function(){window.wbCookieNotifier.style.display=
+"none";var a=document.body;a.style.paddingTop="0px"}})();</script><div class="__wads_no_click" id="cookies_notifier" style="opacity: 0.8; display: table; position: fixed; top: 0px; left: 0px; color: rgb(255, 255, 255); background: none repeat scroll 0% 0% rgb(0, 0, 0); z-index: 200; width: 100%; min-height: 35px; font-family: Verdana; font-size: 10px; text-align: center;"><p style="display: table-cell; vertical-align: middle; padding: 0px 30px; font-size: 11px;">En
+ poursuivant votre navigation sur ce site, vous acceptez l'utilisation 
+de cookies. Ces derniers assurent le bon fonctionnement de nos services.
+ <a sl-processed="1" style="color:#FFF;" href="http://www.webedia.fr/cookies/" target="_blank">En savoir plus sur les cookies</a> <a sl-processed="1" href="javascript:closeWbCookieNotifier();" style="color : #FFF; text-decoration : underline">Fermer</a></p></div><script id="" type="text/javascript">var _pusVisitorData={interests:["Tech \x26 Science"]};</script>
+
+
+<script id="" type="text/javascript">var _pusq=_pusq||[],_pusVisitorData=_pusVisitorData||[],_pusVisitorID=_pusVisitorID||[];
+(function(){var a=("https:"==document.location.protocol?"https://secure.":"http://www.")+"audienceinsights.net/",b=a.replace(/www|secure/,"static");_pusq.push(["setIdp","983e362d2b82006d"]);_pusq.push(["setTrackerUrl",a+"p"]);_pusq.push(["setTrackerStaticUrl",b]);_pusq.push(["setVisitorData",_pusVisitorData]);_pusq.push(["setProviderId",_pusVisitorID]);_pusq.push(["send"]);a=document.createElement("script");a.type="text/javascript";a.defer=!0;a.async=!0;a.src=b+"t.js";b=document.getElementsByTagName("script")[0];
+b.parentNode.insertBefore(a,b)})();</script>
+<noscript><img src="http://www.audienceinsights.net/p?f=gif&amp;idp=983e362d2b82006d" alt="" width="1" height="1" style="display: none;"></noscript>
+<script id="" type="text/javascript">function crtg_getCookie(b){var a,d,e,c=document.cookie.split(";");for(a=0;a<c.length;a++)if(d=c[a].substr(0,c[a].indexOf("\x3d")),e=c[a].substr(c[a].indexOf("\x3d")+1),d=d.replace(/^\s+|\s+$/g,""),d==b)return unescape(e);return""}var crtg_content=crtg_getCookie("crtg_rta");
+(function(){var b="crtg_rta",a="crtg_content",b=location.protocol+"//rtax.criteo.com/delivery/rta/rta.js?netId\x3d"+escape("2693")+"\x26cookieName\x3d"+escape(b)+"\x26rnd\x3d"+Math.floor(99999999999*Math.random())+"\x26varName\x3d"+escape(a),a=document.createElement("script");a.type="text/javascript";a.src=b;a.async=!0;0<document.getElementsByTagName("head").length?document.getElementsByTagName("head")[0].appendChild(a):0<document.getElementsByTagName("body").length&&document.getElementsByTagName("body")[0].appendChild(a)})();</script>
+<script id="" type="text/javascript">if("undefined"!==typeof googletag&&googletag.pubads()&&crtg_content){var tcrit=crtg_content.split(";");Array.prototype.inArray=function(b){for(var c=this.length,a=0;a<c;a++)if(this[a]==b)return!0;return!1};tcrit.inArray("criteo160x600\x3d1")&&googletag.pubads().setTargeting("criteo160x600","1");tcrit.inArray("criteo300x600\x3d1")&&googletag.pubads().setTargeting("criteo300x600","1");tcrit.inArray("criteo300x250\x3d1")&&googletag.pubads().setTargeting("criteo300x250","1");tcrit.inArray("criteo728x90\x3d1")&&
+googletag.pubads().setTargeting("criteo728x90","1");tcrit.inArray("criteo300x250hp\x3d1")&&googletag.pubads().setTargeting("criteo300x250hp","1");tcrit.inArray("criteo300x600hp\x3d1")&&googletag.pubads().setTargeting("criteo300x600hp","1")};</script>
+
+<script id="" type="text/javascript">var ezMarkerType="webedia",ezFmt="kv",ezC=["d:overblog","overblog_cat:Tech \x26 Science"];(function(){var a=document.createElement("script");a.type="text/javascript";a.src=document.location.protocol+"//webedia.ezakus.net/marker/?tjs\x3d"+(new Date).getTime();a.async=!0;var b=document.head||document.getElementsByTagName("head")[0];b.appendChild(a)})();</script>
+<div><div style="position:absolute; top:-1789px; left:-1789px; height:1px; width:1px;"><object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" id="pus_swf_object" height="1" width="1"><param name="id" value="pus_swf_object"><param name="movie" value="http://static.audienceinsights.net/op.swf"><param name="play" value="true"><param name="allowScriptAccess" value="always"><param name="FlashVars" value="pusCookieName=pus"><!--[if !IE]>--><object type="application/x-shockwave-flash" id="pus_swf_object2" data="NIDS%20:%20SNORT%20_%20Barnyard2%20_%20MySQL%20_%20BASE%20with%20Ubuntu%2014.04%20LTS%20-%20Computer%20Outlines%20Blog_files/op.swf" height="1" width="1"><param name="id" value="pus_swf_object2"><param name="movie" value="http://static.audienceinsights.net/op.swf"><param name="play" value="true"><param name="allowScriptAccess" value="always"><param name="FlashVars" value="pusCookieName=pus"></object><!--<![endif]--></object></div></div><iframe style="position: absolute; top: -42px; left: -42px;" name="pus_lso_iframe" id="pus_lso_iframe" src="NIDS%20:%20SNORT%20_%20Barnyard2%20_%20MySQL%20_%20BASE%20with%20Ubuntu%2014.04%20LTS%20-%20Computer%20Outlines%20Blog_files/lso.html" height="1px" width="1px"></iframe>
+
+<script src="NIDS%20:%20SNORT%20_%20Barnyard2%20_%20MySQL%20_%20BASE%20with%20Ubuntu%2014.04%20LTS%20-%20Computer%20Outlines%20Blog_files/jquery_002.js"></script>
+<script src="NIDS%20:%20SNORT%20_%20Barnyard2%20_%20MySQL%20_%20BASE%20with%20Ubuntu%2014.04%20LTS%20-%20Computer%20Outlines%20Blog_files/jquery_003.js"></script>
+<script>
+$(document).ready(function() {
+	// Fancybox
+	$(".ob-section-images a, .ob-link-img").attr("rel", "fancybox");
+
+	$("a[rel=fancybox]").fancybox({
+					'overlayShow'	: true,
+					'titlePosition' : 'over',
+					'transitionIn'	: 'fadin',
+					'transitionOut'	: 'fadin',
+					'type'			: 'image'
+				});
+});
+</script>
+<style>
+.ob-footer
+{
+    clear:      both;
+    display:    block   !important;
+    height:     auto    !important;
+    text-align: center  !important;
+    visibility: visible !important;
+    width:      100%    !important;
+}
+
+.ob-footer ul
+{
+    list-style: none;
+    margin:     0;
+    padding:    0;
+}
+
+.ob-footer-item
+{
+    display: inline-block;
+}
+
+.ob-footer-item:after
+{
+    content: "—";
+    margin-left: 6px;
+    display: inline-block;
+}
+
+.ob-footer li:last-child:after
+{
+    content: "";
+}
+
+</style>
+<div class="ob-footer" id="legals">
+    <ul>
+            <li class="ob-footer-item"><a sl-processed="1" href="http://www.over-blog.com/" target="_blank">Créer un blog gratuit sur Overblog</a></li>
+            <li class="ob-footer-item"><a sl-processed="1" href="http://computer-outlines.over-blog.com/top">Top articles</a></li>
+        <li class="ob-footer-item"><a sl-processed="1" href="http://computer-outlines.over-blog.com/contact">Contact</a></li>
+        <li class="ob-footer-item"><a sl-processed="1" href="http://fr.over-blog-kiwi.com/abuse/1077145"> Signaler un abus </a></li>
+        <li class="ob-footer-item"><a sl-processed="1" href="http://www.over-blog.com/terms-of-use" target="_blank">C.G.U.</a></li>
+            <li class="ob-footer-item"><a sl-processed="1" href="http://www.over-blog.com/features/earn-money.html" target="_blank">Rémunération en droits d'auteur</a></li>
+        <li class="ob-footer-item"><a sl-processed="1" href="http://www.over-blog.com/features/premium.html" target="_blank">Offre Premium</a></li>
+        </ul>
+</div>
+
+<div class="obbar-sharebar">
+    <div class="obbar-share">
+        <span class="obbar-title"><strong>Partager</strong> cette page</span>
+        <a sl-processed="1" href="#" data-href="https://www.facebook.com/sharer/sharer.php?u=http://computer-outlines.over-blog.com/article-nids-snort-barnyard2-apache2-base-with-ubuntu-14-04-lts-123532107.html" title="Facebook" class="obbar-social obbar-facebook">Facebook</a>
+        <a sl-processed="1" href="#" data-href="https://twitter.com/intent/tweet?url=http://computer-outlines.over-blog.com/article-nids-snort-barnyard2-apache2-base-with-ubuntu-14-04-lts-123532107.html&amp;text=NIDS : SNORT / Barnyard2 / MySQL / BASE with Ubuntu 14.04 LTS" title="Twitter" class="obbar-social obbar-twitter">Twitter</a>
+        <a sl-processed="1" href="#" data-href="https://plus.google.com/share?url=http://computer-outlines.over-blog.com/article-nids-snort-barnyard2-apache2-base-with-ubuntu-14-04-lts-123532107.html" title="Google+" class="obbar-social obbar-googleplus">Google+</a>
+        <a sl-processed="1" href="#" data-href="#" title="Pinterest" class="obbar-social obbar-pinterest">Pinterest</a>
+    </div>
+    <div class="obbar-follow" data-iframe-src="http://my.over-blog.com/static/follow.html?blog=computer-outlines.over-blog.com&amp;lang=fr">
+        <a sl-processed="1" href="http://my.over-blog.com/api/follow/fr/computer-outlines.over-blog.com">
+            <strong>Suivre</strong> ce blog
+        </a>
+        <span class="bubble-text" style="display: none">Utilisez notre Reader et abonnez-vous aux meilleurs articles de ce blog !</span>
+    </div>
+    <div class="obbar-search">
+        <form action="/search" method="post" accept-charset="utf-8">
+            <input name="q" class="obbar-input" type="text">
+            <button class="obbar-button">
+                OK
+            </button>
+        </form>
+    </div>
+    <div class="obbar-logo">
+        <a sl-processed="1" href="http://www.over-blog.com/" class="obbar-link">OverBlog</a>
+    </div>
+
+        <script type="text/javascript">
+        (function()
+        {
+            var gEBCN = function(classname, root)
+                {
+                    var root = root || document
+                        els = root.getElementsByTagName('*'),
+                        hl = [],
+                        i = 0, len = els.length;
+
+                    for (i, len; i < len; i++)
+                    {
+                        if (els[i].className.indexOf(classname) > -1)
+                        {
+                            hl.push(els[i]);
+                        }
+                    }
+
+                    return hl;
+                },
+                buttons = gEBCN('obbar-share')[0],
+                fb = gEBCN('obbar-facebook', buttons)[0],
+                tw = gEBCN('obbar-twitter', buttons)[0],
+                gp = gEBCN('obbar-googleplus', buttons)[0],
+                pn = gEBCN('obbar-pinterest', buttons)[0];
+
+            /**
+             * Bind onclick on each social share buttons
+             */
+            (function(els)
+            {
+                var el, i, lne;
+
+                for (i = 0, len = els.length; i < len; i++)
+                {
+                    el = els[i];
+
+                    el.getAttribute('data-href') &&
+                        el.setAttribute(
+                            'data-href',
+                            el.getAttribute('data-href')
+                            .replace(
+                                '{referer}',
+                                window.location.href
+                            )
+                            .replace(
+                                '{title}',
+                                'NIDS : SNORT / Barnyard2 / MySQL / BASE with Ubuntu 14.04 LTS'
+                            )
+                        );
+
+                    el.onclick = function(e)
+                    {
+                        e.preventDefault();
+                        window.open(
+                            this.getAttribute('data-href'),
+                            'intent',
+                            'height=400,width=500,location=no,menubar=no,toolbar=no'
+                        );
+                    };
+                }
+            })([fb, tw, gp]);
+
+            /**
+             * Pinterest has a special behavior
+             */
+            pn.onclick = function(e)
+            {
+                e.preventDefault();
+                (function(d)
+                {
+                    var e = d.createElement('script');
+                    e.setAttribute('type','text/javascript');
+                    e.setAttribute('charset','UTF-8');
+                    e.setAttribute(
+                        'src',
+                        '//assets.pinterest.com/js/pinmarklet.js?r='+Math.random()*99999999
+                    );
+                    d.body.appendChild(e)
+                })(document);
+            };
+
+            /**
+             * Add class on body
+             */
+            document.body.className += ' withsharebar';
+        })();
+    </script></div>
+<script type="text/javascript">
+
+if (ob_hide_ads == 1)
+{
+	var eAds = document.querySelectorAll(".ads");
+    
+	Array.prototype.forEach.call(eAds, function(e){
+        e.style.display = 'none';
+	});
+}
+
+</script><div class="ob-ads ob-other"><div id="_div-floating-ad-1"><script type="text/javascript">
+    googletag.display('_div-floating-ad-1');
+  </script><script type="text/javascript" src="NIDS%20:%20SNORT%20_%20Barnyard2%20_%20MySQL%20_%20BASE%20with%20Ubuntu%2014.04%20LTS%20-%20Computer%20Outlines%20Blog_files/ads_006.js"></script></div><div id="_div-window-ad-1"><script type="text/javascript">
+    googletag.display('_div-window-ad-1');
+  </script><script type="text/javascript" src="NIDS%20:%20SNORT%20_%20Barnyard2%20_%20MySQL%20_%20BASE%20with%20Ubuntu%2014.04%20LTS%20-%20Computer%20Outlines%20Blog_files/ads.js"></script><div id="_div-window-ad-1_ad_container"><!-- Placement: site under, Size: 1024x768, Type: Popup -->
+<!-- Place this code above the closing body tag of the page -->
+<script type="text/javascript">
+var adParams = {
+  a: '41091004', numOfTimes: '1',duration: '1' ,serverdomain: 'ads.adsrvmedia.net',size: '1024x768' ,period: 'hour'  , context:'c40931694'
+};
+</script>
+<script type="text/javascript" src="NIDS%20:%20SNORT%20_%20Barnyard2%20_%20MySQL%20_%20BASE%20with%20Ubuntu%2014.04%20LTS%20-%20Computer%20Outlines%20Blog_files/popup.html"></script><script type="text/javascript">(function(){var h=this,aa=function(a){var b=typeof a;if("object"==b)if(a){if(a instanceof Array)return"array";if(a instanceof Object)return b;var c=Object.prototype.toString.call(a);if("[object Window]"==c)return"object";if("[object Array]"==c||"number"==typeof a.length&&"undefined"!=typeof a.splice&&"undefined"!=typeof a.propertyIsEnumerable&&!a.propertyIsEnumerable("splice"))return"array";if("[object Function]"==c||"undefined"!=typeof a.call&&"undefined"!=typeof a.propertyIsEnumerable&&!a.propertyIsEnumerable("call"))return"function"}else return"null";else if("function"==b&&"undefined"==typeof a.call)return"object";return b},l=function(a){return"string"==typeof a},ba=function(a,b){var c=Array.prototype.slice.call(arguments,1);return function(){var b=c.slice();b.push.apply(b,arguments);return a.apply(this,b)}},n=Date.now||function(){return+new Date},p=function(a,b){var c=a.split("."),d=h;c[0]in d||!d.execScript||d.execScript("var "+c[0]);for(var e;c.length&&(e=c.shift());)c.length||void 0===b?d=d[e]?d[e]:d[e]={}:d[e]=b};var q=function(a,b,c,d,e){if(e)c=a+("&"+b+"="+c);else{var f="&"+b+"=",g=a.indexOf(f);0>g?c=a+f+c:(g+=f.length,f=a.indexOf("&",g),c=0<=f?a.substring(0,g)+c+a.substring(f):a.substring(0,g)+c)}return 2E3<c.length?void 0!==d?q(a,b,d,void 0,e):a:c};var ca=function(){var a=/[&\?]exk=([^& ]+)/.exec(s.location.href);return a&&2==a.length?a[1]:null};var da=function(a){var b=a.toString();a.name&&-1==b.indexOf(a.name)&&(b+=": "+a.name);a.message&&-1==b.indexOf(a.message)&&(b+=": "+a.message);if(a.stack){a=a.stack;var c=b;try{-1==a.indexOf(c)&&(a=c+"\n"+a);for(var d;a!=d;)d=a,a=a.replace(/((https?:\/..*\/)[^\/:]*:\d+(?:.|\n)*)\2/,"$1");b=a.replace(/\n */g,"\n")}catch(e){b=c}}return b},u=function(a,b){a.google_image_requests||(a.google_image_requests=[]);var c=a.document.createElement("img");c.src=b;a.google_image_requests.push(c)};var v=document,s=window;var ea=String.prototype.trim?function(a){return a.trim()}:function(a){return a.replace(/^[\s\xa0]+|[\s\xa0]+$/g,"")},w=function(a,b){return a<b?-1:a>b?1:0};var x=null,fa=function(a,b){for(var c in a)Object.prototype.hasOwnProperty.call(a,c)&&b.call(null,a[c],c,a)};function y(a){return"function"==typeof encodeURIComponent?encodeURIComponent(a):escape(a)}var ga=function(){if(!v.body)return!1;if(!x){var a=v.createElement("iframe");a.style.display="none";a.id="anonIframe";x=a;v.body.appendChild(a)}return!0},z={};var A=!0,ha={},ka=function(a,b,c,d){var e=ia,f,g=A;try{f=b()}catch(k){try{var B=da(k);b="";k.fileName&&(b=k.fileName);var m=-1;k.lineNumber&&(m=k.lineNumber);g=e(a,B,b,m,c)}catch(r){try{var t=da(r);a="";r.fileName&&(a=r.fileName);c=-1;r.lineNumber&&(c=r.lineNumber);ia("pAR",t,a,c,void 0,void 0)}catch(sa){ja({context:"mRE",msg:sa.toString()+"\n"+(sa.stack||"")},void 0)}}if(!g)throw k;}finally{if(d)try{d()}catch(cb){}}return f},ia=function(a,b,c,d,e,f){var g={};if(e)try{e(g)}catch(k){}g.context=a;g.msg=b.substring(0,512);c&&(g.file=c);0<d&&(g.line=d.toString());g.url=v.URL.substring(0,512);g.ref=v.referrer.substring(0,512);la(g);ja(g,f);return A},ja=function(a,b){try{if(Math.random()<(b||.01)){var c="/pagead/gen_204?id=jserror"+ma(a),d="http"+("http:"==s.location.protocol?"":"s")+"://pagead2.googlesyndication.com"+c,d=d.substring(0,2E3);u(s,d)}}catch(e){}},la=function(a){var b=a||{};fa(ha,function(a,d){b[d]=s[a]})},C=function(a,b,c,d,e){return function(){var f=arguments;return ka(a,function(){return b.apply(c,f)},d,e)}},D=function(a,b){return C(a,b,void 0,void 0,void 0)},ma=function(a){var b="";fa(a,function(a,d){if(0===a||a)b+="&"+d+"="+y(a)});return b};var E=Array.prototype,na=E.indexOf?function(a,b,c){return E.indexOf.call(a,b,c)}:function(a,b,c){c=null==c?0:0>c?Math.max(0,a.length+c):c;if(l(a))return l(b)&&1==b.length?a.indexOf(b,c):-1;for(;c<a.length;c++)if(c in a&&a[c]===b)return c;return-1},oa=E.map?function(a,b,c){return E.map.call(a,b,c)}:function(a,b,c){for(var d=a.length,e=Array(d),f=l(a)?a.split(""):a,g=0;g<d;g++)g in f&&(e[g]=b.call(c,f[g],g,a));return e};if(v&&v.URL)var pa=v.URL,A=!(pa&&(0<pa.indexOf("?google_debug")||0<pa.indexOf("&google_debug")));var F=function(a,b,c,d){c=C(d||"osd_or_lidar::"+b,c,void 0,void 0,void 0);a.addEventListener?a.addEventListener(b,c,!1):a.attachEvent&&a.attachEvent("on"+b,c)},qa=function(a){var b=0,c=function(){a();b++;10>b&&s.setTimeout(D("osd_listener::ldcl_int",c),100)};c()};var ra=function(){try{s.localStorage.setItem("__sak","1");var a=s.localStorage.__sak;s.localStorage.removeItem("__sak");return"1"==a}catch(b){return!1}},ta=function(a,b,c){a.google_image_requests||(a.google_image_requests=[]);var d=a.document.createElement("img");F(d,"load",c,"osd::ls_img::load");d.src=b;a.google_image_requests.push(d)};var ua=function(a,b){for(var c in a)b.call(void 0,a[c],c,a)};var G;n:{var va=h.navigator;if(va){var wa=va.userAgent;if(wa){G=wa;break n}}G=""};var xa=-1!=G.indexOf("Opera")||-1!=G.indexOf("OPR"),H=-1!=G.indexOf("Trident")||-1!=G.indexOf("MSIE"),ya=-1!=G.indexOf("Gecko")&&-1==G.toLowerCase().indexOf("webkit")&&!(-1!=G.indexOf("Trident")||-1!=G.indexOf("MSIE")),za=-1!=G.toLowerCase().indexOf("webkit"),Aa=function(){var a=h.document;return a?a.documentMode:void 0},Ba=function(){var a="",b;if(xa&&h.opera)return a=h.opera.version,"function"==aa(a)?a():a;ya?b=/rv\:([^\);]+)(\)|;)/:H?b=/\b(?:MSIE|rv)[: ]([^\);]+)(\)|;)/:za&&(b=/WebKit\/(\S+)/);b&&(a=(a=b.exec(G))?a[1]:"");return H&&(b=Aa(),b>parseFloat(a))?String(b):a}(),Ca={},Da=function(a){if(!Ca[a]){for(var b=0,c=ea(String(Ba)).split("."),d=ea(String(a)).split("."),e=Math.max(c.length,d.length),f=0;0==b&&f<e;f++){var g=c[f]||"",k=d[f]||"",B=RegExp("(\\d*)(\\D*)","g"),m=RegExp("(\\d*)(\\D*)","g");do{var r=B.exec(g)||["","",""],t=m.exec(k)||["","",""];if(0==r[0].length&&0==t[0].length)break;b=w(0==r[1].length?0:parseInt(r[1],10),0==t[1].length?0:parseInt(t[1],10))||w(0==r[2].length,0==t[2].length)||w(r[2],t[2])}while(0==b)}Ca[a]=0<=b}},Ea=h.document,Fa=Ea&&H?Aa()||("CSS1Compat"==Ea.compatMode?parseInt(Ba,10):5):void 0;var I=function(a,b){this.b=a||0;this.a=b||""},Ga=function(a,b){a.b&&(b[4]=a.b);a.a&&(b[12]=a.a)};I.prototype.match=function(a){return(this.b||this.a)&&(a.b||a.a)?this.a||a.a?this.a==a.a:this.b||a.b?this.b==a.b:!1:!1};I.prototype.toString=function(){var a=""+this.b;this.a&&(a+="-"+this.a);return a};var Ha=function(){var a=J,b=[];a.b&&b.push("adk="+a.b);a.a&&b.push("exk="+a.a);return b},Ia=function(a){var b=[];ua(a,function(a,d){var e=y(d),f=a;l(f)&&(f=y(f));b.push(e+"="+f)});return b.join("\n")},K=0,Ja=0,Ka=function(a){var b=0,c=s;if(c&&c.Goog_AdSense_getAdAdapterInstance)return c;try{for(;c&&5>b;){if(c.google_osd_static_frame)return c;if(!a&&c.aswift_0)return c.aswift_0;b++;c=c!=c.parent?c.parent:null}}catch(d){}return null},La=function(a,b,c,d){if(10<Ja)s.clearInterval(K);else if(++Ja,s.postMessage&&(b.b||b.a)){var e=Ka(!0);if(e){var f={};Ga(b,f);f[0]="goog_request_monitoring";f[6]=a;f[16]=c;d&&d.length&&(f[17]=d.join(","));try{var g=Ia(f);e.postMessage(g,"*")}catch(k){}}}};var Ma;if(!(Ma=!ya&&!H)){var Na;if(Na=H)Na=H&&9<=Fa;Ma=Na}Ma||ya&&Da("1.9.1");H&&Da("9");var L=0,M="",N=!1,O=!1,P=!1,Oa=!1,Pa=[],J=null,Q="",Qa=[],Ra=[],Sa=!1,R="",S="",Ta=(new Date).getTime(),Ua=["1","0","3"],T=0,U=!1,V="",W=null,X=0,Y=0,Va=0,Wa=function(a,b){N&&Z(a,b,!0);(P||O&&Oa)&&Z(a,b)},Z=function(a,b,c){if((b=b||Q)&&!Sa&&(2==Y||c)){b=Xa(b,c);if(!c&&U){U=!1;W&&(a.clearInterval(W),W=null);var d=V;try{a.localStorage[d]=b+"&timestamp="+n()+"&send"}catch(e){}5!=T&&ta(a,b,function(){a.localStorage.removeItem(d)})}else u(a,b);c?N=!1:Sa=!0}},Xa=function(a,b){var c;c=b?"osdim":P?"osd2":"osdtos";var d=["//pagead2.googlesyndication.com/activeview","?id=",c];"osd2"==c&&O&&Oa&&d.push("&ts=1");M&&d.push("&avi=",M);0!=T&&d.push("&lsid=",T);U&&d.push("&cwls=1");d.push("&ti=1");d.push("&",a);d.push("&uc="+Va);c=d.join("");for(d=0;d<Qa.length;d++){try{var e=Qa[d]()}catch(f){}var g="max_length";2<=e.length&&(3==e.length&&(g=e[2]),c=q(c,y(e[0]),y(e[1]),g))}2E3<c.length&&(c=c.substring(0,2E3));return c},$=function(a,b){if(R){try{var c=q(R,"vi",a);ga()&&u(x.contentWindow,c)}catch(d){}0<=na(Ua,a)&&(R="");var c=b||Q,e;e=q("//pagead2.googlesyndication.com/pagead/gen_204?id=sldb","avi",M);e=q(e,"vi",a);c&&(e+="&"+c);try{u(s,e)}catch(f){}}},Ya=function(){$("-1")},$a=function(a){if(a&&a.data&&l(a.data)){var b;var c=a.data;if(l(c)){b={};for(var c=c.split("\n"),d=0;d<c.length;d++){var e=c[d].indexOf("=");if(!(0>=e)){var f=Number(c[d].substr(0,e)),e=c[d].substr(e+1);switch(f){case 5:case 8:case 11:case 15:case 16:e="true"==e;break;case 4:case 7:case 6:case 14:e=Number(e);break;case 3:if("function"==aa(decodeURIComponent))try{e=decodeURIComponent(e)}catch(g){throw Error("Error: URI malformed: "+e);}break;case 17:e=oa(decodeURIComponent(e).split(","),Number)}b[f]=e}}b=b[0]?b:null}else b=null;if(b&&(c=new I(b[4],b[12]),J&&J.match(c))){for(c=0;c<Ra.length;c++)Ra[c](b);c=b[0];if("goog_acknowledge_monitoring"==c)s.clearInterval(K),X=2;else if("goog_get_mode"==c){X=1;d={};J&&Ga(J,d);d[0]="goog_provide_mode";d[6]=Y;try{var k=Ia(d);a.source.postMessage(k,a.origin)}catch(B){}s.clearInterval(K);X=2}else if("goog_update_data"==c){if(a=s,Q=b[3],++Va,U){k=V;d=Xa(Q);try{a.localStorage[k]=Za(d)}catch(m){}}}else"goog_image_request"==c&&(Wa(s,b[3]),b[5]||b[11]||$("0",b[3]));if("goog_update_data"==c||"goog_image_request"==c)(1==Y||2==Y||N)&&b[5]&&(a=1==b[15]&&"goog_update_data"==c,Oa=!0,$("1"),S&&(k=S,ga()&&u(x.contentWindow,k),S=""),N&&!a&&Z(s,void 0,!0),1==Y?Sa=!0:(2==T||4==T||5==T&&!U)&&Z(s)),(1==Y||2==Y||N)&&b[11]&&(O=!1,$("3"),N&&Z(s,void 0,!0),(2==T||4==T||5==T&&!U)&&Z(s))}}},ab=function(){Wa(s);$("0");if(2>X&&2==Y){var a=s,b="//pagead2.googlesyndication.com/pagead/gen_204?id=osd2&",c=[];c.push("ovr_value="+L);c.push("avi="+M);J&&(c=c.concat(Ha()));c.push("tt="+((new Date).getTime()-Ta));a.document&&a.document.referrer&&c.push("ref="+y(a.document.referrer));c.push("hs="+X);b+=c.join("&");try{u(a,b)}catch(d){}}},Za=function(a){var b=a.match(/^(.*&timestamp=)\d+$/);return b?b[1]+n():a+"&timestamp="+n()},bb=function(){var a={};Ga(J,a);a[0]="goog_dom_content_loaded";var b=Ia(a);qa(function(){var a=Ka(!1),d=!a;!a&&s&&(a=s.parent);if(a&&a.postMessage)try{a.postMessage(b,"*"),d&&s.postMessage(b,"*")}catch(e){}})};p("osdlfm",C("osd_listener::init",function(a,b,c,d,e,f,g,k,B){L=a;R=b;S=d;N=f;T=B||0;O=g&&f;1==k&&Pa.push(947190538);J=new I(e,ca());F(s,"load",Ya,"osd_listener::load");F(s,"message",$a,"osd_listener::message");M=c||"";F(s,"unload",ab,"osd_listener::unload");var m=s.document;!m.readyState||"complete"!=m.readyState&&"loaded"!=m.readyState?("msie"in z?z.msie:z.msie=-1!=navigator.userAgent.toLowerCase().indexOf("msie"))&&!window.opera?F(m,"readystatechange",function(){"complete"!=m.readyState&&"loaded"!=m.readyState||bb()},"osd_listener::rsc"):F(m,"DOMContentLoaded",bb,"osd_listener::dcl"):bb();-1==L?Y=f?3:1:-2==L?Y=3:0<L&&(Y=2,P=!0);O&&!P&&(Y=2);2==Y&&s.location.hostname.match(/doubleclick\.net/)&&(3==T||4==T||5==T)&&ra()&&1E3>s.localStorage.length&&(V="LSPNGS-"+J.toString()+"-"+(""+Math.random()).split(".")[1]+n(),U=!0,W=s.setInterval(D("osd_listener::ls_int",function(){var a=s,b=V,c=a.localStorage[b];if(c)try{a.localStorage[b]=Za(c)}catch(d){}}),1E3));J&&(J.b||J.a)&&(X=1,K=s.setInterval(D("osd_proto::reqm_int",ba(La,Y,J,O,Pa)),500))}));p("osdlac",C("osd_listener::lac_ex",function(a){Qa.push(a)}));p("osdlamrc",C("osd_listener::lamrc_ex",function(a){Ra.push(a)}));p("osdsir",C("osd_listener::sir_ex",Wa));})();osdlfm(-1,'','BpxLMjw5qVNzMFvOAwgGP_oGQCwAAAAAQATgByAEJwAIC4AIA4AQBoAYgqBOAAQ','',404714284,true,false,0,0);</script>
+</div>
+</div></div>
+<iframe style="display: none; width: 0px; height: 0px;" name="google_osd_static_frame" id="google_osd_static_frame_9769533363337"></iframe><div class="yui3-toolbar-ctn"></div></body></html>
