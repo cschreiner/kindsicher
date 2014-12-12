@@ -1,40 +1,101 @@
-\documentclass{article}
+\documentclass{sigchi}
 
-%\documentclass[letterpaper, 10 pt, conference]{ieeeconf}
-\usepackage{amsmath}
-\usepackage{amsfonts}
-\usepackage{hyperref}
-\usepackage{graphicx}
-\usepackage{multirow}
-\usepackage{booktabs}
+% \usepackage{amsmath}
+% \usepackage{amsfonts}
+% \usepackage{hyperref}
+% \usepackage{graphicx}
+% \usepackage{multirow}
+% \usepackage{booktabs}
 
-\title{\LARGE \bf 
-   <title>
-}
+\usepackage{balance}  % to better equalize the last page
+\usepackage{graphics} % for EPS, load graphicx instead
+% \usepackage{times}    % comment if you want LaTeX's default font
+\usepackage{url}      % llt: nicely formatted URLs
 
-\author{
-   <author>
-}
+\makeatletter
+\def\url@leostyle{%
+  \@ifundefined{selectfont}{\def\UrlFont{\sf}}{\def\UrlFont{\small\bf\ttfamily}}}
+\makeatother
+\urlstyle{leo}
 
+\def\pprw{8.5in}
+\def\pprh{11in}
+\special{papersize=\pprw,\pprh}
+\setlength{\paperwidth}{\pprw}
+\setlength{\paperheight}{\pprh}
+\setlength{\pdfpagewidth}{\pprw}
+\setlength{\pdfpageheight}{\pprh}
+
+% Make sure hyperref comes last of your loaded packages,
+% to give it a fighting chance of not being over-written,
+% since its job is to redefine many LaTeX commands.
+\usepackage[pdftex]{hyperref}
 \hypersetup{
-   pdfkeywords={},
-   pdfsubject={<title>},
-   pdfcreator={pdfTeX 3.1415926-1.40.10-2.2}
-   pdftitle={<title>}
-   }
+pdftitle={Kindsicher: Safe Internet Browsing for Unsupervised Children},
+pdfauthor={LaTeX},
+pdfkeywords={filter, children, snort, Internet},
+bookmarksnumbered,
+pdfstartview={FitH},
+colorlinks,
+citecolor=black,
+filecolor=black,
+linkcolor=black,
+urlcolor=black,
+breaklinks=true,
+}
 
+% create a shortcut to typeset table headings
+\newcommand\tabhead[1]{\small\textbf{#1}}
+
+% End of preamble. Here it comes the document.
 \begin{document}
+
+\title{Kindsicher: Safe Internet Browsing for Unsupervised Children}
+
+\numberofauthors{3}
+\author{
+  \alignauthor Chaitanya Achan\\
+    \affaddr{University of Utah}\\
+    \email{cachan6460@gmail.com}\\
+  \alignauthor Philip Lundrigan\\
+    \affaddr{University of Utah}\\
+    \email{philipbl@cs.utah.edu}\\
+  \alignauthor Christian Schreiner\\
+    \affaddr{University of Utah}\\
+    \email{cas@cs.utah.edu}\\
+}
+
 \maketitle
+
 
 % ############################################################################
 % document body:
 
+\begin{abstract}
+\input{ch1_abstract}
+\end{abstract}
 
+\keywords{
+    Put keywords here
+}
+
+\input{ch2_intro}
+\input{ch3_related}
+\input{ch4_design}
+\input{ch5_blocking}
+\input{ch6_reporting}
+\input{ch7_future}
+\input{ch8_conclusion}
+
+\balance
+
+\bibliographystyle{acm-sigchi}
+\bibliography{sample}
 
 % ############################################################################
 \end{document}
 
-%%% Local Variables: 
+%%% Local Variables:
 %%% mode: latex
 %%% TeX-master: "root"
-%%% End: 
+%%% End:
