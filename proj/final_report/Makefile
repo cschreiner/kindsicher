@@ -32,5 +32,8 @@ oview: $(TARGET)
 cview: $(TARGET)
 	@caspdf $(TARGET) &
 
+clean:
+	rm $(TARGET) 
+
 # end of file
 
