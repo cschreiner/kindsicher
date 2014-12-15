@@ -1,1 +1,19 @@
 \section{Future Work}
+
+As described in section~\ref{blocking}, we encountered some latency issues with
+SNORT that inhibited its blocking ability under certain conditions. For
+Kindsicher to be effective in all circumstances, SNORT needs to <XXX: PHIL –
+Please expand on this>
+
+In the Reporting section, we described some of the shortcomings of BASE,
+primary of which being its reporting on network access using only IP addresses.
+The reporting can be made more user friendly by incorporating domain names
+instead of or in addition to IP addresses. It could also be modified to provide
+a richer set of data to parents, that makes understanding their child's web
+access footprint much more intuitive.
+
+Over the longer term, we also need a process that automates maintaining the
+addresses in the SNORT white-list. We envision that a child can request
+addition of a new website domain as a text message to the parent's phone and
+the parent could then chose to approve or deny that request, automatically
+updating the white-list as needed.
