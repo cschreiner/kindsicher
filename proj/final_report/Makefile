@@ -12,13 +12,13 @@ CHAPTER_FILES= \
 	ch5_blocking.tex \
 	ch6_reporting.tex \
 	ch7_future.tex \
-	ch8_conclusion.tex 
+	ch8_conclusion.tex
 
 OTHER_SOURCES=../project.bib
 
 $(TARGET): $(MAIN_SOURCE) $(CHAPTER_FILES) $(OTHER_SOURCES)
 	pdflatex $(MAIN_SOURCE)
-	@# bibtex $(basename $(MAIN_SOURCE)) 
+	-bibtex $(basename $(MAIN_SOURCE))
 	pdflatex $(MAIN_SOURCE)
 	pdflatex $(MAIN_SOURCE)
 	ln -f $(basename $(MAIN_SOURCE)).pdf $(TARGET)
@@ -33,7 +33,7 @@ cview: $(TARGET)
 	@caspdf $(TARGET) &
 
 clean:
-	rm $(TARGET) 
+	rm $(TARGET)
 
 # end of file
 
