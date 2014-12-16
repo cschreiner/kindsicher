@@ -1,3 +1,41 @@
 % primary responsibility: CAS+Phil
 
 \section{Design}
+
+
+
+
+\subsection{Login}
+
+The TCP/IP protocol, and the HTTP protocol that rides on top of it, identify
+the sending computer, \emph{NOT} the user name on that computer.  
+% 
+Since Kindsicher's goal is to restrict access for children, not for adults,
+the only way to distinguish between children's internet access and adults'
+access is to designate certain computers for children's use only, and other
+computers for adults' use only.  
+%
+Thus, there needs to be some mechanism to ensure that the children can only
+log into hosts designated for children.
+
+The network we used for testing uses SNISR 
+%
+\footnote{ SNISR is a network login and directory information system, akin to
+LDAP, NIS, or Hesiod.  Its signature advantage is that all clients have a
+local record of account and group information at all times, so mobile clients
+can be disconnected from the network and reconnected at will.  For more
+information, see http://www.mathoni.net/cas/swforge/snisr for more
+information. }
+%
+for login directory services.  
+%
+The current released version, SNISR 1.1, allows any user to log in on any host.  
+%
+Part of this project, therefore, was upgrading SNISR to allow the network
+administrator to specify classes of hosts that only certain users could log
+into.
+%
+SNISR 2.0's baseline ALPHA_6 contains this feature, and is expected to begin
+beta testing soon.
+
+
