@@ -1,3 +1,79 @@
 % primary responsibility: CAS
 
 \section{Introduction}
+
+In a modern society, children must increasingly use the Internet for required
+tasks such as homework and communication with parents and other family
+members, not just for optional tasks (such as games and entertainment). 
+%
+The amount of required use means that children must often use the Internet
+when their parents cannot continually supervise them. 
+%
+This carries significant risk that the children will encounter Internet
+content they are not able to handle, or that would exploit them. 
+%
+Most previous work on improving children's Internet safety focuses on
+identifying ``bad'' content and blocking it. Some of this work relies
+on autoclassification \{TODO: add link to DansGuardian\}, some on
+human classification \{TODO: add link to OpenDNS\}, and some on a
+combination \{TODO: add link to NetNanny\}.
+%
+The amount of work to identify ``bad'' content is, however, beyond the
+capabilities of most families.
+%
+Commercial services exist that classify content, notably OpenDNS
+\{TODO: add link\} but they are still stretched to adequately deal
+with the volume of legitimate content, and black hats are continually
+finding new means of circumventing the services' products.  
+%
+Furthermore, the trend in commercial product literature is to focus
+features and testimonials, and omit technical details.  \{TODO: add links to OpenDNS, and some other product websites.\}
+%
+This prevents parents from making a rational comparison between
+products and evaluate potential for ineffectiveness or circumvention
+without purchasing each and performing detailed technical evaluations.
+%
+Further, outsourcing content classification prevents a parent from restricting
+content for family-specific reasons. 
+%
+For example, a child may have a phobia about spiders, or a parent may want to
+insist on accompanying a child whenever they visit certain online shopping
+sites, so the parent can teach good consumer practices during the shopping
+session. 
+
+This paper presents Kindsicher, a children's Internet safety system
+that addresses these issues by taking the opposite approach: parents
+define the Internet sites they believe are appropriate for their
+children to visit unsupervised, and access to other sites requires
+parental intervention.
+%
+Kindsicher offers the following advantages:
+
+\{TODO: order these for maximum rhetorical effect \}
+\begin{itemize}
+
+\item Kindsicher is completely open-source software, so the
+  technically inclined are free to examine it, improve it if desired,
+  and report their results to others.
+
+\item Kindsicher is blocks traffic by interrupting TCP connections, as
+  opposed to blocking DNS name lookups, so it cannot be circumvented
+  by hard-coding an IP address in a URL (e.g. http://155.98.65.24/),
+  which is a common black-hat tactic.
+
+\item Kindsicher is completely implemented as home network
+  infrastructure, so its protection is automatically extended to new
+  devices brought into the home (for example, when a friend arrives
+  with a Wi-Fi tablet). Most other solutions have a component that
+  must be installed on the client device.
+
+\item Because Kindsicher is completely implemented on the home
+  network, it does not slow network performance while content is
+  routed via a cloud-based filtering server.  This can be a factor for
+  current and modern rich-content webpages.
+
+\{TODO: anything else?\}
+
+\begin{itemize}
+
+\{TODO: should we do a comparison with other work to make the point that Kindsicher fills a gap in the arsenal of tools available to parents?\}
