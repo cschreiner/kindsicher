@@ -24,10 +24,84 @@ web-browser. (Figure R1)
 \begin{figure}
 \includegraphics{figures/R1_BASE_Flow}
 \end{figure}
-
 % TODO: do something to label this R1 or similar
+% TODO: add caption "BASE Data Flow"
 
 To access base you need to open a browser window and type in “<base server
 name>/base” in the URL field.
 %
 Figure R2 shows the BASE home page presented to an user on logging into BASE.
+
+\begin{figure}
+\includegraphics{figures/R2_BASE_Main}
+\end{figure}
+% TODO: do something to label this R2 or similar
+% TODO: add caption "BASE Home Page"
+% TODO: get these graphics more in-line interspersed with the text
+
+For this project we were particularly interested in destination IP
+addresses. 
+%
+On clicking on the count of destination IP addresses shown
+in Figure R2, BASE displays a list of all the IP addresses accessed
+from the home network (Figure R3), along with other associated
+information such as the number of times the IP was accessed and the
+number of source addresses that accessed it.
+
+\begin{figure}
+\includegraphics{figures/R3_BASE_IPList}
+\end{figure}
+% TODO: do something to label this R3 or similar
+% TODO: add caption "List of destination IPs accessed from the network"
+% TODO: get these graphics more in-line interspersed with the text
+
+BASE also provides several canned reports to graphically represent
+network data. Figure R4 shows an example of report selection and
+parameter specification.
+
+\begin{figure}
+\includegraphics{figures/R4_BASE_Report}
+\end{figure}
+% TODO: do something to label this R4 or similar
+% TODO: add caption "BASE report selection and initiation
+% TODO: get these graphics more in-line interspersed with the text
+
+Based on our study of BASE we came up with the following conclusions.
+
+\textbf{Advantages of BASE:}
+\begin{itemize}
+
+\item It is built to work in conjunction with SNORT.
+
+\item It provides a simple web-interface for users to view and
+  analyze network traffic.
+
+\item It comes with several in-built reports to help in the analysis.
+
+\end{itemize}
+
+\textbf{Disadvantages of BASE:}
+\begin{itemize}
+
+\item It deals with only IP addresses and does not display the
+  corresponding domain names. 
+  % 
+  IP addresses are not intuitive to users and this raises a real
+  concern given the fact that our target users are parents who are not
+  necessarily tech-savvy.
+
+\item It also displays only the number of times a site has been
+  accessed and gives no other information like the date and time of
+  access.
+
+\item The in-built reports do not support any correlation of which
+  source IP(s) accessed which destination IP(s), reducing a parent's
+  understanding of their child's Internet access.
+
+\end{itemize}
+
+Although BASE does provide an avenue for uses to view and analyze web
+access, we could say it only partially meets the reporting goals for
+Kindsicher because of these disadvantages. 
+%
+This is further detailed in the Future Work/Improvements section.
