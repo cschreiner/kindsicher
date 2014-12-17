@@ -1,3 +1,33 @@
 % primary responsibility: CAS+Phil
 
 \section{Related Work}
+
+Protecting children from the potential harms of the Internet has been studied
+from a psychological point of view~\cite{ybarra2005exposure, ho_statistical}.
+Guidelines have been developed to help parents know how to expose their
+children to the Internet. For example, the EU published an article on this
+subject~\cite{holloway2013zero, livingstone2010risks}. Other studies have
+looked at to see if such guidelines are effective or
+not~\cite{livingstone2008parental}. These studies show that there is a need for
+Internet filtering in homes to help protect children. These studies differ from
+our work in that they try to understand and measure the effect of the Internet
+on children's lives, whereas we look at building a filtering system.
+
+There have also been studies on using firewalls to control Internet
+access~\cite{Ivanovic , nguyen}. These approaches take a similar approach to
+our system, but in our system, we don't use a firewall or any hardware specific
+device.
+
+A important part of our system is defining a correct whitelist. Whitelist
+implementations have been looked at to prevent specific web-based
+attacks~\cite{han_automated_whitelist, iha_implementation}. These whitelists
+were used for different purposes than what we are using our whitelist for.
+
+Finally, prior work also includes web-page classification
+mechanisms~\cite{baykan_et_al_url_based_classification,
+chen_et_al_novel_web_page_filtering, ho_statistical} with the intent of
+identifying content and controlling access. We decided to avoid such techniques
+because they are hard to maintain and easily tricked. In our system, we do not
+classify webpages. Instead we block pages if they are not on the whitelist.
+This gives parents complete control over the system and as a result, parents
+are not dependent to the whim of the classification algorithm.
