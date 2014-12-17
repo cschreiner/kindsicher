@@ -56,6 +56,15 @@ requests, we concern ourselves with only the TCP functionality of reject and
 ignore the UDP functionality. Reject uses a well studied TCP attack called TCP
 Reset attack~\cite{XXX}.
 
+\begin{figure}[!t]
+    \centering
+    \includegraphics[width=.8\columnwidth]{figures/tcp_reset}
+    \caption{The flow of how a TCP RST attack works in our system. When the
+    Snort server detects a HTTP GET request, the Snort server sends a TCP RST
+    packet to both ends of the connection (Client and Server).}
+    \label{fig:tcp_reset}
+\end{figure}
+
 For a TCP Reset attack to work, there must be a man in the middle. It monitors
 the TCP connections that are being made between the network and the Internet.
 When the man in the middle wants to top a connection, it sends a TCP RST packet
@@ -71,21 +80,50 @@ For the cause of Snort, the Snort server is the man in the middle. When a
 reject rule is triggered, the Snort server sends a TCP RST packet to each end
 of the connection.
 
-
-
-
-\begin{figure}[!t]
-    \centering
-    \includegraphics[width=.8\columnwidth]{figures/tcp_reset}
-    \caption{The flow of how a TCP RST attack works in our system. When the
-    Snort server detects a HTTP GET request, the Snort server sends a TCP RST
-    packet to both ends of the connection (Client and Server).}
-    \label{fig:tcp_reset}
-\end{figure}
-
 \begin{figure}[!t]
     \centering
     \includegraphics[width=\columnwidth]{figures/snort_slow}
-    \caption{XXX: Put caption here}
+    \caption{A screen shot of a Wireshark trace. In this trace, the Snort
+    server is .41 seconds too late in sending TCP RST packets.}
     \label{fig:snort_slow}
 \end{figure}
+
+Snort's reject rule works in theory, but in practice it has some problems. An
+inherent issue with not having our Snort server inline but instead having it
+rejecting connections is that there could be conditions such that a TCP
+connection could transmit data before the Snort server has time to respond.
+This is exactly what happens under certain conditions.
+Figure~\ref{fig:snort_slow} shows a screen shot of a Wireshark trace. In it,
+the TCP connection is established, data is sent, and then the Snort server
+sends its TCP RST packets. The time between when the data is received by the
+client and when the Snort server sends a TCP RST packet is .41 seconds.
+
+To really understand the problem with Snort being slow, we ran Snort in many
+different environments to make sure it wasn't a platform or topology specific
+problem. We ran the server on a MacBook Pro running OS X 10.10, a home network
+server running Ubuntu 14.04, and on an Emulab~\cite{emulab} node running Ubuntu
+14.04. In the first two environments, the same problems occurred -- Snort would
+not react fast enough to block all TCP traffic. In the third environment, we
+couldn't test a web server on the Internet (because of how Emulab is set up),
+but Snort was able to block a web server that was part of the Emulab
+experiment.
+
+After some experimentation, there seems to be two factors that play a role in
+if the Snort server is able to reject a TCP connection or not. The first is the
+latency involved in making the request. If the request is being made to a
+server that is near by geographically, the Snort server has a harder time
+blocking it because the connection is so fast. The second factor is how big the
+web page that is being downloaded. In our tests, we found that Snort was unable
+to block web pages that could be contained inside one TCP packet. However, if
+web page was large enough that there needed to be a few packets to send the
+data, then Snort could block it most of the time. This was also true with large
+images as well.
+
+To try to minimize this problem, we tried reducing the functionality of Snort.
+Snort is a IDS and has a lot more functionality that we don't need to block
+websites. By reducing what Snort is loading in its configuration, we can speed
+up the response time of the TCP RST packets. This helped to reduce the problem,
+but it did not fix it. In the future, we plan on looking at the source code of
+Snort and pulling out only the necessary parts to block websites.
+
+
