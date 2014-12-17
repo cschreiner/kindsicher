@@ -127,3 +127,27 @@ but it did not fix it. In the future, we plan on looking at the source code of
 Snort and pulling out only the necessary parts to block websites.
 
 
+\subsection{Whitelist}
+
+\begin{figure}[!t]
+    \centering
+    \includegraphics[width=\columnwidth]{figures/http_get}
+    \caption{One HTTP GET request results in many more HTTP GET requests. Some
+    of these requests are to different domains.}
+    \label{fig:http_get}
+\end{figure}
+
+Part of being able to block websites adequately, is being able to produce a
+good list of URLs that should not be blocked (a whitelist). This is harder than
+it first sounds. This is in part due to the complexities of the Internet.
+Typically, when a web page is visited, resources from many different locations
+are loaded. An example of this is shown in Figure~\ref{fig:http_get}. This
+makes creating a realistic whitelist much more difficult.
+
+To understand what a whitelist might look like for a typical family, one of the
+authors allowed for their families Internet traffic to be logged. This was done
+by using \texttt{tshark}~\cite{tshark} (a terminal version of Wireshark) to
+monitor Internet traffic and output the host name of a HTTP GET request to a
+file. This gave us insight into what kind of considerations need to be made
+when building an accurate whitelist.
+
