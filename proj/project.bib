@@ -1,3 +1,13 @@
+@misc{emulab,
+  title={Emulab: Total Network Testbed},
+  howpublished = {\url{https://www.emulab.net}},
+}
+
+@misc{tshark,
+  title={Tshark},
+  howpublished = {\url{https://www.wireshark.org/docs/man-pages/tshark.html}},
+}
+
 @misc{snort,
   title={Snort},
   howpublished = {\url{https://www.snort.org}},
@@ -51,7 +61,7 @@
    url= {http://www.netnanny.com/products/netnanny/protecting_your_family},
    Note= "gives some details on how NetNanny works"
 }
-   
+
 
 @misc{mcafee,
   title={McAfee Family Protection},
@@ -73,13 +83,11 @@
    key= "" }
 
 @INPROCEEDINGS { iha_implementation,
-   %= an article in the proceedings of a conference
    author= "Genta Iha, Hiroshi Doi",
    title= "An Implementation fo the Binding Mechanism in the Web Browser for Preventing XSS Attacks: Introducing the Bind-Value Headers",
    booktitle= "2009 International Conference on Avaialbility, Reliability
 and Security",
    year= "2009",
-   % optional
    editor= "",
    pages= "966",
    organization= "IEEE Computer Society",
@@ -90,15 +98,13 @@ and Security",
    key= "",
    proj_note= "notes the hard part of using a whitelist is defining the whitelist",
    similarity="The article discusses a whitelist, and we are using a whitelist.",
-   difference="The article focuses on preventing XSS attacks, we are focused on filtering internet available to a family's children.",
-   key= "" }
+   difference="The article focuses on preventing XSS attacks, we are focused on filtering internet available to a family's children."}
 
 @ARTICLE { ho_statistical,
    author= "Wai H. Ho, Paul A. Watters",
    title= "Statistical and Structural Approaches to Filtering Internet Pornography",
    journal= "2004 IEEE Internal Conference on Systems, Man and Cybernetics",
    year= "2004",
-   % optional
    volume= "",
    number= "",
    pages= "4792",
@@ -114,7 +120,6 @@ and Security",
    title= "A Novel Web Page Fitlering System by Combining Texts and Images",
    journal= "Proceedings of the 2006 IEEE/WIC/ACM International Conference on Web Intelligence",
    year= "2006",
-   % optional
    volume= "",
    number= "",
    pages= "",
@@ -130,7 +135,6 @@ and Security",
    title= "A Comprehehsive Study of Features and Algorithms for URL-Based Topic Clasification",
    journal= "ACM Transactions on the Web",
    year= "2011",
-   % optional
    volume= "5",
    number= "3",
    pages= "",
@@ -141,19 +145,18 @@ and Security",
    difference="The article automatically classifies webpages into many subject-matter-based categories, we classify into two categories: allowed and forbidden.",
    key= "" }
 
-@ARTICLE { han_automated_whitelist
+@ARTICLE { han_automated_whitelist,
    author= "Weili Han, Ye Cao, Elisa Bertino, Jianming Yong",
    title= "Using automated individual white-list to protect web digital identities",
    journal= "Export Systems with Applications",
    year= "2012",
-   % optional
    volume= "39",
    number= "15",
    pages= "11861-11869",
    month= "Nov",
    note= "",
    proj_note="example of successfully using whitelists, with means of quickly updating the whitelist.  Shows basic feasibility of whitelisting in select circumstances, and demonstrates the need to easily update the whitelist.",
-   similarity="The article usses a whitelist technique for internet safety."
+   similarity="The article usses a whitelist technique for internet safety.",
    difference="The article focuses on general anti-phishing and anti-name-spoofing, we are focusing on controlling what websites children visit.",
    key= "" }
 
@@ -193,11 +196,10 @@ and Security",
 
 @BOOK { basicsDigitalPrivacy,
    author= "Denny Cherry",
-   editor= "Thomas LaRock"
+   editor= "Thomas LaRock",
    title= "The Basics of Digital Privacy: Simple Tools to Protect your Personal Information and Your Identity Online",
    publisher= "Elsevier",
    year= "2014",
-   % optional
    volume= "",
    series= "",
    address= "",
@@ -224,13 +226,11 @@ and Security",
    similarity="we are also building a web firewall of sorts",
    difference="this focuses on automatically identifying web applications.  We are interested in manually identifying websites, not necessarily the applications running under them" }
 
-@ARTICLE { ivanovic,
-   % article
+@ARTICLE {ivanovic,
    author= "Ivan Ivanovic",
    title= "Distribution of web traffic toward the centralized cloud firewall system",
    journal= "RoEduNet International Conference 12th Edition",
    year= "2013",
-   % optional
    volume= "",
    number= "",
    pages= "",
@@ -263,259 +263,4 @@ and Security",
   proj_note="This paper is a study of the exposure of children and teenagers to pornography. It also looks at the effects of having easy access to pornography has on children's lives.",
   similarity="As we are building our system, it is important to understand the behavior of children using the Internet. We need to make sure that our system fits the behaviors of the children that use the Internet today.",
   difference="This paper is just a study and a survey of behavior while our system is actually going to be used by children."
-}
-
-% ============================================================================
-% templates:
-@COMMENT {
- CAS template for a bibtex file
- definition:
- ftp://ftp.ctan.org/tex-archive/biblio/bibtex/contrib/doc/btxdoc.pdf
- See also:
-   http://www.cs.vassar.edu/people/priestdo/tips/bibtex
-   http://ccm.ucdenver.edu/wiki/How_to_write_BibTeX_files
-   http://tex.stackexchange.com/questions/93972/comment-out-sections-of-text-in-bib-file
-}
-
-BOOK { <tag>, remember to add a @ before the entry tag
-   %= book with an explicit publisher
-   author= "", % or editor
-   editor= "", % or author
-   title= "",
-   publisher= "",
-   year= "",
-   % optional
-   volume= "",
-   series= "",
-   address= "",
-   edition= "",
-   month= "",
-   month= "",
-   note= "",
-   key= "" }
-
-BOOKLET { <tag>, remember to add a @ before the entry tag
-   %= Printed and bound work, but without a named publisher or
-   %= sponsoring institution
-   title= "",
-   % optional
-   author= "", % or editor
-   howpublished= "", % or author
-   address= "",
-   month= "",
-   year= "",
-   note= "",
-   key= "" }
-
-CONFERENCE { <tag>, remember to add a @ before the entry tag
-   %= conference entry -- an article from the proceedings of a conference.
-   %= same as @inproceedings
-   author= "",
-   title= "",
-   booktitle= "",
-   year= "",
-   % optional
-   editor= "",
-   publisher= "",
-   pages= "",
-   organization= "",
-   address= "",
-   month= "",
-   note= "",
-   key= "" }
-
-INBOOK { <tag>, remember to add a @ before the entry tag
-   %= part of a book, i.e. chapter or page range
-   author= "", % or editor
-   editor= "", % or author
-   title= "",
-   chapter= "", # or pages
-   pages= "", # or chapter
-   publisher= "",
-   year= "",
-   % optional
-   volume= "",
-   series= "",
-   address= "",
-   edition= "",
-   month= "",
-   month= "",
-   note= "",
-   key= "" }
-
-INCOLLECTION { <tag>, remember to add a @ before the entry tag
-   %= a part of a book with its own title
-   author= "",
-   title= "",
-   booktitle= "",
-   journal= "",
-   year= "",
-   % optional
-   editor= "",
-   volume= "",
-   number= "",
-   pages= "",
-   publisher= "",
-   organization= "",
-   address= "",
-   month= "",
-   note= "",
-   key= "" }
-
-ARTICLE { <tag>, remember to add a @ before the entry tag
-   % article
-   author= "",
-   title= "",
-   journal= "",
-   year= "",
-   % optional
-   volume= "",
-   number= "",
-   pages= "",
-   month= "",
-   note= "",
-   key= "" }
-
-incollection ( <tag>, remember to add a @ before the entry tag
-   %= chapter in book
-   author= "",
-   title= "",
-   editor= "",
-   booktitle= "",
-   publisher= "",
-   address= "",
-   year= "",
-   key= "" }
-
-INPROCEEDINGS { <tag>, remember to add a @ before the entry tag
-   %= an article in the proceedings of a conference
-   author= "",
-   title= "",
-   booktitle= "",
-   year= "",
-   % optional
-   editor= "",
-   pages= "",
-   organization= "",
-   publisher= "",
-   address= "",
-   month= "",
-   note= "",
-   key= "" }
-
-MANUAL { <tag>, remember to add a @ before the entry tag
-   %= a completely manual entry
-   title= "",
-   % optional
-   author= "",
-   organization= "",
-   address= "",
-   edition= "",
-   month= "",
-   year= "",
-   note= "",
-   key= "" }
-
-MASTERSTHESIS { <tag>, remember to add a @ before the entry tag
-   author= "",
-   title= "",
-   school= "",
-   year= "",
-   % optional
-   address= "",
-   month= "",
-   note= "",
-   key= "" }
-
-PHDTHESIS { <tag>, remember to add a @ before the entry tag
-   author= "",
-   title= "",
-   school= "",
-   year= "",
-   % optional
-   address= "",
-   month= "",
-   note= "",
-   key= "" }
-
-PROCEEDINGS{ <tag>, remember to add a @ before the entry tag
-   title= "",
-   year= "",
-   % optional
-   editor= "",
-   publisher= "",
-   organization= "",
-   address= "",
-   month= "",
-   note= "",
-   key= "" }
-
-TECHREPORT (<tag>, remember to add a @ before the entry tag
-   %= a report published by a school or other institution, usually numbered
-   %= within a series.
-   author= "",
-   title= "",
-   institution= "",
-   year= "",
-   % optional
-   type= "",
-   number= "",
-   address= "",
-   month= "",
-   note= "",
-   key= "" }
-
-UNPUBLISHED { <tag>, remember to add a @ before the entry tag
-   %= a document with author and title, but not formally published.
-   author= "",
-   title= "",
-   note= "",
-   % optional
-   month= "",
-   year= "",
-   key= "" }
-
-MISC { <tag>, remember to add a @ before the entry tag
-   % misc
-   % optional fields:
-   author= "",
-   title= "",
-   howpublished= "",
-   MONTH= "",
-   year= "",
-   note= "",
-   key= "" }
-
-MISC { <tag>, remember to add a @ before the entry tag
-   %= webpage
-   title= "",
-   howpublished= { \url{htp://...}
-   note= {Accessed: <date> }
-
-ONLINE { <tag>, remember to add a @ before the entry tag
-   %= webpage
-   title= "",
-   author= "",
-   month= "",
-   year= {19xx},
-   url= {http://...}
-}
-
-MANUAL { <tag>, remember to add a @ before the entry tag
-   %= webpage
-   title= "",
-   author= "",
-   url= "http://...",
-   % or note= "\url{http://...}",
-   year= "2999 (accessed <date>)" }
-
-@COMMENT {
- Note: the key="xx" field is used to alphabetize and create a label in the
- citing document if the "author" and "editor" fields are missing.  Do NOT
- confuse with the citation key aka tag appearing at the beginning of the
- entry.
-}
-
-@COMMMENT {
-  end of file
 }

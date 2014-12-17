@@ -2,9 +2,67 @@
 
 \section{Design}
 
+The goal of our system is two fold: block websites that are not part of the
+white list and to record network statistics about the Internet usage of the
+family. The second goal is important because it is not enough to just block
+unwanted websites, health Internet usage habits must be developed as well. By
+logging Internet usage, parents can identify any unhealthy behaviors with the
+use of the Internet. For example, say a teenager is staying up late to use the
+Internet and the website they are viewing is on the whitelist. The content the
+teenager is viewing might not be bad (such as a simple Internet game), but
+staying up late is not a healthy habit. With this information, the parents are
+able to address this problem in a direct manner.
+
+For both blocking and reporting, we used the intrusion detection system (IDS),
+Snort~\cite{snort}. An IDS is a piece of software that sits on individual
+clients (called host based IDS or HIDS) or on a network (called network based
+IDS or NIDS). It monitors traffic that passes through it and detects if any
+type of attack common is occurring. It records this information in a database
+and notifies an network administrator if it detects any serious problems.
+
+\newcommand*\ifline[3]{%
+        \ifthenelse{\value{VerbboxLineNo} = #1}{#2}{#3}}
+
+\begin{verbbox}[\ifline{6}{\vspace{10pt}}{\ifline{10}{\vspace{3pt}}{\ifline{12}{\vspace{3pt}}{\ifline{14}{\vspace{10pt}}{}}}}]
+<rule_action> <protocol>
+    <src_ip_addr> <src_port>
+    <direction>
+    <dst_ip_addr> <dst_port>
+    (<meta_data>)
 
 
+<rule_action>: alert, log, pass, activate,
+    dynamic, drop, reject, sdrop
 
+<protocol>: tcp, udp, ip, etc.
+
+<direction>: ->, <-, <>
+
+Example: reject tcp any any <>
+            10.0.0.10 80
+            (sid: 1; msg: "rejecting!";)
+
+\end{verbbox}
+
+\begin{figure}[!t]
+    \centering
+    \theverbbox
+    \caption{The general syntax of a Snort rule with an example.}
+    \label{fig:rule_syntax}
+\end{figure}
+
+Snort is rule based. This means that a user can write rules that if the rule
+conditions are met, Snort performs an action. Figure~\ref{fig:rule_syntax}
+shows the general syntax of a rule. There are communities of Snort users that
+write rules for common attacks and network problems so that typical users do
+not need a deep knowledge of intrusion detection to get benefit from Snort.
+
+% TODO: Describe network topology
+
+How Snort was used to accomplish each goal (blocking and reporting) is outlined
+in the sections below.
+
+% ==================================================
 \subsection{Login}
 
 The TCP/IP protocol, and the HTTP protocol that rides on top of it, identify
