@@ -2,10 +2,12 @@
 
 \section{Future Work}
 
-As described in section~\ref{blocking}, we encountered some latency issues with
-SNORT that inhibited its blocking ability under certain conditions. For
-Kindsicher to be effective in all circumstances, SNORT needs to <XXX: PHIL –
-Please expand on this>
+As described in the blocking section, we encountered some latency issues with
+Snort that inhibited its blocking ability under certain conditions. For
+Kindsicher to be effective in all circumstances, we need to investigate Snort
+further. This might involve modifying the source of Snort to remove all extra
+functionality. This could also involve writing our own program that blocks
+using TCP Resets.
 
 In the Reporting section, we described some of the shortcomings of BASE,
 primary of which being its reporting on network access using only IP addresses.
@@ -15,7 +17,8 @@ a richer set of data to parents, that makes understanding their child's web
 access footprint much more intuitive.
 
 Over the longer term, we also need a process that automates maintaining the
-addresses in the SNORT white-list. We envision that a child can request
+addresses in the Snort white-list. We envision that a child can request
 addition of a new website domain as a text message to the parent's phone and
 the parent could then chose to approve or deny that request, automatically
-updating the white-list as needed.
+updating the white-list as needed. This would allow parents to change the
+whitelist with minimal effort.

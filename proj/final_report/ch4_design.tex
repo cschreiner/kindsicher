@@ -20,8 +20,10 @@ IDS or NIDS). It monitors traffic that passes through it and detects if any
 type of attack common is occurring. It records this information in a database
 and notifies an network administrator if it detects any serious problems.
 
+\newcommand*\ifline[3]{%
+        \ifthenelse{\value{VerbboxLineNo} = #1}{#2}{#3}}
 
-\begin{verbbox}
+\begin{verbbox}[\ifline{6}{\vspace{10pt}}{\ifline{10}{\vspace{3pt}}{\ifline{12}{\vspace{3pt}}{\ifline{14}{\vspace{10pt}}{}}}}]
 <rule_action> <protocol>
     <src_ip_addr> <src_port>
     <direction>
