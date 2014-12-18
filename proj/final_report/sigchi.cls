@@ -1536,8 +1536,12 @@ special written arrangment with one of the authors.
 %$\bullet$ License: The author(s) retain copyright, but ACM receives an exclusive publication license.\\
 %$\bullet$ Open Access: The author(s) wish to pay for the work to be open access. The additional fee must be paid to ACM.\\
 %This text field is large enough to hold the appropriate release statement assuming it is single spaced. 
-%\newline
-\textcolor{red}{Every submission will be assigned their own unique DOI string to be included here.}
+\newline
+
+%;;To appear in \emph{The Proceedings of the University of Utah School of
+%;;Computing Security and Privacy Class, December 2014.}
+
+%\textcolor{red}{Every submission will be assigned their own unique DOI string to be included here.}
 }
 \clubpenalty=10000 
 \widowpenalty = 10000
