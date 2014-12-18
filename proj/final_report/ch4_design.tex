@@ -114,12 +114,16 @@ problems so that typical users do not need a deep knowledge of intrusion
 detection to get benefit from Snort.
 
 % TODO: Describe network topology
-\begin{figure}[!t]
+\begin{figure*}[!t]
     \centering
-    \includegraphics[width=\columnwidth]{figures/topology}
-    \caption{Network topology, as implemented.}
+    \includegraphics[width=2\columnwidth]{figures/topology}
+    \caption{The network topology of the Kindsicher system. An Ethernet hub is
+        used to broadcast all traffic from the Ethernet switch to the
+        Kindsicher server. The Ethernet switch contains a mixture of PCs and
+        wireless clients. Any device that connects to the Ethernet switch will
+        be automatically protected by the Kindsicher server.}
     \label{fig:topology}
-\end{figure}
+\end{figure*}
 
 How Snort was used to accomplish the goals of blocking and reporting is outlined
 in the sections below.
