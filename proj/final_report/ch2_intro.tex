@@ -14,24 +14,25 @@ content they are not able to handle, or that would exploit them.
 %
 Most previous work on improving children's Internet safety focuses on
 identifying ``bad'' content and blocking it. Some of this work relies
-on autoclassification \{TODO: add link to DansGuardian\}, some on
-human classification \{TODO: add link to OpenDNS\}, and some on a
-combination \{TODO: add link to NetNanny\}.
+on autoclassification (e.g. Dans Guardian\cite{dansguardian}), some on
+human classification (e.g. OpenDNS\cite{opendns}), and some on a
+combination (e.g. NetNanny\cite{netnanny}).
 %
 The amount of work to identify ``bad'' content is, however, beyond the
 capabilities of most families.
 %
-Commercial services exist that classify content, notably OpenDNS
-\{TODO: add link\} but they are still stretched to adequately deal
-with the volume of legitimate content, and black hats are continually
-finding new means of circumventing the services' products.  
+Commercial services exist that classify content, \cite{opendns}\cite{netnanny}
+but they are still stretched to adequately deal with the volume of legitimate
+content, and black hats are continually finding new means of circumventing the
+services' products.
 %
 Furthermore, the trend in commercial product literature is to focus
-features and testimonials, and omit technical details.  \{TODO: add links to OpenDNS, and some other product websites.\}
+features and testimonials, and omit technical details.\cite{opendns}
+\{TODO: are there other products we should list here?\}
 %
 This prevents parents from making a rational comparison between
 products and evaluate potential for ineffectiveness or circumvention
-without purchasing each and performing detailed technical evaluations.
+without purchasing each and performing detailed technical experiments.
 %
 Further, outsourcing content classification prevents a parent from restricting
 content for family-specific reasons. 
@@ -52,25 +53,51 @@ Kindsicher offers the following advantages:
 \{TODO: order these for maximum rhetorical effect \}
 \begin{itemize}
 
+\item Kindsicher allows the parents full control over the internet sites to be
+designated as "safe".  
+%
+While not implemented in our demonstration, Kindsicher's architecture allows
+for parents to define exceptions to the approved site list so children can
+browse additional content when parents are present.  
+%
+It would be conceptually simple to extend this so parents could temporarily
+add sites via a web-capable smartphone, in case children needed to access
+another site while their parents were away.
+
 \item Kindsicher is completely open-source software, so the
-  technically inclined are free to examine it, improve it if desired,
-  and report their results to others.
+technically inclined are free to examine it, improve it if desired,
+and report their results to others.
 
 \item Kindsicher is blocks traffic by interrupting TCP connections, as
-  opposed to blocking DNS name lookups, so it cannot be circumvented
-  by hard-coding an IP address in a URL (e.g. http://155.98.65.24/),
-  which is a common black-hat tactic.
+opposed to blocking DNS name lookups, so it cannot be circumvented
+by hard-coding an IP address in a URL (e.g. http://155.98.65.24/),
+which is a common black-hat tactic.
 
 \item Kindsicher is completely implemented as home network
-  infrastructure, so its protection is automatically extended to new
-  devices brought into the home (for example, when a friend arrives
-  with a Wi-Fi tablet). Most other solutions have a component that
-  must be installed on the client device.
+infrastructure, so its protection is automatically extended to new
+devices brought into the home (for example, when a friend arrives
+with a Wi-Fi tablet). Most other solutions have a component that
+must be installed on the client device.
 
 \item Because Kindsicher is completely implemented on the home
-  network, it does not slow network performance while content is
-  routed via a cloud-based filtering server.  This can be a factor for
-  current and modern rich-content webpages.
+network, it does not slow network performance while content is
+routed via a cloud-based filtering server.  This can be a factor for
+current and modern rich-content webpages.
+
+\item Kindsicher logs all internet traffic, so parents can have a rational
+conversation with their children if a problem occurs.  
+%
+(Problems might range from a teenager playing online games in the middle of
+the night, to a child coming to parents in tears because something they saw on
+the internet scared him/her.)
+
+\item Kindsicher's loggin feature means that if black hat malware tried to
+attack the Kindsicher server, the attack would be logged, so technically
+competent humans could address the problem.
+%
+Even a non-technically inclined parent could still see which computer in
+the home was involved in the attack (either as a source or as a victim), and
+take that computer to a repair shop for delousing and a anti-malware update.
 
 \{TODO: anything else?\}
 
