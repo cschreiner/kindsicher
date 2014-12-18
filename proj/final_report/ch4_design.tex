@@ -56,10 +56,11 @@ after a sibling trips and breaks an arm).
 
 
 
-\newcommand*\ifline[3]{%
-        \ifthenelse{\value{VerbboxLineNo} = #1}{#2}{#3}}
+% \newcommand*\ifline[3]{%
+        % \ifthenelse{\value{VerbboxLineNo} = #1}{#2}{#3}}
 
-\begin{verbbox}[\ifline{6}{\vspace{10pt}}{\ifline{10}{\vspace{3pt}}{\ifline{12}{\vspace{3pt}}{\ifline{14}{\vspace{10pt}}{}}}}]
+% \begin{verbbox}[\ifline{6}{\vspace{10pt}}{\ifline{10}{\vspace{3pt}}{\ifline{12}{\vspace{3pt}}{\ifline{14}{\vspace{10pt}}{}}}}]
+\begin{verbbox}
 <rule_action> <protocol>
     <src_ip_addr> <src_port>
     <direction>
