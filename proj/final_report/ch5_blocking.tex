@@ -2,56 +2,57 @@
 
 \subsection{Blocking}
 
-Figure~\ref{fig:rule_syntax} shows the general syntax for a Snort rules. There are eight types of snort rules: alert, log, pass, active, dynamic, drop, reject, and sdrop. Each type is described below:
+Figure~\ref{fig:rule_syntax} shows the general syntax for a Snort rule. There are eight types of Snort rules: \texttt{alert}, \texttt{log}, \texttt{pass}, \texttt{active}, \texttt{dynamic}, \texttt{drop}, \texttt{reject}, and \texttt{sdrop}. Each type is described below:
 
 \begin{itemize}
-    \item \textbf{Alert}.
-        Alert is the most commonly used type of rule. It sends an alert to the
-        network to who ever is running the Snort server \emph{and} logs the
+    \item \texttt{alert}.
+        \texttt{alert} is the most commonly used type of rule. It sends an
+        alert to who ever is running the Snort server \emph{and} logs the
         packet(s) for later inspection.
 
-    \item \textbf{Log}.
-        Log logs the packet, but does not send an alert.  This can be used for
-        a rule that is not critical but the network administrator wants to be
-        able to look at it later.
+    \item \texttt{log}.
+        \texttt{log} logs the packet that triggered the rule, but does not send
+        an alert. This can be used for a rule that is not critical but the
+        network administrator wants to be able to look at it later.
 
-    \item \textbf{Pass}.
-        Pass does not do anything with the packet. The packet is ignored.
+    \item \texttt{pass}.
+        \texttt{pass} does not do anything with the packet. The packet is
+        ignored. This is a way of turning off a rule that is not necessary.
 
-    \item \textbf{Active}.
-        The is the same as Alert except that after sending an alert, a dynamic
-        rule is turned on.
+    \item \texttt{active}.  The is the same as \texttt{alert} except that after
+        sending an alert, a dynamic rule is turned on.
 
-    \item \textbf{Dynamic}.
-        A dynamic rule will do nothing until activated by an Active rule. Once
-        it has been activated, it asks as a log rule
+    \item \texttt{dynamic}.  A \texttt{dynamic} rule will do nothing until
+        activated by an \texttt{active} rule. Once it has been activated, it
+        acts as a \texttt{log} rule.
 
-    \item \textbf{Drop}.
-        Drop blocks the packet and logs it.
+    \item \texttt{drop}.  \texttt{drop} blocks the packet and logs it. This
+        only works if Snort is in inline mode.
 
-    \item \textbf{Reject}.
-        Reject blocks the packet, logs it, and sends a TCP reset message (for a
-        TCP connection) or a ICMP port unreachable message (for UDP connection)
-        to both ends of the connect.
+    \item \texttt{reject}.
+        \texttt{reject} blocks the packet (if in inline mode), logs it, and
+        sends a TCP reset message (for a TCP connection) or a ICMP port
+        unreachable message (for UDP connection) to both ends of the connect.
 
-    \item \textbf{sDrop}.
-        Same as Drop except that the packet is not logged.
+    \item \texttt{sdrop}.
+        Same as \texttt{drop} except that the packet is not logged.
 \end{itemize}
 
-For the purposes of blocking websites, we are interested in drop, reject, and
-sdrop. We want to be record when a website is being blocked (we want the packet
-logged), sdrop does not fit our needs. For drop to work correctly, Snort needs
-to configured in inline mode. Inline mode is when the Snort server is inline
-with Internet traffic. For example, the Snort server would be between the local
-network and the Internet connection. Add data is inspected by the server and
-either blocked or passed through. As our design section describes, this
-configuration has important implications. This means that if the Snort server
-fails then the Internet connection will be lost. This also means that the Snort
-server could potentially act as a bottle neck, slow down traffic. Because of
-these reasons, we decided that putting Snort inline in the network did not fit
-our needs. This means that block is not a valid action.
+For the purposes of blocking websites, we are interested in \texttt{drop},
+\texttt{reject}, and \texttt{sdrop}. We want to be record when a website is
+being blocked (we want the packet logged), so \texttt{sdrop} does not fit our
+needs. For \texttt{drop} to work correctly, Snort needs to configured in inline
+mode. Inline mode is when the Snort server is inline with Internet traffic. For
+example, the Snort server would be between the local network and the Internet
+connection. All data is inspected by the Snort server and either blocked or
+passed through. As our design section describes, this configuration has
+important implications. This means that if the Snort server fails then the
+Internet connection will be lost. This also means that the Snort server could
+potentially act as a bottle neck, slowing down traffic. Because of these
+reasons, we decided that putting Snort inline in the network did not fit our
+needs. This means that \texttt{block} is not a valid action.
 
-The last rule action is reject. Since we are concerned about rejecting HTTP
+The last rule action is reject. Since we are concerned about blocking HTTP
 requests, we concern ourselves with only the TCP functionality of reject and
 ignore the UDP functionality. Reject uses a well studied TCP attack called TCP
 Reset attack~\cite{watson2004slipping}.
@@ -67,7 +68,7 @@ Reset attack~\cite{watson2004slipping}.
 
 For a TCP Reset attack to work, there must be a man in the middle. It monitors
 the TCP connections that are being made between the network and the Internet.
-When the man in the middle wants to top a connection, it sends a TCP RST packet
+When the man in the middle wants to stop a connection, it sends a TCP RST packet
 to both ends of the connections. Both ends of the connection think that the
 packet came from the other end so it honors the RST packet. For this to work,
 the man in the middle must know the sequence number and ACK number of the TCP
@@ -76,7 +77,7 @@ both ends of the connect receive the TCP RST packet, they stop sending data and
 close the connection. Figure~\ref{fig:tcp_reset} shows a packet flow of a TCP
 reset attack.
 
-For the cause of Snort, the Snort server is the man in the middle. When a
+In the case of our system, the Snort server is the man in the middle. When a
 reject rule is triggered, the Snort server sends a TCP RST packet to each end
 of the connection.
 
@@ -88,7 +89,7 @@ of the connection.
     \label{fig:snort_slow}
 \end{figure}
 
-Snort's reject rule works in theory, but in practice it has some problems. An
+Snort's reject rule works in theory, but in practice, it has some problems. An
 inherent issue with not having our Snort server inline but instead having it
 rejecting connections is that there could be conditions such that a TCP
 connection could transmit data before the Snort server has time to respond.
@@ -142,7 +143,11 @@ good list of URLs that should not be blocked (a whitelist). This is harder than
 it first sounds. This is in part due to the complexities of the Internet.
 Typically, when a web page is visited, resources from many different locations
 are loaded. An example of this is shown in Figure~\ref{fig:http_get}. This
-makes creating a realistic whitelist much more difficult.
+makes creating a realistic whitelist much more difficult. For example, a URL
+might be added to the whitelist, but for all of the websites important
+resources (images, fonts, etc.), other URLs need to be added to the whitelist
+as well. It becomes a lot harder as a parent to know what should be added to
+the whitelist.
 
 To understand what a whitelist might look like for a typical family, one of the
 authors allowed for their families Internet traffic to be logged. This was done
