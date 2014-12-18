@@ -20,6 +20,31 @@ IDS or NIDS). It monitors traffic that passes through it and detects if any
 type of attack common is occurring. It records this information in a database
 and notifies an network administrator if it detects any serious problems.
 
+IDSs can be installed in either of two topological modes: in-line and
+parallel.  
+% 
+In-line installation requires the IDS host to forward every packet entering or
+leaving the network.  
+%
+It guarantees that the IDS will able to process (or block) every packet, at
+the expense of slowing down network communication to the speed that the IDS
+host can handle.  
+%
+If the IDS host becomes overloaded or fails, all network communication slows
+or stops.  
+%
+On the other hand, a parallel IDS requires a network hub (\emph{not} a
+switch).  
+%
+(Recall that a network hub sends all traffic it receives out on all its ports,
+unlike a switch, which determines each packet's destination host, and only
+sends the packet out on the appropriate port. ) 
+%
+The hub allows the IDS to silently listen to all traffic passing through the
+hub, and if it determines a TCP packet is problematic, the hub allows the IDS
+to interrupt the packet's TCP connection by sending a TCP reset signal to the
+packet's source and destination hosts.
+
 \newcommand*\ifline[3]{%
         \ifthenelse{\value{VerbboxLineNo} = #1}{#2}{#3}}
 
