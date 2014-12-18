@@ -4,24 +4,35 @@
 
 The goal of our system is two fold: block websites that are not part of the
 white list and to record network statistics about the Internet usage of the
-family. The second goal is important because it is not enough to just block
-unwanted websites, health Internet usage habits must be developed as well. By
-logging Internet usage, parents can identify any unhealthy behaviors with the
-use of the Internet. For example, say a teenager is staying up late to use the
-Internet and the website they are viewing is on the whitelist. The content the
-teenager is viewing might not be bad (such as a simple Internet game), but
-staying up late is not a healthy habit. With this information, the parents are
-able to address this problem in a direct manner.
+family. 
+%
+The second goal is important because effective parenting does not mean
+controlling children, but helping them learn to control themselves.  
+%
+Regarding the internet, this means helping the children develop healthy
+internet usage habits.
+%
+By logging Internet usage, parents can identify any unhealthy behaviors with the
+use of the Internet. 
+%
+For example, say a teenager is staying up late to use the Internet and the
+website they are viewing is on the whitelist.
+%
+The content the teenager is viewing might not be bad (such as a simple
+Internet game), but staying up late is not a healthy habit.
+%
+With this information, the parents are able to address this problem in a
+direct manner.
 
 For both blocking and reporting, we used the intrusion detection system (IDS),
 Snort~\cite{snort}. An IDS is a piece of software that sits on individual
 clients (called host based IDS or HIDS) or on a network (called network based
 IDS or NIDS). It monitors traffic that passes through it and detects if any
-type of attack common is occurring. It records this information in a database
+type of attack is occurring. It records this information in a database
 and notifies an network administrator if it detects any serious problems.
 
-The IDS' host can be installed in either of two topological modes: in-line and
-stub.
+The IDS' host can be installed in either of two topological configurations:
+in-line and stub.
 %
 In-line installation requires the IDS host to forward every packet entering or
 leaving the network.
@@ -38,7 +49,7 @@ switch).
 %
 (Recall that a network hub sends all traffic it receives out on all its ports,
 unlike a switch, which determines each packet's destination host, and only
-sends the packet out on the appropriate port. )
+sends the packet out on the appropriate port.)
 %
 The hub allows the IDS on the IDS host to silently listen to all traffic
 passing through the hub, and if it determines a TCP packet is problematic, the
@@ -91,25 +102,33 @@ reject tcp
     \label{fig:rule_syntax}
 \end{figure}
 
-Snort is rule based. This means that a user can write rules that if the rule
-conditions are met, Snort performs an action. Figure~\ref{fig:rule_syntax}
-shows the general syntax of a rule. There are communities of Snort users that
-write rules for common attacks and network problems so that typical users do
-not need a deep knowledge of intrusion detection to get benefit from Snort.
+Snort is rule based. 
+%
+This means that a user can write rules that cause Snort to perform an action
+whenever the specified conditions are met.  conditions are met, Snort performs
+an action.
+%
+Figure~\ref{fig:rule_syntax} shows the general syntax of a rule. There are
+communities of Snort users that write rules for common attacks and network
+problems so that typical users do not need a deep knowledge of intrusion
+detection to get benefit from Snort.
 
 % TODO: Describe network topology
 \begin{figure}[!t]
     \centering
     \includegraphics[width=\columnwidth]{figures/topology}
-    \caption{XXX}
+    \caption{Network topology, as implemented.}
     \label{fig:topology}
 \end{figure}
 
-How Snort was used to accomplish each goal (blocking and reporting) is outlined
+How Snort was used to accomplish the goals of blocking and reporting is outlined
 in the sections below.
+%
+\{TODO: is the use of SNORT adequately outlined in the sections below, or is
+this a place we can add more information and lengthen the paper?\}
 
 % ==================================================
-\subsection{Login}
+\subsection{Distinguishing Children from Parents}
 
 The TCP/IP protocol, and the HTTP protocol that rides on top of it, identify
 the sending computer, \emph{NOT} the user name on that computer.
@@ -123,7 +142,6 @@ Thus, there needs to be some mechanism to ensure that the children can only
 log into hosts designated for children.
 
 The network we used for testing uses SNISR
-%
 \footnote{ SNISR is a network login and directory information system, akin to
 LDAP, NIS, or Hesiod.  Its signature advantage is that all clients have a
 local record of account and group information at all times, so mobile clients
