@@ -89,15 +89,22 @@ of the connection.
     \label{fig:snort_slow}
 \end{figure}
 
-Snort's reject rule works in theory, but in practice it has some problems. An
-inherent issue with not having our Snort server inline but instead having it
-rejecting connections is that there could be conditions such that a TCP
-connection could transmit data before the Snort server has time to respond.
+Snort's reject rule works in theory, but in practice it has some problems. 
+%
+An inherent issue with not having our Snort server inline but instead having
+it rejecting connections is that there could be conditions such that a TCP
+connection could transmit data \proposedtext{(which advances the TCP sequence
+number)} before the Snort server has time to respond.
+%
 This is exactly what happens under certain conditions.
-Figure~\ref{fig:snort_slow} shows a screen shot of a Wireshark trace. In it,
-the TCP connection is established, data is sent, and then the Snort server
-sends its TCP RST packets. The time between when the data is received by the
-client and when the Snort server sends a TCP RST packet is .41 seconds.
+%
+Figure~\ref{fig:snort_slow} shows a screen shot of a Wireshark trace.
+%
+In it, the TCP connection is established, data is sent, and then the Snort
+server sends its TCP RST packets.
+%
+The time between when the data is received by the client and when the Snort
+server sends a TCP RST packet is .41 seconds.
 
 To really understand the problem with Snort being slow, we ran Snort in many
 different environments to make sure it wasn't a platform or topology specific
