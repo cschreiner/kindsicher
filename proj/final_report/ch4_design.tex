@@ -63,9 +63,12 @@ packet's source and destination hosts.
 
 <direction>: ->, <-, <>
 
-Example: reject tcp any any <>
-            10.0.0.10 80
-            (sid: 1; msg: "rejecting!";)
+Example:
+reject tcp
+    any any
+    <>
+    10.0.0.10 80
+    (sid: 1; msg: "rejecting!";)
 
 \end{verbbox}
 
