@@ -90,7 +90,6 @@ of the connection.
     \label{fig:snort_slow}
 \end{figure}
 
-<<<<<<< HEAD
 Snort's reject rule works in theory, but in practice it has some problems. 
 %
 An inherent issue with not having our Snort server inline but instead having
@@ -98,12 +97,6 @@ it rejecting connections is that there could be conditions such that a TCP
 connection could transmit data \proposedtext{(which advances the TCP sequence
 number)} before the Snort server has time to respond.
 %
-=======
-Snort's reject rule works in theory, but in practice, it has some problems. An
-inherent issue with not having our Snort server inline but instead having it
-rejecting connections is that there could be conditions such that a TCP
-connection could transmit data before the Snort server has time to respond.
->>>>>>> 0824b6551ac46b75892cf720ff43cb2b602998fa
 This is exactly what happens under certain conditions.
 %
 Figure~\ref{fig:snort_slow} shows a screen shot of a Wireshark trace.
