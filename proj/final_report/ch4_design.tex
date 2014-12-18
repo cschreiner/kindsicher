@@ -21,24 +21,24 @@ type of attack common is occurring. It records this information in a database
 and notifies an network administrator if it detects any serious problems.
 
 The IDS' host can be installed in either of two topological modes: in-line and
-stub.  
-% 
+stub.
+%
 In-line installation requires the IDS host to forward every packet entering or
-leaving the network.  
+leaving the network.
 %
 It guarantees that the IDS will able to process (or block) every packet, at
 the expense of slowing down network communication to the speed that the IDS
-host can handle.  
+host can handle.
 %
 If the in-line IDS host becomes overloaded or fails, all network communication slows
-or stops.  
+or stops.
 %
 On the other hand, a stub-installed IDS host requires a network hub (\emph{not} a
-switch).  
+switch).
 %
 (Recall that a network hub sends all traffic it receives out on all its ports,
 unlike a switch, which determines each packet's destination host, and only
-sends the packet out on the appropriate port. ) 
+sends the packet out on the appropriate port. )
 %
 The hub allows the IDS on the IDS host to silently listen to all traffic
 passing through the hub, and if it determines a TCP packet is problematic, the
@@ -97,6 +97,12 @@ write rules for common attacks and network problems so that typical users do
 not need a deep knowledge of intrusion detection to get benefit from Snort.
 
 % TODO: Describe network topology
+\begin{figure}[!t]
+    \centering
+    \includegraphics[width=\columnwidth]{figures/topology}
+    \caption{XXX}
+    \label{fig:topology}
+\end{figure}
 
 How Snort was used to accomplish each goal (blocking and reporting) is outlined
 in the sections below.
@@ -105,17 +111,17 @@ in the sections below.
 \subsection{Login}
 
 The TCP/IP protocol, and the HTTP protocol that rides on top of it, identify
-the sending computer, \emph{NOT} the user name on that computer.  
-% 
+the sending computer, \emph{NOT} the user name on that computer.
+%
 Since Kindsicher's goal is to restrict access for children, not for adults,
 the only way to distinguish between children's internet access and adults'
 access is to designate certain computers for children's use only, and other
-computers for adults' use only.  
+computers for adults' use only.
 %
 Thus, there needs to be some mechanism to ensure that the children can only
 log into hosts designated for children.
 
-The network we used for testing uses SNISR 
+The network we used for testing uses SNISR
 %
 \footnote{ SNISR is a network login and directory information system, akin to
 LDAP, NIS, or Hesiod.  Its signature advantage is that all clients have a
@@ -124,15 +130,15 @@ can be disconnected from the network and reconnected at will.  For more
 information, see http://www.mathoni.net/cas/swforge/snisr for more
 information. }
 %
-for login directory services.  
+for login directory services.
 %
-The current released version, SNISR 1.1, allows any user to log in on any host.  
+The current released version, SNISR 1.1, allows any user to log in on any host.
 %
 Part of this project, therefore, was upgrading SNISR to allow the network
 administrator to specify classes of hosts that only certain users could log
 into.
 %
-SNISR 2.0's baseline ALPHA_6 contains this feature, and is expected to begin
+SNISR 2.0's baseline ALPHA\_6 contains this feature, and is expected to begin
 beta testing soon.
 
 
