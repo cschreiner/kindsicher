@@ -78,10 +78,6 @@ both ends of the connect receive the TCP RST packet, they stop sending data and
 close the connection. Figure~\ref{fig:tcp_reset} shows a packet flow of a TCP
 reset attack.
 
-In the case of our system, the Snort server is the man in the middle. When a
-reject rule is triggered, the Snort server sends a TCP RST packet to each end
-of the connection.
-
 \begin{figure*}[!hbtp]
     \centering
     \includegraphics[width=2\columnwidth]{figures/snort_slow}
@@ -89,6 +85,10 @@ of the connection.
     server is .41 seconds too late in sending TCP RST packets.}
     \label{fig:snort_slow}
 \end{figure*}
+
+In the case of our system, the Snort server is the man in the middle. When a
+reject rule is triggered, the Snort server sends a TCP RST packet to each end
+of the connection.
 
 Snort's reject rule works in theory, but in practice it has some problems. 
 %
@@ -137,9 +137,12 @@ but it did not fix it. In the future, we plan on looking at the source code of
 Snort and pulling out only the necessary parts to block websites.
 
 
+% Prevent the subsection heading from appearing with a figure between it and 
+% its first paragraph.
+\vspace{20mm}
 \subsection{Whitelist}
 
-\begin{figure}[!htb]
+\begin{figure}[!tb]
     \centering
     \includegraphics[width=\columnwidth]{figures/http_get}
     \caption{One HTTP GET request results in many more HTTP GET requests. Some
