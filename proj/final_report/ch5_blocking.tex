@@ -40,18 +40,25 @@ Figure~\ref{fig:rule_syntax} shows the general syntax for a Snort rule. There ar
 \end{itemize}
 
 For the purposes of blocking websites, we are interested in \texttt{drop},
-\texttt{reject}, and \texttt{sdrop}. We want to be record when a website is
-being blocked (we want the packet logged), so \texttt{sdrop} does not fit our
-needs. For \texttt{drop} to work correctly, Snort needs to be configured in inline
-mode. Inline mode is when the Snort server is inline with Internet traffic. For
-example, the Snort server would be between the local network and the Internet
-connection. All data is inspected by the Snort server and either blocked or
-passed through. As our design section describes, this configuration has
-important implications. This means that if the Snort server fails then the
-Internet connection will be lost. This also means that the Snort server could
-potentially act as a bottle neck, slowing down traffic. Because of these
-reasons, we decided that putting Snort inline in the network did not fit our
-needs. This means that \texttt{block} is not a valid action.
+\texttt{reject}, and \texttt{sdrop}. 
+%
+We want to record when a website is being blocked (we want the packet logged),
+so \texttt{sdrop} does not fit our needs.
+%
+For \texttt{drop} to work correctly, Snort needs to be configured in inline
+mode.
+%
+Inline mode is when the Snort server is inline with Internet traffic. 
+%
+For example, the Snort server would be
+between the local network and the Internet connection. All data is inspected
+by the Snort server and either blocked or passed through. As our design
+section describes, this configuration has important implications. This means
+that if the Snort server fails then the Internet connection will be lost. This
+also means that the Snort server could potentially act as a bottle neck,
+slowing down traffic. Because of these reasons, we decided that putting Snort
+inline in the network did not fit our needs. This means that \texttt{block} is
+not a valid action.
 
 The last rule action is reject. Since we are interested in blocking HTTP
 requests, we concern ourselves with only the TCP functionality of reject and
