@@ -2,37 +2,37 @@
 
 
 % force the word INTRODUCTION to not appear by itself at the end of a column
-\vspace{20mm} 
+\vspace{20mm}
 
 \section{Introduction}
 \nopagebreak
 In a modern society, children must increasingly use the Internet for required
 tasks such as homework and communication with parents and other family
-members, not just for optional tasks (such as games and entertainment). 
+members, not just for optional tasks (such as games and entertainment).
 %
 The amount of required use means that children must often use the Internet
-when their parents cannot continually supervise them. 
+when their parents cannot continually supervise them.
 %
 This carries significant risk that the children will encounter Internet
-content they are not able to handle, or that would exploit them. 
+content they are not able to handle, or that would exploit them.
 
 Most previous work on improving children's Internet safety focuses on
 identifying ``bad'' content and blocking it. Some of this work relies
-on autoclassification (e.g. Dans Guardian\cite{dansguardian}), some on
-human classification (e.g. OpenDNS\cite{opendns}), and some on a
-combination (e.g. NetNanny\cite{netnanny}).
+on autoclassification (e.g. Dans Guardian~\cite{dansguardian}), some on
+human classification (e.g. OpenDNS~\cite{opendns}), and some on a
+combination (e.g. NetNanny~\cite{netnanny}).
 %
 The amount of work to identify ``bad'' content is, however, beyond the
 capabilities of most families.
 
-Commercial services exist that classify content \cite{opendns}\cite{netnanny},
+Commercial services exist that classify content~\cite{opendns, netnanny},
 but they are still stretched to adequately deal with the volume of legitimate
 content, and black hats are continually finding new means of circumventing the
 services' products.
 %
-It was disappointing to observe a pattern in commercial product literature of
+It is disappointing to observe a pattern in commercial product literature of
 focusing on features and testimonials, and omitting technical
-details.\cite{opendns} \{TODO: are there other products we should list here?\}
+details.~\cite{opendns, kidlogger, mcafee}
 %
 This prevents parents (or a technically inclined friend of the parents) from
 making a rational comparison between products and evaluating potential for
@@ -40,12 +40,12 @@ ineffectiveness or circumvention without purchasing each product and
 performing detailed technical experiments.
 %
 Further, outsourcing content classification prevents a parent from restricting
-content for family-specific reasons. 
+content for family-specific reasons.
 %
 For example, a child may have a phobia about spiders, or a parent may want to
 insist on accompanying a child whenever they visit certain online shopping
 sites, so the parent can teach good consumer practices during the shopping
-session. 
+session.
 
 This paper presents Kindsicher, a children's Internet safety system
 that addresses these issues by taking the opposite approach: parents
@@ -55,47 +55,45 @@ parental intervention.
 %
 Kindsicher offers the following advantages:
 
-\{TODO: order these for maximum rhetorical effect \}
 \begin{itemize}
-
-\item Kindsicher allows the parents full control over the internet sites to be
-designated as "safe".  
-%
-While not implemented in our demonstration, Kindsicher's architecture allows
-for parents to define exceptions to the approved site list so children can
-browse additional content when parents are present.  
-%
-It would be conceptually simple to extend this so parents could temporarily
-add sites via a web-capable smartphone, in case children needed to access
-another site while their parents were away.
 
 \item Kindsicher is completely open-source software, so the
 technically inclined are free to examine it, improve it if desired,
 and report their results to others.
+
+\item Kindsicher allows the parents full control over the Internet sites to be
+designated as ``safe''.
+%
+Kindsicher's architecture allows for parents to define exceptions to the
+approved site list so children can browse additional content when parents
+are present.
+%
+It would be conceptually simple to extend this so parents could temporarily
+add sites via a web-capable smartphone, in case children needed to access
+another site while their parents were away.
 
 \item Kindsicher is blocks traffic by interrupting TCP connections, as
 opposed to blocking DNS name lookups, so it cannot be circumvented
 by hard-coding an IP address in a URL (e.g. http://155.98.65.24/),
 which is a common black-hat tactic.
 
-\item Kindsicher is completely implemented as home network
+\item Kindsicher is completely implemented as part of a home network
 infrastructure, so its protection is automatically extended to new
 devices brought into the home (for example, when a friend arrives
 with a Wi-Fi tablet). Most other solutions have a component that
 must be installed on the client device.
 
-\item Because Kindsicher is completely implemented on the home
+\item Since Kindsicher is completely implemented on the home
 network, it does not slow network performance while content is
 routed via a cloud-based filtering server.  This can be a factor for
-current and modern rich-content webpages.
+current and modern rich-content web pages.
 
-\item Kindsicher logs all internet traffic, so parents can have a rational
-conversation with their children if a problem occurs.  
+\item Kindsicher logs all Internet traffic, so parents can have a rational
+conversation with their children if a problem occurs.
 %
 (Problems might range from a teenager excessively playing online games, to a
-child coming to parents in tears because something seen on the internet
+child coming to parents in tears because something seen on the Internet
 scared him/her.)
-
 
 \item Kindsicher's logging feature means that if black hat malware tried to
 attack the Kindsicher server, the attack would be logged, so technically
@@ -105,9 +103,6 @@ Even a non-technically inclined parent could still see which computer in the
 home was involved in the attack (either as a source or as a victim), and take
 that computer to a repair shop for malware removal and an anti-virus update.
 
-\{TODO: anything else?\}
-
 \end{itemize}
 
-\{TODO: should we do a comparison with other work to make the point that
-Kindsicher fills a gap in the arsenal of tools available to parents?\}
+No product or system exists today that has all of these features. We hope that by developing Kindsicher, we can show that each of these features is important and should be integrated into previous systems.
