@@ -17,7 +17,7 @@ Figure~\ref{fig:rule_syntax} shows the general syntax for a Snort rule. There ar
 
     \item \texttt{pass}.
         \texttt{pass} does not do anything with the packet. The packet is
-        ignored and allowed to proceed to its destination. This is a way of 
+        ignored and allowed to proceed to its destination. This is a way of
         turning off a rule that is not necessary.
 
     \item \texttt{active}.  The is the same as \texttt{alert} except that after
@@ -81,7 +81,7 @@ reset attack.
 \begin{figure*}[!hbtp]
     \centering
     \includegraphics[width=2\columnwidth]{figures/snort_slow}
-    \caption{A screen shot of a Wireshark trace. In this trace, the Snort
+    \caption{A screenshot of a Wireshark trace. In this trace, the Snort
     server is .41 seconds too late in sending TCP RST packets.}
     \label{fig:snort_slow}
 \end{figure*}
@@ -90,17 +90,16 @@ In the case of our system, the Snort server is the man in the middle. When a
 reject rule is triggered, the Snort server sends a TCP RST packet to each end
 of the connection.
 
-Snort's reject rule works in theory, but in practice it has some problems. 
+Snort's reject rule works in theory, but in practice it has some problems.
 %
 An inherent issue with not having our Snort server inline but instead having
 it rejecting connections is that there could be conditions such that a TCP
-connection could transmit data \proposedtext{(which advances the TCP sequence
-number)}\{TODO: Phil: you concur with this change?\} before the Snort server
+connection could finish transmitting all of its data before the Snort server
 has time to respond.
 %
 This is exactly what happens under certain conditions.
 %
-Figure~\ref{fig:snort_slow} shows a screen shot of a Wireshark trace.
+Figure~\ref{fig:snort_slow} shows a screenshot of a Wireshark trace.
 %
 In it, the TCP connection is established, data is sent, and then the Snort
 server sends its TCP RST packets.
@@ -137,7 +136,7 @@ but it did not fix it. In the future, we plan on looking at the source code of
 Snort and pulling out only the necessary parts to block websites.
 
 
-% Prevent the subsection heading from appearing with a figure between it and 
+% Prevent the subsection heading from appearing with a figure between it and
 % its first paragraph.
 \vspace{20mm}
 \subsection{Creating the Whitelist}

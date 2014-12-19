@@ -4,14 +4,14 @@
 
 The goal of our system is two fold: block websites that are not part of the
 white list and to record network statistics about the Internet usage of the
-family. 
+family.
 %
 The second goal is important because effective parenting does not mean
 controlling children, but helping them learn to make good decisions
 themselves.\cite{severe}
 %
-Regarding the internet, this means helping the children develop healthy
-internet usage habits.
+Regarding the Internet, this means helping the children develop healthy
+Internet usage habits.
 %
 By logging Internet usage, parents can identify any unhealthy Internet
 behaviors.
@@ -63,8 +63,9 @@ packets through without logging and/or interrupting them.
 While passing unfiltered packets admittedly weaken the primary goals of
 Kindsicher, we opted for a stub-configured IDS host, on the theory that it is
 better to have weaker browsing protection than to risk children not being able
-to communicate in an emergency (e.g. using an internet phone to call a parent
-after a sibling trips and breaks an arm).
+to communicate in an emergency (e.g. using an Internet phone to call a parent
+after a sibling trips and breaks an arm). The network topology we expect is
+shown in Figure~\ref{fig:topology}.
 
 
 
@@ -103,17 +104,16 @@ reject tcp
     \label{fig:rule_syntax}
 \end{figure}
 
-Snort is rule based. 
+For Kindsicher, we used Snort as our IDS.
 %
-This means that a system administrator can write rules that cause Snort to
-perform an action whenever the rule's conditions are met.  
+Snort is rule based which means that a system administrator can write rules
+that cause Snort to perform an action whenever the rule's conditions are met.
 %
 Figure~\ref{fig:rule_syntax} shows the general syntax of a rule. There are
 communities of Snort users that write rules for common attacks and network
 problems so that typical system administrators do not need a deep knowledge of
 intrusion detection to get benefit from Snort.
 
-\{ TODO: Describe network topology (is this done now?) \}
 \begin{figure*}[!t]
     \centering
     \includegraphics[width=2\columnwidth]{figures/topology}
@@ -126,10 +126,7 @@ intrusion detection to get benefit from Snort.
 \end{figure*}
 
 How Snort was used to accomplish the goals of blocking and reporting is outlined
-in the sections below.
-%
-\{TODO: is the use of SNORT adequately outlined in the sections below, or is
-this a place we can add more information and lengthen the paper?\}
+in the Blocking and Reporting sections.
 
 % ==================================================
 \subsection{Distinguishing Children from Parents}
@@ -138,20 +135,19 @@ The TCP/IP protocol, and the HTTP protocol that rides on top of it, identify
 the sending computer, \emph{NOT} the user name on that computer.
 %
 Since Kindsicher's goal is to restrict access for children, not for adults,
-the only way to distinguish between children's internet access and adults'
+the only way to distinguish between children's Internet access and adults'
 access is to designate certain computers for children's use only, and other
 computers for adults' use only.
 %
 Thus, there needs to be some mechanism to ensure that the children can only
 log into hosts designated for children.
 
-\{TODO: how to eliminate the space between the SNISR and its footnote?\}
-The network we used for testing uses SNISR
-\footnote{ SNISR is a network login and directory information system, akin to
-LDAP, NIS, or Hesiod.  Its signature advantage is that all clients have a
-local record of account and group information at all times, so mobile clients
-can disconnect from the network and reconnect at will.  
-See http://www.mathoni.net/cas/swforge/snisr for more information. }
+The network we used for testing uses SNISR\footnote{SNISR is a network login
+and directory information system, akin to LDAP, NIS, or Hesiod.  Its
+signature advantage is that all clients have a local record of account and
+group information at all times, so mobile clients can disconnect from the
+network and reconnect at will. See http://www.mathoni.net/cas/swforge/snisr
+for more information.}
 %
 for login directory services.
 %
