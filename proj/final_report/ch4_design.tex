@@ -35,15 +35,15 @@ and notifies an network administrator if it detects any serious problems.
 The IDS' host can be installed in either of two topological configurations:
 in-line and stub.
 %
-In-line installation requires the IDS host to forward every packet entering or
-leaving the network.
+An in-line configuration requires the IDS host to forward every packet
+entering or leaving the network.
 %
 It guarantees that the IDS will able to process (or block) every packet, at
 the expense of slowing down network communication to the speed that the IDS
 host can handle.
 %
-If the in-line IDS host becomes overloaded or fails, all network communication slows
-or stops.
+If the in-line IDS host becomes overloaded or fails, all network communication
+slows or stops.
 %
 On the other hand, a stub-installed IDS host requires a network hub (\emph{not} a
 switch).
@@ -52,10 +52,10 @@ switch).
 unlike a switch, which determines each packet's destination host, and only
 sends the packet out on the appropriate port.)
 %
-The hub allows the IDS on the IDS host to silently listen to all traffic
-passing through the hub, and if it determines a TCP packet is problematic, the
-hub allows the IDS to interrupt the packet's TCP connection by sending a TCP
-reset signal to the packet's source and destination hosts.
+The hub allows the IDS to silently listen to all traffic passing through the
+hub, and if it determines a TCP packet is problematic, the hub allows the IDS
+to interrupt the packet's TCP connection by sending a TCP reset signal to the
+packet's source and destination hosts.
 %
 If a stub-installed IDS becomes overloaded or fails, it allows some or all
 packets through without logging and/or interrupting them.
@@ -105,14 +105,13 @@ reject tcp
 
 Snort is rule based. 
 %
-This means that a user can write rules that cause Snort to perform an action
-whenever the specified conditions are met.  conditions are met, Snort performs
-an action.
+This means that a system administrator can write rules that cause Snort to
+perform an action whenever the rule's conditions are met.  
 %
 Figure~\ref{fig:rule_syntax} shows the general syntax of a rule. There are
 communities of Snort users that write rules for common attacks and network
-problems so that typical users do not need a deep knowledge of intrusion
-detection to get benefit from Snort.
+problems so that typical system administrators do not need a deep knowledge of
+intrusion detection to get benefit from Snort.
 
 % TODO: Describe network topology
 \begin{figure*}[!t]
@@ -146,12 +145,13 @@ computers for adults' use only.
 Thus, there needs to be some mechanism to ensure that the children can only
 log into hosts designated for children.
 
+\{TODO: how to eliminate the space between the SNISR and its footnote?\}
 The network we used for testing uses SNISR
 \footnote{ SNISR is a network login and directory information system, akin to
 LDAP, NIS, or Hesiod.  Its signature advantage is that all clients have a
 local record of account and group information at all times, so mobile clients
-can disconnect from the network and reconnect at will.  For more information,
-see http://www.mathoni.net/cas/swforge/snisr for more information. }
+can disconnect from the network and reconnect at will.  
+See http://www.mathoni.net/cas/swforge/snisr for more information. }
 %
 for login directory services.
 %
