@@ -1529,7 +1529,7 @@ in accordance with the Creative Commons Attribution-ShareAlike 4.0
 International License
 (https://creativecommons.org/licenses/by-sa/4.0/legalcode) as long as
 any changes are clearly identified as such, or, alternately, by
-special written arrangment with one of the authors.
+special written arrangement with one of the authors.
 
 To appear in \emph{The Proceedings of the University of Utah School of
 Computing Security and Privacy Class}, December 2014, Salt Lake City, UT.
