@@ -14,7 +14,8 @@ CHAPTER_FILES= \
 	ch7_future.tex \
 	ch8_conclusion.tex
 
-OTHER_SOURCES=../project.bib
+OTHER_SOURCES=../project.bib \
+	sigchi.cls
 
 $(TARGET): $(MAIN_SOURCE) $(CHAPTER_FILES) $(OTHER_SOURCES)
 	pdflatex $(MAIN_SOURCE)
