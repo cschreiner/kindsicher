@@ -82,13 +82,13 @@ In the case of our system, the Snort server is the man in the middle. When a
 reject rule is triggered, the Snort server sends a TCP RST packet to each end
 of the connection.
 
-\begin{figure}[!t]
+\begin{figure*}[!hbtp]
     \centering
-    \includegraphics[width=\columnwidth]{figures/snort_slow}
+    \includegraphics[width=2\columnwidth]{figures/snort_slow}
     \caption{A screen shot of a Wireshark trace. In this trace, the Snort
     server is .41 seconds too late in sending TCP RST packets.}
     \label{fig:snort_slow}
-\end{figure}
+\end{figure*}
 
 Snort's reject rule works in theory, but in practice it has some problems. 
 %
@@ -138,7 +138,7 @@ Snort and pulling out only the necessary parts to block websites.
 
 \subsection{Whitelist}
 
-\begin{figure}[!t]
+\begin{figure}[!htb]
     \centering
     \includegraphics[width=\columnwidth]{figures/http_get}
     \caption{One HTTP GET request results in many more HTTP GET requests. Some
