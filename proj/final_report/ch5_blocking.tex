@@ -95,7 +95,8 @@ Snort's reject rule works in theory, but in practice it has some problems.
 An inherent issue with not having our Snort server inline but instead having
 it rejecting connections is that there could be conditions such that a TCP
 connection could transmit data \proposedtext{(which advances the TCP sequence
-number)} before the Snort server has time to respond.
+number)}\{TODO: Phil: you concur with this change?\} before the Snort server
+has time to respond.
 %
 This is exactly what happens under certain conditions.
 %
